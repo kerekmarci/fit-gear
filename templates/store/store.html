@@ -125,23 +125,21 @@
                     <div class="form-inline">
                         <span class="mr-md-auto">{{ product_count }} Items found </span>
                     </div>
-                </header><!-- sect-heading -->
+                </header>
 
                 <div class="row">
                     {% for product in products %}
                     <div class="col-md-4">
                         <figure class="card card-product-grid">
                             <div class="img-wrap">
-
                                 <img src="{{ product.images.url }}">
-
-                            </div> <!-- img-wrap.// -->
+                            </div>
                             <figcaption class="info-wrap">
                                 <div class="fix-height">
                                     <a href="./product-detail.html" class="title">{{ product.product_name }}</a>
                                     <div class="price-wrap mt-2">
                                         <span class="price">&#163;{{ product.price }}</span>
-                                    </div> <!-- price-wrap.// -->
+                                    </div>
                                 </div>
                                 <a href="#" class="btn btn-block btn-primary">Add to Cart </a>
                             </figcaption>
