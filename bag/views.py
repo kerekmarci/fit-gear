@@ -12,6 +12,8 @@ def view_bag(request, total=0, quantity=0, bag_items=None):
         for bag_item in bag_items:
             total += (bag_item.product.price * bag_item.quantity)
             quantity += bag_item.quantity
+        tax = (5 * total) / 100
+        grand_total = total + tax
     except ObjectNotExist:
             pass
 
@@ -19,6 +21,8 @@ def view_bag(request, total=0, quantity=0, bag_items=None):
         'total': total,
         'quantity': quantity,
         'bag_items': bag_items,
+        'tax': tax,
+        'grand_total': grand_total,
     }
     return render(request, 'store/bag.html', context)
 
