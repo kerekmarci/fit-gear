@@ -5,7 +5,7 @@ from category.models import Category
 
 def store(request, category_slug=None):
     """
-    This view will display the products by category
+    This view will display the products by category.
     """
     categories = None
     products = None
@@ -24,3 +24,11 @@ def store(request, category_slug=None):
     }
 
     return render(request, 'store/store.html', context)
+
+
+def product_detail(request, category_slug, product_slug):
+    """
+    This view will display the individual products on a separate
+    product detail page.
+    """
+    return render(request, 'store/product_detail.html')
