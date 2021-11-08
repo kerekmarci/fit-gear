@@ -61,6 +61,4 @@ def add_to_bag(request, product_id):
             bag = bag,
         )
         bag_item.save()
-    return HttpResponse(bag_item.product)
-    exit()
     return redirect('bag')
