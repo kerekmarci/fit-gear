@@ -4,9 +4,23 @@ from .models import Bag, BagItem
 from django.http import HttpResponse
 
 
-def view_bag(request):
+def view_bag(request, total=0, quantity=0, bag_items=None):
     """ A view to see the contents of the shopping bag """
-    return render(request, 'store/bag.html')
+    try:
+        bag = Bag.objects.get(bag_id=_bag_id(request))
+        bag_items = BagItem.objects.filter(bag=bag, is_active=True)
+        for bag_item in bag_items:
+            total += (bag_item.product.price * bag_item.quantity)
+            quantity += bag_item.quantity
+    except ObjectNotExist:
+            pass
+
+    context = {
+        'total': total,
+        'quantity': quantity,
+        'bag_items': bag_items,
+    }
+    return render(request, 'store/bag.html', context)
 
 
 def _bag_id(request):
