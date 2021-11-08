@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product
 from .models import Bag, BagItem
 from django.http import HttpResponse
@@ -65,4 +65,20 @@ def add_to_bag(request, product_id):
             bag = bag,
         )
         bag_item.save()
+    return redirect('bag')
+
+
+def remove_from_bag(request, product_id):
+    """ 
+    This view will remove the product from the 
+    shopping bag in the given quantity
+    """
+    bag = Bag.objects.get(bag_id=_bag_id(request))
+    product = get_object_or_404(Product, id=product_id)
+    bag_item = BagItem.objects.get(product=product, bag=bag)
+    if bag_item.quantity > 1:
+        bag_item.quantity -= 1
+        bag_item.save()
+    else:
+        bag_item.delete()
     return redirect('bag')
