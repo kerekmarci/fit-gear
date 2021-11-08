@@ -47,8 +47,10 @@ def add_to_bag(request, product_id):
     This view will add the product into the 
     shopping bag in the given quantity
     """
-    color = request.GET['color']
-    size = request.GET['size']
+    if request.method == 'POST':
+        color = request.POST['color']
+        size = request.POST['size']
+        print(color, size)
 
     product = Product.objects.get(id=product_id)
     try:

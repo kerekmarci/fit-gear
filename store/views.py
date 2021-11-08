@@ -62,7 +62,7 @@ def product_detail(request, category_slug, product_slug):
 
 def search(request):
     """
-    Search functionality for the given keyword in product name and description
+    Search functionality for the given keyword in the product name and description
     """
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
