@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product
 from .models import Bag, BagItem
-from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def view_bag(request, total=0, quantity=0, bag_items=None):
     """ A view to see the contents of the shopping bag """
     try:
+        tax = 0
+        grand_total = 0
         bag = Bag.objects.get(bag_id=_bag_id(request))
         bag_items = BagItem.objects.filter(bag=bag, is_active=True)
         for bag_item in bag_items:
@@ -14,7 +16,7 @@ def view_bag(request, total=0, quantity=0, bag_items=None):
             quantity += bag_item.quantity
         tax = (5 * total) / 100
         grand_total = total + tax
-    except ObjectNotExist:
+    except ObjectDoesNotExist:
             pass
 
     context = {

@@ -25,7 +25,7 @@ def store(request, category_slug=None):
         paged_products = paginator.get_page(page_number)
     else:
         # When a Category filter has been selected 
-        products = Product.objects.all().filter(is_available=True)
+        products = Product.objects.all().filter(is_available=True).order_by('id')
         paginator = Paginator(products, 6)
         page_number = request.GET.get('page')
         paged_products = paginator.get_page(page_number)
