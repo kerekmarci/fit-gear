@@ -67,7 +67,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Own Context Processors
                 'category.context_processors.menu_links',
+                'bag.context_processors.counter',
             ],
         },
     },
