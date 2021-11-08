@@ -70,8 +70,8 @@ def add_to_bag(request, product_id):
 
 def remove_from_bag(request, product_id):
     """ 
-    This view will remove the product from the 
-    shopping bag in the given quantity
+    This view will decrease the product from the 
+    shopping bag, or remove if the amount reaches 0
     """
     bag = Bag.objects.get(bag_id=_bag_id(request))
     product = get_object_or_404(Product, id=product_id)
@@ -81,4 +81,16 @@ def remove_from_bag(request, product_id):
         bag_item.save()
     else:
         bag_item.delete()
+    return redirect('bag')
+
+
+def remove_bag_item(request, product_id):
+    """ 
+    This view will act as a Delete Button to delete the product
+    from the shopping bag, regardless of the quantity.
+    """
+    bag = Bag.objects.get(bag_id=_bag_id(request))
+    product = get_object_or_404(Product, id=product_id)
+    bag_item = BagItem.objects.get(product=product, bag=bag)
+    bag_item.delete()
     return redirect('bag')
