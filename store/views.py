@@ -16,10 +16,15 @@ def store(request, category_slug=None):
     # Paginator created based on https://docs.djangoproject.com/en/3.2/topics/pagination/
 
     if category_slug != None:
+        # This section is for All Products page
         categories = get_object_or_404(Category, slug=category_slug)
         products = Product.objects.filter(category=categories, is_available=True)
         product_count = products.count()
+        paginator = Paginator(products, 6)
+        page_number = request.GET.get('page')
+        paged_products = paginator.get_page(page_number)
     else:
+        # When a Category filter has been selected 
         products = Product.objects.all().filter(is_available=True)
         paginator = Paginator(products, 6)
         page_number = request.GET.get('page')
