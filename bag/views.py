@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from store.models import Product
 from .models import Bag, BagItem
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 
 
 def view_bag(request, total=0, quantity=0, bag_items=None):
@@ -46,6 +47,9 @@ def add_to_bag(request, product_id):
     This view will add the product into the 
     shopping bag in the given quantity
     """
+    color = request.GET['color']
+    size = request.GET['size']
+
     product = Product.objects.get(id=product_id)
     try:
         # Get the Bag ID present in the session
