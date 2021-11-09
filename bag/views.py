@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from store.models import Product
+from store.models import Product, Variation
 from .models import Bag, BagItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -44,15 +44,25 @@ def _bag_id(request):
 
 def add_to_bag(request, product_id):
     """ 
-    This view will add the product into the 
-    shopping bag in the given quantity
+    This view will add the product into the
+    shopping bag in the given quantity, in the selected variation.
     """
-    if request.method == 'POST':
-        color = request.POST['color']
-        size = request.POST['size']
-        print(color, size)
-
     product = Product.objects.get(id=product_id)
+    product_variation = []
+    if request.method == 'POST':
+        # This will store the category and value in key-value pairs,
+        # for example color-white, size-medium;
+        for item in request.POST:
+            key = item
+            value = request.POST[key]
+            
+            try:
+                variation = Variation.objects.get(variation_category__iexact=key,
+                    variation_value__iexact=value, product=product)
+                product_variation.append(variation)
+            except:
+                pass
+    
     try:
         # Get the Bag ID present in the session
         bag = Bag.objects.get(bag_id=_bag_id(request))
