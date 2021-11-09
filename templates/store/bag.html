@@ -37,7 +37,15 @@
                                         <figcaption class="info">
                                             <a href="{{ bag_item.product.get_url }}"
                                                 class="title text-dark">{{ bag_item.product.product_name }}</a>
-                                            <p class="text-muted small">Color: <br> Size: </p>
+                                            <p class="text-muted small">
+                                                {% if bag_item.variations.all %}
+                                                {% for item in bag_item.variations.all %}
+                                                {{ item.variation_category|capfirst }}:
+                                                {{ item.variation_value|capfirst }}
+                                                <br>
+                                                {% endfor %}
+                                                {% endif %}
+                                            </p>
                                         </figcaption>
                                     </figure>
                                 </td>

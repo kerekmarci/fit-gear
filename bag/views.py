@@ -74,6 +74,10 @@ def add_to_bag(request, product_id):
 
     try:
         bag_item = BagItem.objects.get(product=product, bag=bag)
+        if len(product_variation) > 0:
+            bag_item.variations.clear()
+            for item in product_variation:
+                bag_item.variations.add(item)
         bag_item.quantity += 1
         bag_item.save()
     except BagItem.DoesNotExist:
@@ -82,6 +86,10 @@ def add_to_bag(request, product_id):
             quantity = 1,
             bag = bag,
         )
+        if len(product_variation) > 0:
+            bag_item.variations.clear()
+            for item in product_variation:
+                bag_item.variations.add(item)
         bag_item.save()
     return redirect('bag')
 
