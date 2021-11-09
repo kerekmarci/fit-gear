@@ -1,6 +1,8 @@
 This is an E-commerce Store for my 4th Milestone Project at the Code Insitute
 
-| AS A SITE USER ||
+## User Stories
+
+|  | AS A SITE USER |
 | :---: | ----------- |
 | USER STORY NO. | I WOULD LIKE... |
 | 1 | A friendly layout that allows me to navigate the site with ease |
@@ -10,7 +12,7 @@ This is an E-commerce Store for my 4th Milestone Project at the Code Insitute
 | 5 | To reset my password in case I forget it |
 | 6 | To have a personalised user profile with an order history |
 
-| AS A SHOPPER ||
+|  | AS A SHOPPER |
 | :---: | ----------- |
 | USER STORY NO. | I WOULD LIKE... |
 | 7 | To view a selection of products in a clear layout |
@@ -28,10 +30,50 @@ This is an E-commerce Store for my 4th Milestone Project at the Code Insitute
 | 19 | To be able to purchase the products and complete a secure payment |
 | 20 | Get a confirmation email of my purchase |
 
-| AS A SITE OWNER ||
+|  | AS A SITE OWNER |
 | :---: | ----------- |
 | USER STORY NO. | I WOULD LIKE... |
 | 21 | To add and remove products from the site |
 | 22 | To edit product details and configure variants of the products |
 | 23 | To update the quantity of the products that are available in the store |
 | 24 | Have an overview of the performance of the store |
+
+
+## Database
+
+### Models and Apps
+
+Below are listed all apps within this Django Project:
+
+#### FitGear
+
+This is the base app created with the projects.
+
+#### Accounts
+
+This contains 3 classes:
+* Account: user information
+* MyAccountManager: creating users and superusers
+* UserProfile: user address for delivery
+
+#### Bag
+
+* Bag: the entire shopping bag, summary of the BagItems
+* BagItem: the individual items with the price, quantity and product variants
+
+#### Category
+
+This containts the categories of the available products with a category name, slug, description and category image.
+
+#### Orders
+
+This app will handle the orders and payments.
+
+#### Store
+
+* Product: details of individual products
+* Variation: variants of each product, such as different size or colour
+* ReviewRating: user review and ratings of a product
+* ProductGallery: images of a product
+
+### Database Schema
