@@ -1,0 +1,1 @@
+web: gunicorn fit-gear.wsgi:application
