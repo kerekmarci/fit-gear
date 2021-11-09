@@ -77,3 +77,6 @@ This app will handle the orders and payments.
 * ProductGallery: images of a product
 
 ### Database Schema
+
+![Click Here for Database Diagram](https://github.com/kerekmarci/fit-gear/blob/main/static/readme_files/db_schema_1.png)
+
