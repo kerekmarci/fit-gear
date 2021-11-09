@@ -1,1 +1,1 @@
-web: gunicorn fit-gear.wsgi:application
+web: gunicorn fitgear.wsgi:application
