@@ -61,10 +61,16 @@
                                             </div>
                                             <input type="text" class="form-control" value="{{ bag_item.quantity }}">
                                             <div class="input-group-append">
-                                                <a href="{% url 'add_to_bag' bag_item.product.id %}"
-                                                    class="btn btn-light" type="button" id="button-minus">
-                                                    <i class="fa fa-plus"></i>
-                                                </a>
+                                                <form action="{% url 'add_to_bag' bag_item.product.id %}" method="POST">
+                                                    {% csrf_token %}
+                                                    {% for item in bag_item.variations.all %}
+                                                    <input type="hidden" name="{{ item.variation_category|lower }}"
+                                                        value="{{ item.variation_value|capfirst }}">
+                                                    {% endfor %}
+                                                    <button class="btn btn-light" id="button-minus" type="submit">
+                                                        <i class="fa fa-plus"></i>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div> <!-- input-group.// -->
                                     </div> <!-- col.// -->
