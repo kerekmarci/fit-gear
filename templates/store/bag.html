@@ -54,7 +54,7 @@
                                     <div class="col">
                                         <div class="input-group input-spinner">
                                             <div class="input-group-prepend">
-                                                <a href="{% url 'remove_from_bag' bag_item.product.id %}"
+                                                <a href="{% url 'remove_from_bag' bag_item.product.id bag_item.id %}"
                                                     class="btn btn-light" type="button" id="button-plus">
                                                     <i class="fa fa-minus"></i>
                                                 </a>
@@ -82,7 +82,9 @@
                                     </div> <!-- price-wrap .// -->
                                 </td>
                                 <td class="text-right">
-                                    <a href="{% url 'remove_bag_item' bag_item.product.id %}" class="btn btn-danger">
+                                    <a href="{% url 'remove_bag_item' bag_item.product.id bag_item.id %}"
+                                        class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you would like to empty your Cart?')">
                                         Remove</a>
                                 </td>
                             </tr>

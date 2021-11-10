@@ -75,7 +75,7 @@ def add_to_bag(request, product_id):
     # This section will group Bag Item variations, for example if the same
     # size and colours are added again, it will not be a new line but will
     # increase the quantity of the existing bag item
-    
+
     is_bag_item_exists = BagItem.objects.filter(product=product, bag=bag).exists()
     if is_bag_item_exists:
         bag_item = BagItem.objects.filter(product=product, bag=bag)
@@ -111,29 +111,32 @@ def add_to_bag(request, product_id):
     return redirect('bag')
 
 
-def remove_from_bag(request, product_id):
+def remove_from_bag(request, product_id, bag_item_id):
     """ 
     This view will decrease the product from the 
     shopping bag, or remove if the amount reaches 0
     """
     bag = Bag.objects.get(bag_id=_bag_id(request))
     product = get_object_or_404(Product, id=product_id)
-    bag_item = BagItem.objects.get(product=product, bag=bag)
-    if bag_item.quantity > 1:
-        bag_item.quantity -= 1
-        bag_item.save()
-    else:
-        bag_item.delete()
+    try:
+        bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
+        if bag_item.quantity > 1:
+            bag_item.quantity -= 1
+            bag_item.save()
+        else:
+            bag_item.delete()
+    except:
+        pass
     return redirect('bag')
 
 
-def remove_bag_item(request, product_id):
+def remove_bag_item(request, product_id, bag_item_id):
     """ 
     This view will act as a Delete Button to delete the product
     from the shopping bag, regardless of the quantity.
     """
     bag = Bag.objects.get(bag_id=_bag_id(request))
     product = get_object_or_404(Product, id=product_id)
-    bag_item = BagItem.objects.get(product=product, bag=bag)
+    bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
     bag_item.delete()
     return redirect('bag')
