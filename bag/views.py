@@ -72,15 +72,33 @@ def add_to_bag(request, product_id):
         )
     bag.save()
 
-    try:
-        bag_item = BagItem.objects.get(product=product, bag=bag)
-        if len(product_variation) > 0:
-            bag_item.variations.clear()
-            for item in product_variation:
-                bag_item.variations.add(item)
-        bag_item.quantity += 1
-        bag_item.save()
-    except BagItem.DoesNotExist:
+    # This section will group Bag Item variations, for example if the same
+    # size and colours are added again, it will not be a new line but will
+    # increase the quantity of the existing bag item
+    
+    is_bag_item_exists = BagItem.objects.filter(product=product, bag=bag).exists()
+    if is_bag_item_exists:
+        bag_item = BagItem.objects.filter(product=product, bag=bag)
+        existing_variation_list = []
+        bag_item_id = []
+        for item in bag_item:
+            existing_variation = item.variations.all()
+            existing_variation_list.append(list(existing_variation))
+            bag_item_id.append(item.id)
+
+        if product_variation in existing_variation_list:
+            index = existing_variation_list.index(product_variation)
+            item_id = bag_item_id[index]
+            item = BagItem.objects.get(product=product, id=item_id)
+            item.quantity += 1
+            item.save()
+        else:
+            item = BagItem.objects.create(product=product, quantity=1, bag=bag)
+            if len(product_variation) > 0:
+                item.variations.clear()
+                item.variations.add(*product_variation)
+            item.save()
+    else:
         bag_item = BagItem.objects.create(
             product = product,
             quantity = 1,
@@ -88,8 +106,7 @@ def add_to_bag(request, product_id):
         )
         if len(product_variation) > 0:
             bag_item.variations.clear()
-            for item in product_variation:
-                bag_item.variations.add(item)
+            bag_item.variations.add(*product_variation)
         bag_item.save()
     return redirect('bag')
 
