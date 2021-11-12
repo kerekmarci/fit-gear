@@ -140,3 +140,7 @@ def remove_bag_item(request, product_id, bag_item_id):
     bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
     bag_item.delete()
     return redirect('bag')
+
+
+def checkout(request):
+    return render(request, 'store/checkout.html')
