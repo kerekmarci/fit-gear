@@ -74,7 +74,6 @@
                                     <th scope="col">Product</th>
                                     <th scope="col" width="120">Quantity</th>
                                     <th scope="col" width="120">Price</th>
-                                    <th scope="col" class="text-right" width="200"> </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -101,43 +100,13 @@
                                         </figure>
                                     </td>
                                     <td>
-                                        <!-- col.// -->
-                                        <div class="col">
-                                            <div class="input-group input-spinner">
-                                                <div class="input-group-prepend">
-                                                    <a href="{% url 'remove_from_bag' bag_item.product.id bag_item.id %}"
-                                                        class="btn btn-light" type="button" id="button-plus">
-                                                        <i class="fa fa-minus"></i>
-                                                    </a>
-                                                </div>
-                                                <input type="text" class="form-control" value="{{ bag_item.quantity }}">
-                                                <div class="input-group-append">
-                                                    <form action="{% url 'add_to_bag' bag_item.product.id %}"
-                                                        method="POST">
-                                                        {% csrf_token %}
-                                                        {% for item in bag_item.variations.all %}
-                                                        <input type="hidden" name="{{ item.variation_category|lower }}"
-                                                            value="{{ item.variation_value|capfirst }}">
-                                                        {% endfor %}
-                                                        <button class="btn btn-light" id="button-minus" type="submit">
-                                                            <i class="fa fa-plus"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div> <!-- input-group.// -->
-                                        </div> <!-- col.// -->
+                                        <label for="">{{ bag_item.quantity }}</label>
                                     </td>
                                     <td>
                                         <div class="price-wrap">
                                             <var class="price">&#163;{{ bag_item.sub_total }}</var>
                                             <small class="text-muted">&#163;{{ bag_item.product.price }} each</small>
                                         </div> <!-- price-wrap .// -->
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="{% url 'remove_bag_item' bag_item.product.id bag_item.id %}"
-                                            class="btn btn-danger"
-                                            onclick="return confirm('Are you sure you would like to empty your Cart?')">
-                                            Remove</a>
                                     </td>
                                 </tr>
                                 {% endfor %}

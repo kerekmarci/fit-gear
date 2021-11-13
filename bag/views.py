@@ -142,5 +142,26 @@ def remove_bag_item(request, product_id, bag_item_id):
     return redirect('bag')
 
 
-def checkout(request):
-    return render(request, 'store/checkout.html')
+def checkout(request, total=0, quantity=0, bag_items=None):
+    """ A view to process checkout functionality """
+    try:
+        tax = 0
+        grand_total = 0
+        bag = Bag.objects.get(bag_id=_bag_id(request))
+        bag_items = BagItem.objects.filter(bag=bag, is_active=True)
+        for bag_item in bag_items:
+            total += (bag_item.product.price * bag_item.quantity)
+            quantity += bag_item.quantity
+        tax = (5 * total) / 100
+        grand_total = total + tax
+    except ObjectDoesNotExist:
+            pass
+
+    context = {
+        'total': total,
+        'quantity': quantity,
+        'bag_items': bag_items,
+        'tax': tax,
+        'grand_total': grand_total,
+    }
+    return render(request, 'store/checkout.html', context)
