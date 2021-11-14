@@ -11,8 +11,11 @@ def view_bag(request, total=0, quantity=0, bag_items=None):
     try:
         tax = 0
         grand_total = 0
-        bag = Bag.objects.get(bag_id=_bag_id(request))
-        bag_items = BagItem.objects.filter(bag=bag, is_active=True)
+        if request.user.is_authenticated:
+            bag_items = BagItem.objects.filter(user=request.user, is_active=True)    
+        else:
+            bag = Bag.objects.get(bag_id=_bag_id(request))
+            bag_items = BagItem.objects.filter(bag=bag, is_active=True)
         for bag_item in bag_items:
             total += (bag_item.product.price * bag_item.quantity)
             quantity += bag_item.quantity

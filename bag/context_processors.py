@@ -13,7 +13,10 @@ def counter(request):
     else:
         try:
             bag = Bag.objects.filter(bag_id=_bag_id(request))
-            bag_items = BagItem.objects.all().filter(bag=bag[:1])
+            if request.user.is_authenticated:
+                bag_items = BagItem.objects.all().filter(user=request.user)
+            else:
+                bag_items = BagItem.objects.all().filter(bag=bag[:1])
             for bag_item in bag_items:
                 bag_count += bag_item.quantity
         except Bag.DoesNotExist:
