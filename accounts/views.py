@@ -76,12 +76,40 @@ def login(request):
                 # Check if there is already any items in the bag before logging in
                 bag = Bag.objects.get(bag_id=_bag_id(request))
                 is_bag_item_exists = BagItem.objects.filter(bag=bag).exists()
+
                 if is_bag_item_exists:
                     bag_item = BagItem.objects.filter(bag=bag)
 
+                    # To get the product variation by bag ID
+                    product_variation = []
                     for item in bag_item:
-                        item.user = user
-                        item.save()
+                        variation = item.variations.all()
+                        product_variation.append(list(variation))
+                    
+                    # To access to product variations of the user
+                    bag_item = BagItem.objects.filter(user=user)
+                    existing_variation_list = []
+                    bag_item_id = []
+                    for item in bag_item:
+                        existing_variation = item.variations.all()
+                        existing_variation_list.append(list(existing_variation))
+                        bag_item_id.append(item.id)
+
+                    # Loop throuh product variations to see if we find any common variations
+                    # inside the two lists
+                    for i in product_variation:
+                        if i in existing_variation_list:
+                            index = existing_variation_list.index(i)
+                            item_id = bag_item_id[index]
+                            item = BagItem.objects.get(id=item_id)
+                            item.quantity += 1
+                            item.user = user
+                            item.save()
+                        else:
+                            bag_item = BagItem.objects.filter(bag=bag)
+                            for item in bag_item:
+                                item.user = user
+                                item.save()
             except:
                 pass
             auth.login(request, user)
