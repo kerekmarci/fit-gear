@@ -179,11 +179,14 @@ def remove_from_bag(request, product_id, bag_item_id):
     """ 
     This view will decrease the product from the 
     shopping bag, or remove if the amount reaches 0
-    """
-    bag = Bag.objects.get(bag_id=_bag_id(request))
+    """    
     product = get_object_or_404(Product, id=product_id)
     try:
-        bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
+        if request.user.is_authenticated:
+            bag_item = BagItem.objects.get(product=product, user=request.user, id=bag_item_id)
+        else:
+            bag = Bag.objects.get(bag_id=_bag_id(request))
+            bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
         if bag_item.quantity > 1:
             bag_item.quantity -= 1
             bag_item.save()
@@ -198,10 +201,13 @@ def remove_bag_item(request, product_id, bag_item_id):
     """ 
     This view will act as a Delete Button to delete the product
     from the shopping bag, regardless of the quantity.
-    """
-    bag = Bag.objects.get(bag_id=_bag_id(request))
+    """    
     product = get_object_or_404(Product, id=product_id)
-    bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
+    if request.user.is_authenticated:
+        bag_item = BagItem.objects.get(product=product, user=request.user, id=bag_item_id)
+    else:
+        bag = Bag.objects.get(bag_id=_bag_id(request))
+        bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
     bag_item.delete()
     return redirect('bag')
 
