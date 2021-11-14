@@ -12,6 +12,9 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
 
+from bag.views import _bag_id
+from bag.models import Bag, BagItem
+
 
 def register(request):
     if request.method == 'POST':
@@ -57,6 +60,11 @@ def register(request):
 
 
 def login(request):
+    """
+    This will allow the user to log in.
+    Also, it will check if the user added any items in the bag before logging in.
+    If so, it will preserve the contents of the bag.
+    """
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
@@ -64,6 +72,18 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
+            try:
+                # Check if there is already any items in the bag before logging in
+                bag = Bag.objects.get(bag_id=_bag_id(request))
+                is_bag_item_exists = BagItem.objects.filter(bag=bag).exists()
+                if is_bag_item_exists:
+                    bag_item = BagItem.objects.filter(bag=bag)
+
+                    for item in bag_item:
+                        item.user = user
+                        item.save()
+            except:
+                pass
             auth.login(request, user)
             messages.success(request, 'You are now logged in.')
             return redirect('dashboard')

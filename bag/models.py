@@ -1,5 +1,6 @@
 from django.db import models
 from store.models import Product, Variation
+from accounts.models import Account
 
 
 class Bag(models.Model):
@@ -11,9 +12,10 @@ class Bag(models.Model):
 
 
 class BagItem(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variations = models.ManyToManyField(Variation, blank=True)
-    bag = models.ForeignKey(Bag, on_delete=models.CASCADE)
+    bag = models.ForeignKey(Bag, on_delete=models.CASCADE, null=True)
     quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
 

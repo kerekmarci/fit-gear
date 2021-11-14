@@ -3,6 +3,7 @@ from store.models import Product, Variation
 from .models import Bag, BagItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 def view_bag(request, total=0, quantity=0, bag_items=None):
@@ -142,6 +143,7 @@ def remove_bag_item(request, product_id, bag_item_id):
     return redirect('bag')
 
 
+@login_required(login_url='login')
 def checkout(request, total=0, quantity=0, bag_items=None):
     """ A view to process checkout functionality """
     try:
