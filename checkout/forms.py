@@ -13,7 +13,6 @@ class OrderForm(forms.ModelForm):
             'address_line_1',
             'address_line_2',
             'country',
-            'state',
             'city',
             'order_note',
         ]
