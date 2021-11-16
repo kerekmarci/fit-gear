@@ -56,7 +56,7 @@ class Variation(models.Model):
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(Accunt, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
     subject = models.CharField(max_length=80, blank=True)
     review = models.TextField(max_length=500, blank=True)
     rating = models.FloatField
