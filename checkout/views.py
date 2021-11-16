@@ -36,7 +36,7 @@ def place_order(request, total=0, quantity=0):
             data.order_note = form.cleaned_data['order_note']
             data.order_total = grand_total
             data.tax = tax
-            data.ip = request.META.get('REMOTE_ADDR') # Getting IP address
+            data.ip = request.META.get('REMOTE_ADDR')
             data.save()
 
             # Generating Order Number
@@ -49,5 +49,5 @@ def place_order(request, total=0, quantity=0):
             data.order_number = order_number
             data.save()
             return redirect('checkout')
-        else:
-            return redirect('checkout')
+    else:
+        return redirect('checkout')
