@@ -1,0 +1,12 @@
+.rating>input {
+    display: none;
+}
+
+.rating {
+    display: inline-block;
+    border: 0;
+}
+
+.section-heading {
+    font-size: 100px;
+}
