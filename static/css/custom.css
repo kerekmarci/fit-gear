@@ -34,7 +34,6 @@ label:hover~label {
     color: #ffb503;
 }
 
-
 /* hover hightlight */
 input:checked+label:hover,
 input:checked~label:hover,
