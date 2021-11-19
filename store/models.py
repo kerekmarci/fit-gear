@@ -59,7 +59,7 @@ class Review(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     subject = models.CharField(max_length=80, blank=True)
     review = models.TextField(max_length=500, blank=True)
-    rating = models.FloatField()
+    rating = models.FloatField(null=True, blank=True)
     ip = models.CharField(max_length=20, blank=True)
     status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
