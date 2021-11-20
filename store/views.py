@@ -8,6 +8,7 @@ from bag.views import _bag_id
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .forms import ReviewForm
 from django.contrib import messages
+from checkout.models import OrderProduct
 
 
 def store(request, category_slug=None):
@@ -54,6 +55,21 @@ def product_detail(request, category_slug, product_slug):
         in_bag = BagItem.objects.filter(bag__bag_id=_bag_id(request), product=single_product).exists()
     except Exception as e:
         raise e
+
+    # Checking if the user purchased the product to be able to leave the review
+    if request.user.is_authenticated:
+        try:
+            orderproduct = OrderProduct.objects.filter(user=request.user, product_id=single_product.id).exists()
+        except OrderProduct.DoesNotExist:
+            orderproduct = None
+    else:
+        orderproduct = None
+
+    context = {
+        'single_product': single_product,
+        'in_bag': in_bag,
+        'orderproduct': orderproduct,
+    }
 
     context = {
         'single_product': single_product,
