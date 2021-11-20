@@ -65,16 +65,16 @@ def product_detail(request, category_slug, product_slug):
     else:
         orderproduct = None
 
-    context = {
-        'single_product': single_product,
-        'in_bag': in_bag,
-        'orderproduct': orderproduct,
-    }
+    # Getting the reviews
+    reviews = Review.objects.filter(product_id=single_product.id, status=True)
 
     context = {
         'single_product': single_product,
         'in_bag': in_bag,
+        'orderproduct': orderproduct,
+        'reviews': reviews,
     }
+
     return render(request, 'store/product_detail.html', context)
 
 
