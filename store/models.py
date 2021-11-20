@@ -2,6 +2,7 @@ from django.db import models
 from category.models import Category
 from django.urls import reverse
 from accounts.models import Account
+from django.db.models import Avg
 
 
 class Product(models.Model):
@@ -21,6 +22,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+    # This will calculate the average of the ratings for a product
+    def averageRating(self):
+        ratings = Review.objects.filter(product=self, status=True).aggregate(average=Avg('rating'))
+        avg = 0
+        if ratings['average'] is not None:
+            avg = float(ratings['average'])
+        return avg
 
 # Product Variation Class created to be able to select various colours and sizes for the same product.
 # Logic taken from this video: https://www.youtube.com/watch?v=cRbU7OH1RaQ
