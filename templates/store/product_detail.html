@@ -75,7 +75,6 @@
                 <form action="{% url 'submit_review' single_product.id %}" method="POST">
                     {% csrf_token %}
                     <h5>Write Your Review</h5>
-                    {{ single_product.averageRating }}
                     <div>
                         <label>How did you enjoy this product?</label>
                         <br>
@@ -133,6 +132,8 @@
 
                 <header class="section-heading">
                     <h3>Customer Reviews </h3>
+                    <h6>Average Rating: </h6><span>{{ single_product.averageRating }}</span>
+                    <p>{{ single_product.countReview }} reviews</p>
                 </header>
 
                 {% for review in reviews %}
