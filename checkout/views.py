@@ -60,6 +60,8 @@ def place_order(request, total=0, quantity=0):
                 'total': total,
                 'tax': tax,
                 'grand_total': grand_total,
+                'stripe_public_key': 'stripe_public_key',
+                'client_secret': 'intent.client_secret',
             }
             return render(request, 'checkout/payments.html', context)
     else:

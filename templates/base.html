@@ -38,6 +38,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <script src="{% static 'js/jquery-3.3.1.min.js' %}" type="text/javascript"></script> -->
 
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+
     <title>Fit Gear - Your Fitness Clothing Store{% block extra_title %}{% endblock %}</title>
 
 </head>
@@ -51,4 +54,6 @@
 
     {% include 'includes/footer.html' %}
 
+    {% block postloadjs %}
+    {% endblock %}
 </body>
