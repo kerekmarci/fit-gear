@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.conf import settings
 from bag.models import BagItem
 from .forms import OrderForm
 from .models import Order
 import datetime
+import stripe
 
 
 def payments(request):
@@ -10,6 +12,8 @@ def payments(request):
 
 
 def place_order(request, total=0, quantity=0):
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
     current_user = request.user
     bag_items = BagItem.objects.filter(user=current_user)
     bag_count = bag_items.count()
@@ -23,6 +27,7 @@ def place_order(request, total=0, quantity=0):
         quantity += item.quantity
     tax = (5 * total) / 100
     grand_total = total + tax
+    stripe_total = round(grand_total * 100)
     
     if request.method == 'POST':
         form = OrderForm(request.POST)
@@ -53,6 +58,15 @@ def place_order(request, total=0, quantity=0):
             data.order_number = order_number
             data.save()
 
+            # Stripe
+            stripe.api_key = stripe_secret_key
+            intent = stripe.PaymentIntent.create(
+                amount=stripe_total,
+                currency=settings.STRIPE_CURRENCY,
+            )
+
+            print(intent)
+
             order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
             context = {
                 'order': order,
@@ -60,8 +74,8 @@ def place_order(request, total=0, quantity=0):
                 'total': total,
                 'tax': tax,
                 'grand_total': grand_total,
-                'stripe_public_key': 'stripe_public_key',
-                'client_secret': 'intent.client_secret',
+                'stripe_public_key': stripe_public_key,
+                'client_secret': intent.client_secret,
             }
             return render(request, 'checkout/payments.html', context)
     else:

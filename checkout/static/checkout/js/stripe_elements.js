@@ -5,6 +5,9 @@
     https://stripe.com/docs/stripe-js
 */
 
+/* This code is from The Code Institute / Boutique Ado Project, 
+    Stripe Payment lessons */
+
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
@@ -122,3 +125,10 @@ form.addEventListener('submit', function (ev) {
         location.reload();
     })
 });
+
+/*
+$(document).ready(function () {
+    // document is loaded and DOM is ready
+    alert("document is ready");
+});
+*/
