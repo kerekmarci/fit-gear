@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
-from bag.models import BagItem
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from bag.models import Bag, BagItem
 from .forms import OrderForm
 from .models import Order
 import datetime
@@ -80,3 +83,45 @@ def place_order(request, total=0, quantity=0):
             return render(request, 'checkout/payments.html', context)
     else:
         return redirect('checkout')
+
+
+@login_required(login_url='login')
+def checkout(request, total=0, quantity=0, bag_items=None):
+    """ A view to process checkout functionality """
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
+    try:
+        tax = 0
+        grand_total = 0
+        if request.user.is_authenticated:
+            bag_items = BagItem.objects.filter(user=request.user, is_active=True)    
+        else:
+            bag = Bag.objects.get(bag_id=_bag_id(request))
+            bag_items = BagItem.objects.filter(bag=bag, is_active=True)
+        for bag_item in bag_items:
+            total += (bag_item.product.price * bag_item.quantity)
+            quantity += bag_item.quantity
+        tax = (5 * total) / 100
+        grand_total = total + tax
+    except ObjectDoesNotExist:
+            pass
+
+    order_form = OrderForm()
+    
+    stripe.api_key = stripe_secret_key
+    stripe_total = round(grand_total * 100)
+    intent = stripe.PaymentIntent.create(
+                amount=stripe_total,
+                currency=settings.STRIPE_CURRENCY,
+            )
+
+    context = {
+        'total': total,
+        'quantity': quantity,
+        'bag_items': bag_items,
+        'tax': tax,
+        'grand_total': grand_total,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    }
+    return render(request, 'store/checkout.html', context)
