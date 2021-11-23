@@ -4,6 +4,8 @@ from .models import Bag, BagItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+import stripe
 
 
 def view_bag(request, total=0, quantity=0, bag_items=None):
@@ -215,6 +217,8 @@ def remove_bag_item(request, product_id, bag_item_id):
 @login_required(login_url='login')
 def checkout(request, total=0, quantity=0, bag_items=None):
     """ A view to process checkout functionality """
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
     try:
         tax = 0
         grand_total = 0
@@ -230,6 +234,13 @@ def checkout(request, total=0, quantity=0, bag_items=None):
         grand_total = total + tax
     except ObjectDoesNotExist:
             pass
+    
+    stripe.api_key = stripe_secret_key
+    stripe_total = round(grand_total * 100)
+    intent = stripe.PaymentIntent.create(
+                amount=stripe_total,
+                currency=settings.STRIPE_CURRENCY,
+            )
 
     context = {
         'total': total,
@@ -237,5 +248,7 @@ def checkout(request, total=0, quantity=0, bag_items=None):
         'bag_items': bag_items,
         'tax': tax,
         'grand_total': grand_total,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
     }
     return render(request, 'store/checkout.html', context)
