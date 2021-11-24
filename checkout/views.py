@@ -9,10 +9,10 @@ from .models import Order
 import datetime
 import stripe
 
-
+"""
 def payments(request):
     return render(request, 'checkout/payments.html')
-
+"""
 
 def place_order(request, total=0, quantity=0):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
