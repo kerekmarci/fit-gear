@@ -93,26 +93,28 @@
 <section class="container py-5">
     <div class="row text-center pt-3">
         <div class="col-lg-6 m-auto">
-            <h1 class="h1">Categories of The Month</h1>
+            <h1 class="h1">Categories</h1>
             <p>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
+                Choose from our amazing categories and see our wide range of quality products!
             </p>
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="#" class="rounded-circle img-fluid border"></a>
+            <a href="#"><img src="/media/photos/categories/t-shirt-category.jpg"
+                    class="rounded-circle img-fluid border"></a>
             <h5 class="text-center mt-3 mb-3">T-Shirts</h5>
             <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="#" class="rounded-circle img-fluid border"></a>
+            <a href="#"><img src="/media/photos/categories/shoes-category.jpg"
+                    class="rounded-circle img-fluid border"></a>
             <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
             <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="#" class="rounded-circle img-fluid border"></a>
+            <a href="#"><img src="/media/photos/categories/accessories-category.jpg"
+                    class="rounded-circle img-fluid border"></a>
             <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
             <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
         </div>
@@ -133,10 +135,11 @@
             </div>
         </div>
         <div class="row">
+            {% for product in products %}
             <div class="col-12 col-md-4 mb-4">
-                <div class="card h-100">
-                    <a href="shop-single.html">
-                        <img src="./assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
+                <div class="card h-100 card-product-grid">
+                    <a href="{{ product.get_url }}">
+                        <img src="{{ product.images.url }}" class="card-img-top">
                     </a>
                     <div class="card-body">
                         <ul class="list-unstyled d-flex justify-content-between">
@@ -147,12 +150,12 @@
                                 <i class="text-muted fa fa-star"></i>
                                 <i class="text-muted fa fa-star"></i>
                             </li>
-                            <li class="text-muted text-right">$240.00</li>
+                            <li class="text-muted text-right h3"> &#163;{{ product.price }}</li>
                         </ul>
-                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                        <a href="{{ product.get_url }}"
+                            class="h2 text-decoration-none text-dark">{{ product.product_name }}</a>
                         <p class="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia
-                            deserunt.
+                            {{ product.product_description }}
                         </p>
                         <p class="text-muted">Reviews (24)</p>
                     </div>
@@ -208,38 +211,13 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}
+        </div>
+        <div class="text-center">
+            <a href="{% url 'store' %}" class="btn btn-success">See All Products</a>
         </div>
     </div>
 </section>
 <!-- End Featured Product -->
-
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y-sm">
-
-    <div class="container">
-
-        <header class="section-heading">
-            <a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
-            <h3 class="section-title">Popular products</h3>
-        </header>
-
-        <div class="row">
-            {% for product in products %}
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}">
-                    </a>
-                    <figcaption class="info-wrap">
-                        <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
-                        <div class="price mt-1">&#163;{{ product.price }}</div>
-                    </figcaption>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-<!-- ========================= SECTION  END// ========================= -->
-
 
 {% endblock %}
