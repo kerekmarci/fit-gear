@@ -19,11 +19,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'store' %}" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Shop
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">T-Shirts</a></li>
+                            <li><a class="dropdown-item" href="#">Shoes</a></li>
+                            <li><a class="dropdown-item" href="#">Accessories</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'store' %}">Shop</a>
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -43,40 +51,39 @@
                     data-bs-target="#templatemo_search">
                     <i class="fa fa-fw fa-search text-dark mr-2"></i>
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="#">
+                <a class="nav-icon position-relative text-decoration-none" href="{% url 'bag' %}">
                     <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                    {% if bag_count %}
                     <span
-                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">{{ bag_count }}</span>
+                    {% else %}
+                    {% endif %}
                 </a>
                 <a class="nav-icon position-relative text-decoration-none" href="#">
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                     <span
-                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                        class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                 </a>
+                {% if user.id is None %}
+                <div class="widget-header">
+                    <small class="title text-muted">Welcome Guest!</small>
+                    <div>
+                        <a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
+                        <a href="{% url 'register' %}"> Register</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="widget-header">
+                    <small class="title text-muted">Welcome {{ user.first_name }}!</small>
+                    <div>
+                        <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
+                        <a href="{% url 'logout' %}"> Logout</a>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
-        {% if user.id is None %}
-        <div class="widget-header">
-            <small class="title text-muted">Welcome Guest!</small>
-            <div>
-                <a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
-                <a href="{% url 'register' %}"> Register</a>
-            </div>
-        </div>
-        {% else %}
-        <div class="widget-header">
-            <small class="title text-muted">Welcome {{ user.first_name }}!</small>
-            <div>
-                <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
-                <a href="{% url 'logout' %}"> Logout</a>
-            </div>
-        </div>
-        {% endif %}
-        <a href="{% url 'bag' %}" class="widget-header pl-3 ml-3">
-            <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i>
-            </div>
-            <span class="badge badge-pill badge-danger notify">{{ bag_count }}</span>
-        </a>
+
     </div>
 </nav>
 <!-- Close Header -->
