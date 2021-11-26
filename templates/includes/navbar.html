@@ -23,7 +23,7 @@
                         <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="shop.html">Shop</a>
+                        <a class="nav-link" href="{% url 'store' %}">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
@@ -90,10 +90,15 @@
         </div>
         <form action="" method="get" class="modal-content modal-body border-0 p-0">
             <div class="input-group mb-2">
-                <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                <button type="submit" class="input-group-text bg-success text-light">
-                    <i class="fa fa-fw fa-search text-white"></i>
-                </button>
+                <form action="{% url 'search' %}" class="search" method="GET">
+                    <input type="text" class="form-control" placeholder="Search" id="inputModalSearch" name="keyword">
+
+                    <div class="input-group-append">
+                        <button class="input-group-text bg-success text-light" type="submit">
+                            <i class="fa fa-fw fa-search text-white"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </form>
     </div>
