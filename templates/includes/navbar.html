@@ -88,17 +88,14 @@
         <div class="w-100 pt-1 mb-5 text-right">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="" method="get" class="modal-content modal-body border-0 p-0">
+        <form action="{% url 'search' %}" method="GET" class="modal-content modal-body border-0 p-0">
             <div class="input-group mb-2">
-                <form action="{% url 'search' %}" class="search" method="GET">
-                    <input type="text" class="form-control" placeholder="Search" id="inputModalSearch" name="keyword">
-
-                    <div class="input-group-append">
-                        <button class="input-group-text bg-success text-light" type="submit">
-                            <i class="fa fa-fw fa-search text-white"></i>
-                        </button>
-                    </div>
-                </form>
+                <input type="text" class="form-control" placeholder="Search" id="inputModalSearch" name="keyword">
+                <div class="input-group-append">
+                    <button class="input-group-text bg-success text-light" type="submit">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
             </div>
         </form>
     </div>
