@@ -12,11 +12,6 @@ import datetime
 import stripe
 import json
 
-"""
-def payments(request):
-    return render(request, 'checkout/payments.html')
-"""
-
 
 @login_required(login_url='login')
 def checkout(request, total=0, quantity=0, bag_items=None):
@@ -79,7 +74,9 @@ def checkout(request, total=0, quantity=0, bag_items=None):
 
             print(bag)
             print(bag.bagitem_set.all())
-            bag.bagitem_set.all().delete()
+            
+            # Clear Bag
+            BagItem.objects.filter(user=request.user).delete()
             return redirect(reverse('success',args=(order.id,)))
     
     else:
