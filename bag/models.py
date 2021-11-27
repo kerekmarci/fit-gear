@@ -4,7 +4,7 @@ from accounts.models import Account
 
 
 class Bag(models.Model):
-    bag_id = models.CharField(max_length=250, blank=True)
+    bag_id = models.CharField(max_length=250, blank=True, unique=True)
     date_added = models.DateField(auto_now_add=True)
 
     def __str__(self):
