@@ -75,9 +75,22 @@ def checkout(request, total=0, quantity=0, bag_items=None):
                     ordered=True,
                 )
                 order_product.variations.set(bag_item.variations.all())
-                order_product.save()
-            # Clear Bag
-            BagItem.objects.filter(user=request.user).delete()
+                order_product.save()            
+
+            #Updating Payment Table
+            new_Payment = Payment(
+                user=request.user,
+                payment_id=order.order_number,
+                payment_method="Stripe",
+                amount_paid=grand_total,
+                status="Complete"
+            )
+            new_Payment.save()
+
+            order.is_ordered = True
+            order.payment = new_Payment
+            order.save()
+
             return redirect(reverse('success',args=(order.id,)))
     
     else:
@@ -101,6 +114,8 @@ def checkout(request, total=0, quantity=0, bag_items=None):
 
 
 def success(request, order_id):
+    # Clear Bag
+    BagItem.objects.filter(user=request.user).delete()
     context = {
         "order" : OrderProduct.objects.filter(order_id=order_id)
     }
