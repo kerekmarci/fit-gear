@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/store.css' %}">
+{% endblock %}
+
 {% block content %}
 
 <section class="section-content padding-y bg">
@@ -21,6 +25,22 @@
                         <article class="content-body">
 
                             <h2 class="title">{{ single_product.product_name }}</h2>
+
+                            <div class="rating-star">
+                                <span>
+                                    <i class="fa fa-star{% if single_product.averageRating < 0.5 %}-o{% elif single_product.averageRating >= 0.5 and single_product.averageRating < 1 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if single_product.averageRating < 1.5 %}-o{% elif single_product.averageRating >= 1.5 and single_product.averageRating < 2 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if single_product.averageRating < 2.5 %}-o{% elif single_product.averageRating >= 2.5 and single_product.averageRating < 3 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if single_product.averageRating < 3.5 %}-o{% elif single_product.averageRating >= 3.5 and single_product.averageRating < 4 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if single_product.averageRating < 4.5 %}-o{% elif single_product.averageRating >= 4.5 and single_product.averageRating < 5 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <span>{{single_product.countReview}} reviews</span>
+                                </span>
+                            </div>
 
                             <div class="mb-3">
                                 <var class="price h4">&#163;{{ single_product.price }}</var>
@@ -79,26 +99,16 @@
                         <label>How did you enjoy this product?</label>
                         <br>
                         <div class="rating">
-                            <input type="radio" name="rating" id="rating10" value="5" required><label for="rating10"
+                            <input type="radio" name="rating" id="rating5" value="5" required><label for="rating5"
                                 title="5"></label>
-                            <input type="radio" name="rating" id="rating9" value="4.5" required><label for="rating9"
-                                title="4.5" class="half"></label>
-                            <input type="radio" name="rating" id="rating8" value="4" required><label for="rating8"
+                            <input type="radio" name="rating" id="rating4" value="4" required><label for="rating4"
                                 title="4"></label>
-                            <input type="radio" name="rating" id="rating7" value="3.5" required><label for="rating7"
-                                title="3.5" class="half"></label>
-                            <input type="radio" name="rating" id="rating6" value="3" required><label for="rating6"
+                            <input type="radio" name="rating" id="rating3" value="3" required><label for="rating3"
                                 title="3"></label>
-                            <input type="radio" name="rating" id="rating5" value="2.5" required><label for="rating5"
-                                title="2.5" class="half"></label>
-                            <input type="radio" name="rating" id="rating4" value="2" required><label for="rating4"
+                            <input type="radio" name="rating" id="rating2" value="2" required><label for="rating2"
                                 title="2"></label>
-                            <input type="radio" name="rating" id="rating3" value="1.5" required><label for="rating3"
-                                title="1.5" class="half"></label>
-                            <input type="radio" name="rating" id="rating2" value="1" required><label for="rating2"
+                            <input type="radio" name="rating" id="rating1" value="1" required><label for="rating1"
                                 title="1"></label>
-                            <input type="radio" name="rating" id="rating1" value="0.5" required><label for="rating1"
-                                title="0.5" class="half"></label>
                         </div>
                         <br>
                         Review Title:
@@ -136,6 +146,22 @@
                     <p>{{ single_product.countReview }} reviews</p>
                 </header>
 
+                <div class="rating-star">
+                    <span>
+                        <i class="fa fa-star{% if single_product.averageRating < 0.5 %}-o{% elif single_product.averageRating >= 0.5 and single_product.averageRating < 1 %}-half-alt {% endif %}"
+                            aria-hidden="true"></i>
+                        <i class="fa fa-star{% if single_product.averageRating < 1.5 %}-o{% elif single_product.averageRating >= 1.5 and single_product.averageRating < 2 %}-half-alt {% endif %}"
+                            aria-hidden="true"></i>
+                        <i class="fa fa-star{% if single_product.averageRating < 2.5 %}-o{% elif single_product.averageRating >= 2.5 and single_product.averageRating < 3 %}-half-alt {% endif %}"
+                            aria-hidden="true"></i>
+                        <i class="fa fa-star{% if single_product.averageRating < 3.5 %}-o{% elif single_product.averageRating >= 3.5 and single_product.averageRating < 4 %}-half-alt {% endif %}"
+                            aria-hidden="true"></i>
+                        <i class="fa fa-star{% if single_product.averageRating < 4.5 %}-o{% elif single_product.averageRating >= 4.5 and single_product.averageRating < 5 %}-half-alt {% endif %}"
+                            aria-hidden="true"></i>
+                        <span>{{single_product.countReview}} reviews</span>
+                    </span>
+                </div>
+
                 {% for review in reviews %}
                 <article class="box mb-3">
                     <div class="icontext w-100">
@@ -148,6 +174,20 @@
                     <div class="mt-3">
                         <h6>Subject: {{ review.subject }}</h6>
                         <h6>Rating: {{ reivew.rating }}</h6>
+                        <div class="rating-star">
+                            <span>
+                                <i class="fa fa-star{% if reivew.rating < 0.5 %}-o{% elif reivew.rating >= 0.5 and reivew.rating < 1 %}-half-alt {% endif %}"
+                                    aria-hidden="true"></i>
+                                <i class="fa fa-star{% if reivew.rating < 1.5 %}-o{% elif reivew.rating >= 1.5 and reivew.rating < 2 %}-half-alt {% endif %}"
+                                    aria-hidden="true"></i>
+                                <i class="fa fa-star{% if reivew.rating < 2.5 %}-o{% elif reivew.rating >= 2.5 and reivew.rating < 3 %}-half-alt {% endif %}"
+                                    aria-hidden="true"></i>
+                                <i class="fa fa-star{% if reivew.rating < 3.5 %}-o{% elif reivew.rating >= 3.5 and reivew.rating < 4 %}-half-alt {% endif %}"
+                                    aria-hidden="true"></i>
+                                <i class="fa fa-star{% if reivew.rating < 4.5 %}-o{% elif reivew.rating >= 4.5 and reivew.rating < 5 %}-half-alt {% endif %}"
+                                    aria-hidden="true"></i>
+                            </span>
+                        </div>
                         <p>
                             {{ review.review }}
                         </p>
