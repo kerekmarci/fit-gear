@@ -1,6 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
 from .forms import CommentForm
+
+"""
+Concept inspired by this website:
+https://djangocentral.com/building-a-blog-application-with-django/
+"""
 
 
 def blog(request):
@@ -18,7 +23,7 @@ def blog_detail(request, slug):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.blogposts = blogposts
+            comment.post = blogposts
             comment.save()
 
             return redirect('blog_detail', slug=blogposts.slug)
