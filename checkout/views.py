@@ -5,9 +5,10 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from bag.models import Bag, BagItem
-from .models import Order, OrderProduct
+from .models import Order, OrderProduct, Payment
 from bag.views import _bag_id
 from .forms import OrderForm
+import uuid
 import datetime
 import stripe
 import json
@@ -50,14 +51,19 @@ def checkout(request, total=0, quantity=0, bag_items=None):
             'country': request.POST['country'],
             'order_note': request.POST['order_note'],
         }
+
+        # Generate order number
+        order_number = uuid.uuid4().hex.upper()
+
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = bag
-            order.order_total=grand_total
-            order.tax=tax
+            order.order_total = grand_total
+            order.tax = tax
+            order.order_number = order_number
             order.save()
 
             for bag_item in bag_items:
@@ -71,10 +77,6 @@ def checkout(request, total=0, quantity=0, bag_items=None):
                 )
                 order_product.variations.set(bag_item.variations.all())
                 order_product.save()
-
-            print(bag)
-            print(bag.bagitem_set.all())
-            
             # Clear Bag
             BagItem.objects.filter(user=request.user).delete()
             return redirect(reverse('success',args=(order.id,)))
