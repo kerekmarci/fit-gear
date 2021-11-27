@@ -160,9 +160,9 @@ def add_to_bag(request, product_id):
                 item.save()
         else:
             bag_item = BagItem.objects.create(
-                product = product,
-                quantity = 1,
-                bag = bag,
+                product=product,
+                quantity=1,
+                bag=bag,
             )
             if len(product_variation) > 0:
                 bag_item.variations.clear()
