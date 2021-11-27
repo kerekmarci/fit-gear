@@ -58,8 +58,7 @@ def checkout(request, total=0, quantity=0, bag_items=None):
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            pid = request.POST.get('client_secret').split('_secret')[0]
-            order.stripe_pid = pid
+            order.user = request.user
             order.original_bag = bag
             order.order_total = grand_total
             order.tax = tax
