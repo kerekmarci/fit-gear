@@ -115,7 +115,7 @@
     <div class="container py-5">
         <div class="row text-center py-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Featured Products</h1>
+                <h1 class="h1 mb-4">Featured Products</h1>
                 <p>
                     Whether you’re starting your home gym from scratch or adding to your collection, our unrivalled
                     product selection is constantly growing. Check out some of our most popular products to get you
@@ -125,13 +125,14 @@
         </div>
         <div class="row">
             {% for product in products %}
+            {% if forloop.counter <= 3 %}
             <div class="col-12 col-md-4 mb-4">
                 <div class="card card-shadow">
                     <a href="{{ product.get_url }}">
                         <img src="{{ product.images.url }}" class="card-img-top card-img-size"
                             alt="{{ product.description }}">
                     </a>
-                    <div class="card-body">
+                    <div class="card-body card-body-homepage">
                         <ul class="list-unstyled d-flex justify-content-between">
                             <div class="rating-star">
                                 <span>
@@ -152,12 +153,13 @@
                         <a href="{{ product.get_url }}"
                             class="h2 text-decoration-none text-dark">{{ product.product_name }}</a>
                         <p class="card-text mt-2">
-                            {{ product.product_description }}
+                            {{ product.product_description | truncatewords:25 }}
                         </p>
                         <p class="text-muted">Reviews ({{ product.countReview }})</p>
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
         <div class="text-center">
