@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="text-center mb-5">
+    <h1>{{ blogposts.title }}</h1>
+    <p>{{ blogposts.content }}</p>
+</div>
+
+<br>
+<hr>
+
+<h2 class="text-center">Add comment</h2>
+
+<div class="text-center">
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <div class="field">
+            <div class="control">
+                <button class="button is-success">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    {% for comment in blogposts.comments.all %}
+    <h3>{{ comment.name }}</h3>
+    {{ comment.body }}
+    {% endfor %}
+</div>
+
+<br>
+<div class="text-center">
+    <a href="{% url 'blog' %}" class="btn btn-success">Back to Blogs</a>
+</div>
+
+{% endblock %}

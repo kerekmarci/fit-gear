@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div> Thank you for your order. Your order is: </div>
+{% for product in order %}
+<div>{{ product.product }}</div>
+<div>{{ product.quantity }}</div>
+{% for var in  product.variations.all %}
+<span>{{ var }}</span>
+{% endfor %}
+{% endfor %}
+{% endblock %}

@@ -1,51 +1,170 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock %}
+
 {% block content %}
 
-
-<!-- ========================= SECTION MAIN ========================= -->
-<section class="section-intro padding-y-sm">
-    <div class="container">
-
-        <div class="intro-banner-wrap">
-            <img src="{% static 'images/banners/cover.jpg' %}" class="img-fluid rounded">
+<!-- Start Banner Hero -->
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="/media/photos/carousel/carousel-1.jpg">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left align-self-center">
+                            <h1 class="h1 text-success mb-4"><b>Fit</b> Gear</h1>
+                            <h3 class="h2 mb-4">Quality Fitness Products for Everyone!</h3>
+                            <p>Fit Gear in a <strong>fitness product store</strong> where you can find a wide range of
+                                clothes and
+                                accessories for your workout. Whether you are just starting out, or a professional, you
+                                will find what you need for the best workout!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="/media/photos/carousel/carousel-2.jpg">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1 mb-4">Sweat in style</h1>
+                            <h3 class="h2 mb-4">T-shirts, Shoes and More...</h3>
+                            <p>We never compromise on quality! We only sell the highest quality, water-absorbent,
+                                comfortable products that are not only <strong>practical</strong> but
+                                <strong>stylish</strong> too!
+                                We guarantee that these products will give you extra motivation to hit the gym - and you
+                                will look good too!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <div class="row p-5">
+                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                        <img class="img-fluid" src="/media/photos/carousel/carousel-3.jpg">
+                    </div>
+                    <div class="col-lg-6 mb-0 d-flex align-items-center">
+                        <div class="text-align-left">
+                            <h1 class="h1 mb-4">Find a New Friend!</h1>
+                            <h3 class="h2 mb-4">High-tech accessories of your dream</h3>
+                            <p>Have you been looking for a <strong>smart partner</strong> that goes to the gym with you,
+                                no matter how early, how late it is, or what the weather is? Furthermore, this friend
+                                will help you achieve your goals? Well, you are at the right place! Our <strong>smart
+                                    accessories</strong> are the perfect company for your workout. Take a look now!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
+        role="button" data-bs-slide="prev">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel"
+        role="button" data-bs-slide="next">
+        <i class="fas fa-chevron-right"></i>
+    </a>
+</div>
+<!-- End Banner Hero -->
 
-    </div> <!-- container //  -->
+<!-- Start Categories Section -->
+<section class="container py-5">
+    <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">Categories</h1>
+            <p>
+                Choose from our amazing categories and see our wide range of quality products!
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        {% for category in links %}
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="{{ category.get_url }}"><img src="/media/{{ category.cat_image }}" alt="{{ category.description }}"
+                    class="rounded-circle img-fluid border"></a>
+            <h2 class="h5 text-center mt-3 mb-3">{{ category.category_name }}</h2>
+            <p class="text-center"><a href="{{ category.get_url }}" class="btn btn-success">Go Shop</a></p>
+        </div>
+        {% endfor %}
+    </div>
+
 </section>
-<!-- ========================= SECTION MAIN END// ========================= -->
+<!-- End Categories Section -->
 
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y-sm">
-
-    <div class="container">
-
-        <header class="section-heading">
-            <a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
-            <h3 class="section-title">Popular products</h3>
-        </header>
-
+<!-- Start Featured Product -->
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Featured Products</h1>
+                <p>
+                    Whether you’re starting your home gym from scratch or adding to your collection, our unrivalled
+                    product selection is constantly growing. Check out some of our most popular products to get you
+                    started…
+                </p>
+            </div>
+        </div>
         <div class="row">
             {% for product in products %}
-            <div class="col-md-3">
-                <div class="card card-product-grid">
-                    <a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.images.url }}">
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card">
+                    <a href="{{ product.get_url }}">
+                        <img src="{{ product.images.url }}" class="card-img-top card-img-size"
+                            alt="{{ product.description }}">
                     </a>
-                    <figcaption class="info-wrap">
-                        <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
-                        <div class="price mt-1">&#163;{{ product.price }}</div>
-                    </figcaption>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <div class="rating-star">
+                                <span>
+                                    <i class="fa fa-star{% if product.averageRating < 0.5 %}-o{% elif product.averageRating >= 0.5 and product.averageRating < 1 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageRating < 1.5 %}-o{% elif product.averageRating >= 1.5 and product.averageRating < 2 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageRating < 2.5 %}-o{% elif product.averageRating >= 2.5 and product.averageRating < 3 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageRating < 3.5 %}-o{% elif product.averageRating >= 3.5 and product.averageRating < 4 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if product.averageRating < 4.5 %}-o{% elif product.averageRating >= 4.5 and product.averageRating < 5 %}-half-alt {% endif %}"
+                                        aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <li class="text-muted text-right h3"> &#163;{{ product.price }}</li>
+                        </ul>
+                        <a href="{{ product.get_url }}"
+                            class="h2 text-decoration-none text-dark">{{ product.product_name }}</a>
+                        <p class="card-text">
+                            {{ product.product_description }}
+                        </p>
+                        <p class="text-muted">Reviews ({{ product.countReview }})</p>
+                    </div>
                 </div>
             </div>
             {% endfor %}
         </div>
+        <div class="text-center">
+            <a href="{% url 'store' %}" class="btn btn-success">See All Products</a>
+        </div>
     </div>
 </section>
-<!-- ========================= SECTION  END// ========================= -->
-
-</body>
-
-</html>
+<!-- End Featured Product -->
 
 {% endblock %}

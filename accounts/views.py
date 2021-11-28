@@ -36,7 +36,7 @@ def register(request):
             )
             user.phone_number = phone_number
             user.save()
-            
+
             # User activation
             current_site = get_current_site(request)
             mail_subject = 'Please activate your account'
@@ -164,7 +164,7 @@ def forgotPassword(request):
         email = request.POST['email']
         if Account.objects.filter(email=email).exists():
             user = Account.objects.get(email__exact=email)
-            
+
             # Reset password email
             current_site = get_current_site(request)
             mail_subject = 'Reset your Password'

@@ -55,6 +55,7 @@ def add_to_bag(request, product_id):
     """
     current_user = request.user
     product = Product.objects.get(id=product_id)
+    bag,created = Bag.objects.get_or_create(bag_id=_bag_id(request))
     
     # If-Else whether user is authenticated or not
     if current_user.is_authenticated:
@@ -95,7 +96,7 @@ def add_to_bag(request, product_id):
                 item.quantity += 1
                 item.save()
             else:
-                item = BagItem.objects.create(product=product, quantity=1, user=current_user)
+                item = BagItem.objects.create(product=product, quantity=1, user=current_user, bag=bag)
                 if len(product_variation) > 0:
                     item.variations.clear()
                     item.variations.add(*product_variation)
@@ -105,6 +106,7 @@ def add_to_bag(request, product_id):
                 product = product,
                 quantity = 1,
                 user = current_user,
+                bag = bag,
             )
             if len(product_variation) > 0:
                 bag_item.variations.clear()
@@ -127,14 +129,6 @@ def add_to_bag(request, product_id):
                     product_variation.append(variation)
                 except:
                     pass
-        
-        try:
-            # Get the Bag ID present in the session
-            bag = Bag.objects.get(bag_id=_bag_id(request))
-        except Bag.DoesNotExist:
-            bag = Bag.objects.create(
-                bag_id = _bag_id(request)
-            )
         bag.save()
 
         # This section will group Bag Item variations, for example if the same
@@ -166,9 +160,9 @@ def add_to_bag(request, product_id):
                 item.save()
         else:
             bag_item = BagItem.objects.create(
-                product = product,
-                quantity = 1,
-                bag = bag,
+                product=product,
+                quantity=1,
+                bag=bag,
             )
             if len(product_variation) > 0:
                 bag_item.variations.clear()
@@ -212,43 +206,3 @@ def remove_bag_item(request, product_id, bag_item_id):
         bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
     bag_item.delete()
     return redirect('bag')
-
-
-@login_required(login_url='login')
-def checkout(request, total=0, quantity=0, bag_items=None):
-    """ A view to process checkout functionality """
-    stripe_public_key = settings.STRIPE_PUBLIC_KEY
-    stripe_secret_key = settings.STRIPE_SECRET_KEY
-    try:
-        tax = 0
-        grand_total = 0
-        if request.user.is_authenticated:
-            bag_items = BagItem.objects.filter(user=request.user, is_active=True)    
-        else:
-            bag = Bag.objects.get(bag_id=_bag_id(request))
-            bag_items = BagItem.objects.filter(bag=bag, is_active=True)
-        for bag_item in bag_items:
-            total += (bag_item.product.price * bag_item.quantity)
-            quantity += bag_item.quantity
-        tax = (5 * total) / 100
-        grand_total = total + tax
-    except ObjectDoesNotExist:
-            pass
-    
-    stripe.api_key = stripe_secret_key
-    stripe_total = round(grand_total * 100)
-    intent = stripe.PaymentIntent.create(
-                amount=stripe_total,
-                currency=settings.STRIPE_CURRENCY,
-            )
-
-    context = {
-        'total': total,
-        'quantity': quantity,
-        'bag_items': bag_items,
-        'tax': tax,
-        'grand_total': grand_total,
-        'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
-    }
-    return render(request, 'store/checkout.html', context)
