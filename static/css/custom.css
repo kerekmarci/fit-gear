@@ -3,6 +3,17 @@
     font-size: 48px !important;
 }
 
+/* PRODUCT CARDS */
+
+.card-img-size {
+    height: 250px;
+    object-fit: cover;
+}
+
+.rating-star i {
+    color: #ffb503;
+}
+
 /* NAVBAR DROPDOWN ON HOVER */
 
 @media all and (min-width: 992px) {
