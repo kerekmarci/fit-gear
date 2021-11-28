@@ -116,8 +116,8 @@ div {
     min-height: 40px;
 }
 
-#templatemo_nav_top * {
-    font-size: .9em !important;
+#templatemo_nav_top i:hover {
+    color: #69bb7e;
 }
 
 #templatemo_main_nav a {
