@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- ========================= TITLE ========================= -->
-<section class="section-pagetop bg">
+<section class="section-pagetop bg text-center mt-5 mb-5">
     <div class="container">
         {% if 'search' in request.path %}
         <h2 class="title-page">Search Result</h2>
@@ -15,11 +15,32 @@
 </section>
 <!-- ========================= END TITLE ========================= -->
 
+<!-- ========================= LEFT FILTER ========================= -->
+
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-
+            <h1 class="h2 pb-4">Filter Products</h1>
+            <ul class="list-unstyled templatemo-accordion">
+                <li class="pb-3">
+                    <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                        Category
+                        <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                    </a>
+                    <ul class="collapse show list-unstyled pl-3">
+                        {% for category in links %}
+                        <li><a class="text-decoration-none"
+                                href="{{ category.get_url }}">{{ category.category_name }}</a>
+                        </li>
+                        {% endfor %}
+                        <hr>
+                        <li><a class="text-decoration-none" href="{% url 'store' %}">All Categories</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+        <!-- ========================= PRODUCT CARDS ========================= -->
         <div class="col-lg-9">
             <header class="border-bottom mb-4 pb-3">
                 <div class="form-inline">
@@ -70,11 +91,14 @@
                 </div>
                 {% endfor %}
                 {% else %}
-                <div>
+                <div class="text-center">
                     <h2>No result found.</h2>
+                    <a href="{% url 'store' %}" class="btn btn-success mt-4">Browse All Products</a>
                 </div>
                 {% endif %}
             </div>
+            <!-- ========================= END PRODUCT CARDS ========================= -->
+
             <!-- ========================= PAGINATOR  ========================= -->
             <nav class="mt-4" aria-label="Page navigation sample">
                 {% if products.has_other_pages %}

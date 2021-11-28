@@ -12,6 +12,10 @@
     object-fit: cover;
 }
 
+.card-body {
+    min-height: 220px;
+}
+
 .rating-star i {
     color: #ffb503;
 }
