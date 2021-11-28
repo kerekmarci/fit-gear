@@ -36,7 +36,10 @@
                                         aria-hidden="true"></i>
                                     <i class="fa fa-star{% if single_product.averageRating < 4.5 %}-o{% elif single_product.averageRating >= 4.5 and single_product.averageRating < 5 %}-half-alt {% endif %}"
                                         aria-hidden="true"></i>
-                                    <span class="list-inline-item text-dark">Rating: {{single_product.averageRating}} |
+                                    <span class="list-inline-item text-dark">
+                                        {% if single_product.averageRating == 0 %}No ratings
+                                        yet.{% else %}Rating: {{ single_product.averageRating }}{% endif %}
+                                        |
                                         {{single_product.countReview}} reviews</span>
                                 </span>
                             </div>
@@ -98,8 +101,7 @@
                     {% csrf_token %}
                     <h4 class="mb-3">Write Your Review</h4>
                     <div>
-                        <label>How did you enjoy this product?</label>
-                        <br>
+                        <p style="margin-bottom: 10px;">How did you enjoy this product?</p>
                         <div class="rating">
                             <input type="radio" name="rating" id="rating5" value="5" required><label for="rating5"
                                 title="5"></label>
@@ -114,10 +116,10 @@
                         </div>
                         <br>
                         Review Title:
-                        <input type="text" class="form-control" name="subject">
+                        <input type="text" class="form-control" name="subject" required>
                         <br>
                         Review:
-                        <textarea name="review" rows="4" class="form-control"></textarea>
+                        <textarea name="review" rows="4" class="form-control" required></textarea>
                         <br>
                         <!--
                         {% if user.is_authenticated %}
@@ -170,6 +172,7 @@
                     </span>
                 </div>
 
+                {% if reviews %}
                 {% for review in reviews %}
                 <article class="box mb-3">
                     <div class="w-100">
@@ -193,6 +196,11 @@
                     </div>
                 </article>
                 {% endfor %}
+                {% else %}
+                <div class="box text-center">
+                    <p>No reviews yet. Be the first one to write a review!</p>
+                </div>
+                {% endif  %}
                 <div class="text-center mt-5">
                     <a href="{% url 'store' %}" class="btn btn-success">Back to Store</a>
                 </div>
