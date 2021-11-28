@@ -98,6 +98,8 @@ def search(request):
 def submit_review(request, product_id):
     """
     This view will update or create a review for an individual product.
+    If review exists, this will update existing review.
+    If user has not left a review yet, this will post a review.
     """
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
@@ -107,6 +109,8 @@ def submit_review(request, product_id):
             form = ReviewForm(request.POST, instance=reviews)
             form.save()
             messages.success(request, 'Thank you, your review has been updated!')
+            print("Ide jön a print:")
+            print(reviews.rating)
             return redirect(url)
         except Review.DoesNotExist:
             # Creates a new review

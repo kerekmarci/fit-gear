@@ -1,5 +1,36 @@
-/* ----- DROP-DOWN SELECTOR ----- */
+/* ----- REVIEWS ----- */
 
+.write-review {
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.write-review:after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border: 1px solid #e9eef5;
+    border-radius: 10px;
+    background-color: #fbfdff;
+    z-index: -5;
+}
+
+.box {
+    padding: 18px;
+    background: #fbfdff;
+    border-radius: 0.37rem;
+    border: 1px solid #e9eef5;
+}
+
+.date,
+.review-subject-size {
+    font-size: 16px;
+}
+
+.review-subject {
+    display: inline;
+}
 
 /* ----- RATING STARS ----- */
 

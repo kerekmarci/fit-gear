@@ -1,9 +1,11 @@
+/* ------- NAVBAR ------- */
+
 .home-logo {
     font-family: 'Roboto', sans-serif;
     font-size: 48px !important;
 }
 
-/* PRODUCT CARDS */
+/* ------- PRODUCT CARDS ------- */
 
 .card-img-size {
     height: 250px;
@@ -14,7 +16,7 @@
     color: #ffb503;
 }
 
-/* NAVBAR DROPDOWN ON HOVER */
+/* ------- NAVBAR DROPDOWN ON HOVER ------- */
 
 @media all and (min-width: 992px) {
     .navbar .nav-item .dropdown-menu {

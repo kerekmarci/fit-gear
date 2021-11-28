@@ -86,15 +86,17 @@
         </div>
     </div>
 </section>
-<!-- Product Detail Section -->
+<!-- End Product Detail Section -->
+
+<!-- Review Section -->
 
 <section class="section-content padding-y bg">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <form action="{% url 'submit_review' single_product.id %}" method="POST">
+            <div class="col-md-9 m-auto">
+                <form action="{% url 'submit_review' single_product.id %}" method="POST" class="write-review">
                     {% csrf_token %}
-                    <h5>Write Your Review</h5>
+                    <h4 class="mb-3">Write Your Review</h4>
                     <div>
                         <label>How did you enjoy this product?</label>
                         <br>
@@ -130,7 +132,7 @@
                         {% endif %} 
                         -->
                         {% if user.is_authenticated %}
-                        <input type="submit" value="Submit Review" class="btn btn-primary">
+                        <input type="submit" value="Submit Review" class="btn btn-success">
                         {% else %}
                         <p>You must be logged in to post a review. <span><a href="{% url 'login' %}">Login
                                     now</a></span></p>
@@ -138,15 +140,21 @@
                     </div>
                     {% include 'includes/alerts.html' %}
                 </form>
-                <br>
+            </div>
+        </div>
+    </div>
+</section>
 
-                <header class="section-heading">
+<section class="bg-light">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-md-9 m-auto">
+
+                <header class="section-heading bg-light mt-5 mb-2">
                     <h3>Customer Reviews </h3>
-                    <h6>Average Rating: </h6><span>{{ single_product.averageRating }}</span>
-                    <p>{{ single_product.countReview }} reviews</p>
                 </header>
 
-                <div class="rating-star">
+                <div class="rating-star mb-5">
                     <span>
                         <i class="fa fa-star{% if single_product.averageRating < 0.5 %}-o{% elif single_product.averageRating >= 0.5 and single_product.averageRating < 1 %}-half-alt {% endif %}"
                             aria-hidden="true"></i>
@@ -158,45 +166,42 @@
                             aria-hidden="true"></i>
                         <i class="fa fa-star{% if single_product.averageRating < 4.5 %}-o{% elif single_product.averageRating >= 4.5 and single_product.averageRating < 5 %}-half-alt {% endif %}"
                             aria-hidden="true"></i>
-                        <span>{{single_product.countReview}} reviews</span>
+                        <span>{{ single_product.countReview }} reviews</span>
                     </span>
                 </div>
 
                 {% for review in reviews %}
                 <article class="box mb-3">
-                    <div class="icontext w-100">
-                        <div class="text">
-                            <span class="date text-muted float-md-right">{{ review.updated_at }}</span>
-                            <h6 class="mb-1">{{ review.user.first_name }}</h6>
-
-                        </div>
-                    </div> <!-- icontext.// -->
-                    <div class="mt-3">
-                        <h6>Subject: {{ review.subject }}</h6>
-                        <h6>Rating: {{ reivew.rating }}</h6>
+                    <div class="w-100">
+                        <span class="date text-muted float-md-end">{{ review.updated_at|timesince }} ago</span>
+                        <h5 class="mb-1">{{ review.user.first_name }}</h5>
                         <div class="rating-star">
                             <span>
-                                <i class="fa fa-star{% if reivew.rating < 0.5 %}-o{% elif reivew.rating >= 0.5 and reivew.rating < 1 %}-half-alt {% endif %}"
-                                    aria-hidden="true"></i>
-                                <i class="fa fa-star{% if reivew.rating < 1.5 %}-o{% elif reivew.rating >= 1.5 and reivew.rating < 2 %}-half-alt {% endif %}"
-                                    aria-hidden="true"></i>
-                                <i class="fa fa-star{% if reivew.rating < 2.5 %}-o{% elif reivew.rating >= 2.5 and reivew.rating < 3 %}-half-alt {% endif %}"
-                                    aria-hidden="true"></i>
-                                <i class="fa fa-star{% if reivew.rating < 3.5 %}-o{% elif reivew.rating >= 3.5 and reivew.rating < 4 %}-half-alt {% endif %}"
-                                    aria-hidden="true"></i>
-                                <i class="fa fa-star{% if reivew.rating < 4.5 %}-o{% elif reivew.rating >= 4.5 and reivew.rating < 5 %}-half-alt {% endif %}"
-                                    aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star{% if review.rating < 2.0 %}-o{% endif %}" aria-hidden="true"></i>
+                                <i class="fa fa-star{% if review.rating < 3.0 %}-o{% endif %}" aria-hidden="true"></i>
+                                <i class="fa fa-star{% if review.rating < 4.0 %}-o{% endif %}" aria-hidden="true"></i>
+                                <i class="fa fa-star{% if review.rating < 5.0 %}-o {% endif %}" aria-hidden="true"></i>
                             </span>
                         </div>
-                        <p>
+                    </div>
+                    <div class="mt-3">
+                        <h6 class="review-subject">{{ review.subject }}</h6>
+                        <p class="mt-2" style="font-size: 16px !important;">
                             {{ review.review }}
                         </p>
                     </div>
                 </article>
                 {% endfor %}
-            </div> <!-- col.// -->
-        </div> <!-- row.// -->
-    </div> <!-- container .//  -->
+                <div class="text-center mt-5">
+                    <a href="{% url 'store' %}" class="btn btn-success">Back to Store</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+
+<!-- End Review Section -->
 
 {% endblock %}
