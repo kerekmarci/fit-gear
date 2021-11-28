@@ -43,6 +43,13 @@
 
 }
 
+/* ------- BAG.HTML ------- */
+
+.img-sm {
+    width: 80px;
+    height: 80px;
+}
+
 /* ------- NAVBAR DROPDOWN ON HOVER ------- */
 
 @media all and (min-width: 992px) {

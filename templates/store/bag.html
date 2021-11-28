@@ -17,37 +17,33 @@
         <div class="row">
             <aside class="col-lg-9">
                 <div class="card">
-                    <table class="table table-borderless table-shopping-cart">
+                    <table class="table table-borderless">
                         <thead class="text-muted">
                             <tr class="small text-uppercase">
-                                <th scope="col">Product</th>
-                                <th scope="col" width="120">Quantity</th>
-                                <th scope="col" width="120">Price</th>
-                                <th scope="col" class="text-right" width="200"> </th>
+                                <th scope="col" class="col-md-5">Product</th>
+                                <th scope="col" class="col-md-4">Quantity</th>
+                                <th scope="col" class="col-md-2">Price</th>
+                                <th scope="col" class="col-md-1"> </th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for bag_item in bag_items %}
                             <tr>
                                 <td>
-                                    <figure class="itemside align-items-center">
-                                        <div class="aside">
-                                            <img src="{{ bag_item.product.images.url }}" class="img-sm">
-                                        </div>
-                                        <figcaption class="info">
-                                            <a href="{{ bag_item.product.get_url }}"
-                                                class="title text-dark">{{ bag_item.product.product_name }}</a>
-                                            <p class="text-muted small">
-                                                {% if bag_item.variations.all %}
-                                                {% for item in bag_item.variations.all %}
-                                                {{ item.variation_category|capfirst }}:
-                                                {{ item.variation_value|capfirst }}
-                                                <br>
-                                                {% endfor %}
-                                                {% endif %}
-                                            </p>
-                                        </figcaption>
-                                    </figure>
+                                    <img src="{{ bag_item.product.images.url }}"
+                                        class="img-thumbnail img-sm float-start">
+                                    <a href="{{ bag_item.product.get_url }}"
+                                        class="title text-dark">{{ bag_item.product.product_name }}</a>
+                                    <p class="text-muted small">
+                                        {% if bag_item.variations.all %}
+                                        {% for item in bag_item.variations.all %}
+                                        {{ item.variation_category|capfirst }}:
+                                        {{ item.variation_value|capfirst }}
+                                        <br>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </p>
+
                                 </td>
                                 <td>
                                     <!-- col.// -->
