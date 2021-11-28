@@ -7,9 +7,9 @@
 <section class="section-pagetop bg text-center mt-5 mb-5">
     <div class="container">
         {% if 'search' in request.path %}
-        <h2 class="title-page">Search Result</h2>
+        <h1 class="title-page">Search Result</h1>
         {% else %}
-        <h2 class="title-page">Our Store</h2>
+        <h1 class="title-page">Our Store</h1>
         {% endif %}
     </div> <!-- container //  -->
 </section>
@@ -63,9 +63,10 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <h4 href="{{ product.get_url }}" class="text-decoration-none">{{ product.product_name }}
-                            </h4>
+                        <div class="card-body card-body-store">
+                            <a href="{{ product.get_url }}" class="text-decoration-none">
+                                <h4>{{ product.product_name }}</h4>
+                            </a>
                             <div class="rating-star">
                                 <span>
                                     <i class="fa fa-star{% if product.averageRating < 0.5 %}-o{% elif product.averageRating >= 0.5 and product.averageRating < 1 %}-half-alt {% endif %}"
