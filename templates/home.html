@@ -24,7 +24,7 @@
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
                             <h1 class="h1 text-success mb-4"><b>Fit</b> Gear</h1>
-                            <h3 class="h2">Quality Fitness Products for Everyone!</h3>
+                            <h3 class="h2 mb-4">Quality Fitness Products for Everyone!</h3>
                             <p>Fit Gear in a <strong>fitness product store</strong> where you can find a wide range of
                                 clothes and
                                 accessories for your workout. Whether you are just starting out, or a professional, you
@@ -43,7 +43,7 @@
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
                             <h1 class="h1 mb-4">Sweat in style</h1>
-                            <h3 class="h2">T-shirts, Shoes and More...</h3>
+                            <h3 class="h2 mb-4">T-shirts, Shoes and More...</h3>
                             <p>We never compromise on quality! We only sell the highest quality, water-absorbent,
                                 comfortable products that are not only <strong>practical</strong> but
                                 <strong>stylish</strong> too!
@@ -64,7 +64,7 @@
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
                             <h1 class="h1 mb-4">Find a New Friend!</h1>
-                            <h3 class="h2">High-tech accessories of your dream</h3>
+                            <h3 class="h2 mb-4">High-tech accessories of your dream</h3>
                             <p>Have you been looking for a <strong>smart partner</strong> that goes to the gym with you,
                                 no matter how early, how late it is, or what the weather is? Furthermore, this friend
                                 will help you achieve your goals? Well, you are at the right place! Our <strong>smart
@@ -86,7 +86,7 @@
 </div>
 <!-- End Banner Hero -->
 
-<!-- Start Categories of The Month -->
+<!-- Start Categories Section -->
 <section class="container py-5">
     <div class="row text-center pt-3">
         <div class="col-lg-6 m-auto">
@@ -97,27 +97,18 @@
         </div>
     </div>
     <div class="row">
+        {% for category in links %}
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="/media/photos/categories/t-shirt-category.jpg"
+            <a href="{{ category.get_url }}"><img src="/media/{{ category.cat_image }}" alt="{{ category.description }}"
                     class="rounded-circle img-fluid border"></a>
-            <h5 class="text-center mt-3 mb-3">T-Shirts</h5>
-            <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
+            <h2 class="h5 text-center mt-3 mb-3">{{ category.category_name }}</h2>
+            <p class="text-center"><a href="{{ category.get_url }}" class="btn btn-success">Go Shop</a></p>
         </div>
-        <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="/media/photos/categories/shoes-category.jpg"
-                    class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
-            <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
-        </div>
-        <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="/media/photos/categories/accessories-category.jpg"
-                    class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
-            <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
-        </div>
+        {% endfor %}
     </div>
+
 </section>
-<!-- End Categories of The Month -->
+<!-- End Categories Section -->
 
 <!-- Start Featured Product -->
 <section class="bg-light">
