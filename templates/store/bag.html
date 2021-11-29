@@ -6,14 +6,17 @@
 <section class="section-content padding-y bg">
     <div class="container">
         {% if not bag_items %}
-        <h2 class="text-center">Your Shpping Cart is Empty.</h2>
-        <br>
-        <div class="text-center">
-            <a href="{% url 'store' %}" class="btn btn-primary">Continue Shopping</a>
+        <div class="border-bag-items rounded mt-5 mb-5 pt-5 pb-5">
+            <h2 class="text-center">Your Shopping Bag is Empty.</h2>
+            <br>
+            <div class="text-center">
+                <a href="{% url 'store' %}" class="btn btn-success">Continue Shopping</a>
+            </div>
         </div>
         {% else %}
         <div class="row">
             <aside class="col-lg-9">
+                <!-- ========================= MOBILE VIEW ========================= -->
                 <div class="d-block d-md-none">
                     <div class="row">
                         <div class="col">
@@ -21,20 +24,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
-
-                            <p class="text-muted mb-5">A summary of your bag contents is below</p>
+                        <div class="col text-center">
+                            <h3 class=" mt-5 mb-5">Your Shopping Bag:</h3>
                         </div>
                     </div>
                     {% for bag_item in bag_items %}
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-2">
-                            <img src="{{ bag_item.product.images.url }}" class="img-thumbnail img-sm">
+                            <img src="{{ bag_item.product.images.url }}" class="img-thumbnail img-sm-small">
                         </div>
                         <div class="col-12 col-sm-6 mb-2">
                             <a href="{{ bag_item.product.get_url }}"
-                                class="title text-dark">{{ bag_item.product.product_name }}</a>
-                            <p class="text-muted small">
+                                class="text-dark bag-item-name text-success">{{ bag_item.product.product_name }}</a>
+                            <p>
                                 {% if bag_item.variations.all %}
                                 {% for item in bag_item.variations.all %}
                                 {{ item.variation_category|capfirst }}:
@@ -49,14 +51,14 @@
                             <p><strong>Subtotal: </strong>&#163;{{ bag_item.sub_total }}</p>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <div class="input-group input-spinner">
+                            <div class="input-group input-spinner w-75">
                                 <div class="input-group-prepend">
                                     <a href="{% url 'remove_from_bag' bag_item.product.id bag_item.id %}"
-                                        class="btn btn-light" type="button" id="button-plus">
+                                        class="btn btn-success" type="button" id="button-plus">
                                         <i class="fa fa-minus"></i>
                                     </a>
                                 </div>
-                                <input type="text" class="form-control" value="{{ bag_item.quantity }}">
+                                <input type="text" class="form-control text-center" value="{{ bag_item.quantity }}">
                                 <div class="input-group-append">
                                     <form action="{% url 'add_to_bag' bag_item.product.id %}" method="POST">
                                         {% csrf_token %}
@@ -64,7 +66,7 @@
                                         <input type="hidden" name="{{ item.variation_category|lower }}"
                                             value="{{ item.variation_value|capfirst }}">
                                         {% endfor %}
-                                        <button class="btn btn-light" id="button-minus" type="submit">
+                                        <button class="btn btn-success" id="button-minus" type="submit">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </form>
@@ -78,13 +80,10 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <div class="btt-button shadow-sm rounded-0 border border-black">
-                        <a class="btt-link d-flex h-100">
-                            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
-                        </a>
-                    </div>
                 </div>
-                <div class="table-responsive rounded d-none d-md-block border-bag-items mt-5 mb-5 pt-3">
+
+                <!-- ========================= LARGE SCREEN VIEW ========================= -->
+                <div class="table-responsive rounded d-none d-md-block border-bag-items mt-5 mb-lg-5 pt-3">
                     <table class="table table-sm table-borderless">
                         <thead class="text-black">
                             <tr>
@@ -150,7 +149,7 @@
                             <td class="text-center">
                                 <a href="{% url 'remove_bag_item' bag_item.product.id bag_item.id %}"
                                     class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you would like to empty your Cart?')">
+                                    onclick="return confirm('Are you sure you would like to empty your Bag?')">
                                     Remove</a>
                             </td>
                         </tr>
@@ -160,7 +159,7 @@
 
             </aside>
             <aside class="col-lg-3">
-                <div class="card mt-5 mb-5">
+                <div class="card mt-lg-5 mt-4 mb-5">
                     <div class="card-body">
                         <dl class="dlist-align">
                             <dt>Total price:</dt>
@@ -193,6 +192,5 @@
         {% endif %}
     </div>
 </section>
-
 
 {% endblock %}
