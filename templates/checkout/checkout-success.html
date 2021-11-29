@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col">
                 <!-- ========================= MOBILE VIEW ========================= -->
-                <div class="d-block d-md-none">
+                <div class="d-block d-md-none text-center">
                     <div class="row">
                         <div class="col">
 
@@ -27,7 +27,7 @@
                     {% for bag_item in order %}
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-2">
-                            <img src="{{ bag_item.product.images.url }}" class="img-thumbnail img-sm-small">
+                            <img src="{{ bag_item.product.images.url }}" class="img-sm">
                         </div>
                         <div class="col-12 col-sm-6 mb-2">
                             <a href="{{ bag_item.product.get_url }}"
@@ -42,13 +42,14 @@
                                 {% endif %}
                             </p>
                         </div>
-                        <div class="col-12 col-sm-6 order-sm-last">
-                            <p class="my-0">Price Each: &#163;{{ bag_item.product.price }}</p>
-                            <p><strong>Subtotal: </strong>&#163;{{ bag_item.sub_total }}</p>
-                        </div>
                         <div class="col-12 col-sm-6">
                             <p>Quantity: {{ bag_item.quantity }}</p>
                         </div>
+                        <div class="col-12 col-sm-6 order-sm-last">
+                            <p class="my-0">Price Each: &#163;{{ bag_item.product.price }}</p>
+                            <p><strong>Subtotal: </strong>&#163;</p>
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col">
@@ -56,12 +57,13 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <h3 class="text-center mt-2 mb-5">Shipping address:</h3>
                 </div>
 
                 <!-- ========================= LARGE SCREEN VIEW ========================= -->
                 <div class="table-responsive rounded d-none d-md-block border-bag-items mt-5 mb-lg-5 pt-3">
                     <table class="table table-sm table-borderless">
-                        <h3 class="text-center mt-2 mb-5">Thank you for your order. Prease see your confirmation:</h3>
+                        <h3 class="text-center mt-2 mb-5">Thank you for your order. Please see your confirmation:</h3>
                         <thead class="text-black">
                             <tr>
                                 <th scope="col" class="text-center">Product Info</th>
@@ -75,8 +77,8 @@
 
                         {% for bag_item in order %}
                         <tr>
-                            <td class="p-3 w-25">
-                                <img src="{{ bag_item.product.images.url }}" class="img-fluid">
+                            <td class="p-3 w-25 text-center">
+                                <img src="{{ bag_item.product.images.url }}" class="img-sm">
                             </td>
                             <td class="py-3">
                                 <a href="{{ bag_item.product.get_url }}"
@@ -103,6 +105,8 @@
                         </tr>
                         {% endfor %}
                     </table>
+                    <hr>
+                    <h3 class="text-center mt-2 mb-5">Shipping address:</h3>
                 </div>
             </div>
         </div>
