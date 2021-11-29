@@ -33,7 +33,7 @@
 #payment-form .form-control,
 #card-element {
     color: #000;
-    border: 1px solid #000;
+    border: 1px solid rgba(0, 0, 0, .125);
 }
 
 select,
@@ -63,4 +63,14 @@ select option[value=""] {
     justify-content: center;
     margin: 0;
     height: 100%;
+}
+
+.form-row {
+    margin-top: 30px;
+}
+
+#stripe-payment-box {
+    border: 1px solid #e9eef5;
+    border-radius: 0.25rem;
+    background-color: #fbfdff;
 }
