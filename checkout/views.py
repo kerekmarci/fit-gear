@@ -90,7 +90,8 @@ def checkout(request, total=0, quantity=0, bag_items=None):
             order.is_ordered = True
             order.payment = new_Payment
             order.save()
-
+            print("Ide jön a print")
+            print(order.order_number)
             return redirect(reverse('success',args=(order.id,)))
     
     else:
@@ -117,6 +118,6 @@ def success(request, order_id):
     # Clear Bag
     BagItem.objects.filter(user=request.user).delete()
     context = {
-        "order" : OrderProduct.objects.filter(order_id=order_id)
+        "order" : OrderProduct.objects.filter(order_id=order_id),
     }
     return render(request, 'checkout/checkout-success.html', context=context)

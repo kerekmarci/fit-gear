@@ -9,15 +9,6 @@
 
 <section class="section-content padding-y bg">
     <div class="container">
-        <div> Thank you for your order. Your order is: </div>
-        {% for product in order %}
-        <div>{{ product.product }}</div>
-        <div>{{ product.quantity }}</div>
-        {% for var in  product.variations.all %}
-        <span>{{ var }}</span>
-        <p>Price: {{ product.product_price }}</p>
-        {% endfor %}
-        {% endfor %}
 
         <div class="row">
             <div class="col">
@@ -30,17 +21,17 @@
                     </div>
                     <div class="row">
                         <div class="col text-center">
-                            <h3 class=" mt-5 mb-5">Your Shopping Bag:</h3>
+                            <h3 class=" mt-5 mb-5">Order Confirmation:</h3>
                         </div>
                     </div>
-                    {% for bag_item in bag_items %}
+                    {% for bag_item in order %}
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-2">
                             <img src="{{ bag_item.product.images.url }}" class="img-thumbnail img-sm-small">
                         </div>
                         <div class="col-12 col-sm-6 mb-2">
                             <a href="{{ bag_item.product.get_url }}"
-                                class="text-dark bag-item-name text-success">{{ bag_item.product.product_name }}</a>
+                                class="text-dark bag-item-name text-success">{{ bag_item.product }}</a>
                             <p>
                                 {% if bag_item.variations.all %}
                                 {% for item in bag_item.variations.all %}
@@ -56,27 +47,7 @@
                             <p><strong>Subtotal: </strong>&#163;{{ bag_item.sub_total }}</p>
                         </div>
                         <div class="col-12 col-sm-6">
-                            <div class="input-group input-spinner w-75">
-                                <div class="input-group-prepend">
-                                    <a href="{% url 'remove_from_bag' bag_item.product.id bag_item.id %}"
-                                        class="btn btn-success" type="button" id="button-plus">
-                                        <i class="fa fa-minus"></i>
-                                    </a>
-                                </div>
-                                <input type="text" class="form-control text-center" value="{{ bag_item.quantity }}">
-                                <div class="input-group-append">
-                                    <form action="{% url 'add_to_bag' bag_item.product.id %}" method="POST">
-                                        {% csrf_token %}
-                                        {% for item in bag_item.variations.all %}
-                                        <input type="hidden" name="{{ item.variation_category|lower }}"
-                                            value="{{ item.variation_value|capfirst }}">
-                                        {% endfor %}
-                                        <button class="btn btn-success" id="button-minus" type="submit">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
+                            <p>Quantity: {{ bag_item.quantity }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -90,6 +61,7 @@
                 <!-- ========================= LARGE SCREEN VIEW ========================= -->
                 <div class="table-responsive rounded d-none d-md-block border-bag-items mt-5 mb-lg-5 pt-3">
                     <table class="table table-sm table-borderless">
+                        <h3 class="text-center mt-2 mb-5">Thank you for your order. Prease see your confirmation:</h3>
                         <thead class="text-black">
                             <tr>
                                 <th scope="col" class="text-center">Product Info</th>
@@ -101,14 +73,14 @@
                             </tr>
                         </thead>
 
-                        {% for bag_item in bag_items %}
+                        {% for bag_item in order %}
                         <tr>
                             <td class="p-3 w-25">
                                 <img src="{{ bag_item.product.images.url }}" class="img-fluid">
                             </td>
                             <td class="py-3">
                                 <a href="{{ bag_item.product.get_url }}"
-                                    class="text-dark bag-item-name text-success">{{ bag_item.product.product_name }}</a>
+                                    class="text-dark bag-item-name text-success">{{ bag_item.product }}</a>
                                 <p>
                                     {% if bag_item.variations.all %}
                                     {% for item in bag_item.variations.all %}
@@ -122,40 +94,11 @@
                             <td class="py-3 text-center">
                                 <p class="my-0">&#163;{{ bag_item.product.price }} </p>
                             </td>
-                            <td class="py-3 w-20 text-center">
-                                <div class="col">
-                                    <div class="input-group input-spinner">
-                                        <div class="input-group-prepend">
-                                            <a href="{% url 'remove_from_bag' bag_item.product.id bag_item.id %}"
-                                                class="btn btn-success" type="button" id="button-plus">
-                                                <i class="fa fa-minus"></i>
-                                            </a>
-                                        </div>
-                                        <input type="text" class="form-control text-center"
-                                            value="{{ bag_item.quantity }}">
-                                        <div class="input-group-append">
-                                            <form action="{% url 'add_to_bag' bag_item.product.id %}" method="POST">
-                                                {% csrf_token %}
-                                                {% for item in bag_item.variations.all %}
-                                                <input type="hidden" name="{{ item.variation_category|lower }}"
-                                                    value="{{ item.variation_value|capfirst }}">
-                                                {% endfor %}
-                                                <button class="btn btn-success" id="button-minus" type="submit">
-                                                    <i class="fa fa-plus"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                            <td class="py-3 text-center">
+                                <p class="my-0">{{ bag_item.quantity }} </p>
                             </td>
                             <td class="py-3 text-center">
-                                <p class="my-0">&#163;{{ bag_item.sub_total }}</p>
-                            </td>
-                            <td class="text-center">
-                                <a href="{% url 'remove_bag_item' bag_item.product.id bag_item.id %}"
-                                    class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you would like to empty your Bag?')">
-                                    Remove</a>
+                                <p class="my-0">&#163;</p>
                             </td>
                         </tr>
                         {% endfor %}
