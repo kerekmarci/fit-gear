@@ -70,6 +70,34 @@
     color: #0d6efd;
 }
 
+/* ------- BLOG ------- */
+
+.blog-article {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 20px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.blog-intro {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.blog-article>p,
+.blog-content>p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.blog-content {
+    width: 60%;
+    margin: 0 auto;
+}
+
 /* ------- NAVBAR DROPDOWN ON HOVER ------- */
 
 @media all and (min-width: 992px) {
@@ -88,11 +116,23 @@
     }
 }
 
+@media all and (max-width: 992px) {
+
+    .blog-intro,
+    .blog-content {
+        width: 80%;
+    }
+}
+
 @media all and (max-width: 576px) {
     .img-sm-small {
         max-width: 300px;
         display: block;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .blog-content {
+        width: 95%;
     }
 }

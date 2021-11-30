@@ -2,17 +2,34 @@
 {% load static %}
 {% block content %}
 
-<div class="text-center">
-    {% for blog in blogposts %}
-    <h2>{{ blog.title }}</h2>
-    <h3>{{ blog.slug }}</h3>
-    <h3>{{ blog.author }}</h3>
-    <h3>{{ blog.created_on }}</h3>
-    <p>{{ blog.content }}</p>
-    <h5><a href="{% url 'blog_detail' blog.slug %}">Read more</a></h5>
-    <hr>
-    {% endfor %}
-</div>
+<section class="section-pagetop bg text-center mt-5 mb-5">
+    <div class="container text-center">
+        <h1>Fit Gear Blog</h1>
+        <div class="blog-intro">
+            <p>Fit Gear is a lot more than just selling quality fitness products.
+                We would like to build an awesome fitness community where we can inspire each other for an active and
+                heatlhy lifestyle! Please read our community's inspiring <strong>success stories</strong> - and we would
+                like to
+                encourage you to share yours too!</p>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light pt-4 pb-4">
+    <div class="container text-center">
+        {% for blog in blogposts %}
+        <article class="blog-article">
+            <h2 class="text-success">{{ blog.title }}</h2>
+            <h3> By {{ blog.author.first_name }}</h3>
+            <span class="small">Posted on: <cite title>{{ blog.created_on|date:"D d, M Y" }}</cite></span>
+            <div class="blog-content">
+                <p>{{ blog.content }}</p>
+            </div>
+            <h5><a href="{% url 'blog_detail' blog.slug %}" class="btn btn-success">Read more</a></h5>
+        </article>
+        {% endfor %}
+    </div>
+</section>
 
 
 {% endblock %}
