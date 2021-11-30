@@ -106,10 +106,18 @@
     color: #59ab6e;
 }
 
+.comment-box {
+    padding: 18px;
+    background: #fbfdff;
+    border-radius: 0.37rem;
+    border: 1px solid #e9eef5;
+}
+
 .post-comment-box {
     position: relative;
     margin-top: 60px;
     margin-bottom: 60px;
+    clear: both !important;
 }
 
 .post-comment-box:after {
