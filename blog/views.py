@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post, Comment
 from .forms import CommentForm
+from django.http import HttpResponse
 
 """
 Concept inspired by this website:
@@ -39,3 +40,8 @@ def blog_detail(request, slug):
         'form': form,
     }
     return render(request, 'blog_detail.html', context)
+
+"""
+def add_blogpost(request):
+    return render(request, 'add_blogpost.html')
+"""

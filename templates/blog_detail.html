@@ -60,7 +60,7 @@
     </div>
 </section>
 
-<section class="padding-y bg">
+<section class="padding-y bg pb-3">
     <div class="container">
         <div class="row">
             <div class="col-md-6 m-auto">
@@ -70,9 +70,14 @@
                         {% csrf_token %}
                         <p class="text-start">Name: {{ request.user.first_name }}</p>
                         {{ form.as_p }}
+                        {% if user.is_authenticated %}
                         <div class="text-end">
                             <input type="submit" value="Post Comment" class="btn btn-success">
                         </div>
+                        {% else %}
+                        <p>You must be logged in to leave a comment. <span><a href="{% url 'login' %}">Login
+                                    now</a></span></p>
+                        {% endif %}
                     </form>
                 </div>
             </div>

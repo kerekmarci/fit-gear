@@ -20,16 +20,19 @@
         {% for blog in blogposts %}
         <article class="blog-article">
             <h2 class="text-success">{{ blog.title }}</h2>
-            <h3> By {{ blog.author.first_name }}</h3>
+            <h4> By {{ blog.author.first_name }}</h4>
             <span class="small">Posted on: <cite title>{{ blog.created_on|date:"D d, M Y" }}</cite></span>
             <div class="blog-content">
-                <p>{{ blog.content }}</p>
+                <p>{{ blog.content|truncatewords:75 }}</p>
             </div>
-            <h5><a href="{% url 'blog_detail' blog.slug %}" class="btn btn-success">Read more</a></h5>
+            <a href="{% url 'blog_detail' blog.slug %}" class="btn btn-success">Read more</a>
         </article>
         {% endfor %}
+        <br>
+        <hr>
+        <br>
+        <a href="#" class="btn btn-success">Write Your Story!</a>
     </div>
 </section>
-
 
 {% endblock %}
