@@ -4,20 +4,22 @@
 {% block content %}
 
 <!-- ========================= TITLE ========================= -->
-<section class="section-pagetop bg text-center mt-5 mb-5">
-    <div class="container">
+<section class="container-fluid bg-light py-5">
+    <div class="col-md-6 m-auto text-center">
         {% if 'search' in request.path %}
-        <h1 class="title-page">Search Result</h1>
+        <h1 class="h1 mb-4">Search Result</h1>
         {% else %}
-        <h1 class="title-page">Our Store</h1>
+        <h1 class="h1 mb-4">Our Store</h1>
+        <p>Browse among our wide range of <strong>comfortable</strong>, <strong>stylish </strong>and <strong>practical
+            </strong>produts!</p>
         {% endif %}
-    </div> <!-- container //  -->
+    </div>
 </section>
 <!-- ========================= END TITLE ========================= -->
 
 <!-- ========================= LEFT FILTER ========================= -->
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-lg-3">
             <h1 class="h2 pb-4">Filter Products</h1>
