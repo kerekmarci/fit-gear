@@ -98,6 +98,14 @@
     margin: 0 auto;
 }
 
+.blog-category-left {
+    color: var(--bs-dark);
+}
+
+.blog-category-left:hover {
+    color: #59ab6e;
+}
+
 /* ------- NAVBAR DROPDOWN ON HOVER ------- */
 
 @media all and (min-width: 992px) {

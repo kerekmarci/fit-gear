@@ -2,9 +2,37 @@
 {% load static %}
 {% block content %}
 
-<div class="text-center mb-5">
+<div class="text-center mt-5 mb-5">
     <h1>{{ blogposts.title }}</h1>
-    <p>{{ blogposts.content }}</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 order-last order-lg-first">
+            <h1 class="h2 pb-4 text-success mt-4 mt-lg-0">Other Stories</h1>
+            <ul class="list-unstyled">
+                {% for p in allposts %}
+                <li class="">
+                    <a class="d-flex justify-content-between h3 text-decoration-none blog-category-left"
+                        href="{% url 'blog_detail' p.slug %}">
+                        {{ p.title|truncatewords:3 }} </a>
+                </li>
+                {% endfor %}
+                <hr>
+                <li><a class="text-decoration-none blog-category-left" href="{% url 'blog' %}">Back to Blogs</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9">
+            <header class="border-bottom mb-4 pb-3">
+                <div class="form-inline">
+                    <p>Created by <strong>{{ blogposts.author.first_name }}</strong> on
+                        {{ blogposts.created_on|date:"l d M, Y" }}</p>
+                </div>
+            </header>
+            <p>{{ blogposts.content }}</p>
+        </div>
+    </div>
 </div>
 
 <br>
@@ -15,9 +43,9 @@
 <div class="text-center">
     <form method="post" action=".">
         {% csrf_token %}
-
+        <p>Name: {{ request.user.first_name }}</p>
         {{ form.as_p }}
-
+        <p>Comment: </p>
         <div class="field">
             <div class="control">
                 <button class="button is-success">Submit</button>
@@ -28,6 +56,7 @@
     {% for comment in blogposts.comments.all %}
     <h3>{{ comment.name }}</h3>
     {{ comment.body }}
+    {{ comment.created_on|timesince }} ago
     {% endfor %}
 </div>
 

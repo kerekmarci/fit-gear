@@ -17,12 +17,15 @@ def blog(request):
 
 
 def blog_detail(request, slug):
+    allposts = Post.objects.all()
     blogposts = Post.objects.get(slug=slug)
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            comment.name = request.user.first_name
+            comment.email = request.user
             comment.post = blogposts
             comment.save()
 
@@ -31,6 +34,7 @@ def blog_detail(request, slug):
         form = CommentForm()
 
     context = {
+        'allposts': allposts,
         'blogposts': blogposts,
         'form': form,
     }
