@@ -56,7 +56,7 @@
     {% for comment in blogposts.comments.all %}
     <h3>{{ comment.name }}</h3>
     {{ comment.body }}
-    {{ comment.created_on|timesince }} ago
+    {{ comment.commented_on|timesince }} ago
     {% endfor %}
 </div>
 
