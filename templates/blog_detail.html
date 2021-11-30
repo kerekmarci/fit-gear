@@ -38,31 +38,48 @@
 <br>
 <hr>
 
-<h2 class="text-center">Add comment</h2>
-
-<div class="text-center">
-    <form method="post" action=".">
-        {% csrf_token %}
-        <p>Name: {{ request.user.first_name }}</p>
-        {{ form.as_p }}
-        <p>Comment: </p>
-        <div class="field">
-            <div class="control">
-                <button class="button is-success">Submit</button>
+<section class="padding-y bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 m-auto">
+                <div class="text-center">
+                    <form method="post" action="." class="post-comment-box">
+                        <h2 class="text-center">Add comment</h2>
+                        {% csrf_token %}
+                        <p class="text-start">Name: {{ request.user.first_name }}</p>
+                        <div class="text-start">
+                            {{ form.as_p }}
+                        </div>
+                        <br>
+                        <input type="submit" value="Post Comment" class="btn btn-success">
+                    </form>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
+</section>
 
-    {% for comment in blogposts.comments.all %}
-    <h3>{{ comment.name }}</h3>
-    {{ comment.body }}
-    {{ comment.commented_on|timesince }} ago
-    {% endfor %}
-</div>
+<section class="bg-light">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-md-9 m-auto">
+                <div class="text-center">
+                    {% for comment in blogposts.comments.all %}
+                    <article class="box mb-3 post-comment-box">
+                        <h3>{{ comment.name }}</h3>
+                        {{ comment.body }}
+                        {{ comment.commented_on|timesince }} ago
+                    </article>
+                    {% endfor %}
+                </div>
 
-<br>
-<div class="text-center">
-    <a href="{% url 'blog' %}" class="btn btn-success">Back to Blogs</a>
-</div>
+                <br>
+                <div class="text-center">
+                    <a href="{% url 'blog' %}" class="btn btn-success">Back to Blogs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
