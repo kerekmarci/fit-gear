@@ -20,7 +20,7 @@ def blog(request):
 def blog_detail(request, slug):
     allposts = Post.objects.all()
     blogposts = Post.objects.get(slug=slug)
-
+    
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -41,7 +41,6 @@ def blog_detail(request, slug):
     }
     return render(request, 'blog_detail.html', context)
 
-"""
+
 def add_blogpost(request):
     return render(request, 'add_blogpost.html')
-"""
