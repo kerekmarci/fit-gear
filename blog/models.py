@@ -3,8 +3,8 @@ from accounts.models import Account
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
+    title = models.CharField(max_length=45, unique=True)
+    slug = models.SlugField(max_length=100, unique=True)
     author = models.ForeignKey(Account, on_delete= models.CASCADE)
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)

@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from django.http import HttpResponse
+from django.utils.text import slugify
 
 """
 Concept inspired by this website:
@@ -43,4 +44,19 @@ def blog_detail(request, slug):
 
 
 def add_blogpost(request):
-    return render(request, 'add_blogpost.html')
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.slug = slugify(post.title)
+            post.author = request.user
+            post.save()
+            return redirect('blog')
+    else:
+        form = PostForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'add_blogpost.html', context)

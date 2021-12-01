@@ -131,6 +131,12 @@
     z-index: -5;
 }
 
+/* ------- GOOGLE MAP ------- */
+
+.google-map {
+    height: 300px;
+}
+
 /* ------- NAVBAR DROPDOWN ON HOVER ------- */
 
 @media all and (min-width: 992px) {

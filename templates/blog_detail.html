@@ -30,7 +30,7 @@
                         {{ blogposts.created_on|date:"l d M, Y" }}</p>
                 </div>
             </header>
-            <p>{{ blogposts.content }}</p>
+            <p>{{ blogposts.content|linebreaks }}</p>
         </div>
     </div>
 </div>

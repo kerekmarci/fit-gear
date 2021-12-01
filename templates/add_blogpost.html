@@ -6,4 +6,10 @@
 
 <h1>Add post</h1>
 
+<form method="POST" action=".">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Post Comment" class="btn btn-success">
+</form>
+
 {% endblock %}
