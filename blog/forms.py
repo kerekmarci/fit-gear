@@ -7,10 +7,15 @@ class PostForm(forms.ModelForm):
         fields = ['title', 'content']
 
         widgets = {
-            'body': forms.Textarea(attrs={
+            'content': forms.Textarea(attrs={
             'placeholder': 'Share your success story here...',
-            'rows': '3',
-            })
+            'class': 'form-control',
+            'rows': '4',
+            }),
+            'title': forms.TextInput(attrs={
+            'placeholder': 'Title',
+            'class': 'form-control',
+            }),
         }
 
 class CommentForm(forms.ModelForm):
