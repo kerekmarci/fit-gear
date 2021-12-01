@@ -143,10 +143,14 @@
     z-index: -5;
 }
 
-/* ------- GOOGLE MAP ------- */
+/* ------- CONTACT PAGE ------- */
 
 .google-map {
     height: 300px;
+}
+
+#contact-info i {
+    color: #59ab6e;
 }
 
 /* ------- NAVBAR DROPDOWN ON HOVER ------- */
