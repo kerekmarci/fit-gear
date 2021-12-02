@@ -78,18 +78,18 @@ This is the base app created with the projects.
 **Accounts**
 
 This contains 2 classes:
-* Account: user information with personal details and system access (active or not, staff, admin or superadmin)
-* MyAccountManager: to create users and superusers
+* Account: user information with personal details and system access (active or not, staff, admin or superadmin).
+* MyAccountManager: to create users and superusers.
 
 **Bag**
 
-* Bag: the entire shopping bag, summary of the BagItems
-* BagItem: the individual items with the price, quantity and product variants
+* Bag: the entire shopping bag, summary of the BagItems.
+* BagItem: the individual items with the price, quantity and product variants.
 
 **Blog**
 
-* Post: Indivisual blog posts with *title, slug, author, content* and *created-on* date
-* Comment: comments for the individual blog posts
+* Post: Indivisual blog posts with *title, slug, author, content* and *created-on* date.
+* Comment: comments for the individual blog posts.
 
 **Category**
 
@@ -104,10 +104,10 @@ This app containts 3 classes:
 
 **Store**
 
-* Product: details of individual products
-* Variation: variants of each product, such as different size or colour
-* VariationManager: 
-* Review: user review and ratings of a product
+* Product: details of individual products, such as category they belong to, name, slug, description, image, stock, availibility, created date and modified date.
+* Variation: contains variation category and variation value.
+* VariationManager: variants of each product, such as different size or colour.
+* Review: user review and ratings of a product.
 
 #### - Database Schema
 
