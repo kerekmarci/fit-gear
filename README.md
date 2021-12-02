@@ -1,16 +1,38 @@
-This is an E-commerce Store for my 4th Milestone Project at the Code Insitute
+# Fit Gear E-Commerce Store - Milestone Project 4
 
-## User Stories
+This e-commerce website was created for my 4th Milestone Project at The Code Institute. The website will utilise the languages and tools I learned so far in Front-End and Back-End, namely HTML5, CSS3, JavaScript, Python and Django.
+
+>>> Photo of the finished website
+
+---
+
+## Description
+
+This E-Commerce store allows users to browse among products available in the store, register and purchase products using online payment (Stripe).
+Registered users are able to access their *Dashboard* where they can review their order history. Registered users are also able to share their success stories with the community and reflect on each other's stories in form of comments.
+
+---
+
+## User Experience
+
+The aim of this website is for the site owner to sell fitness products, and for users to be able to purchase them. The concept was to create a simple, straightforward and intuitive website that allows users to browse among products with ease and make secure purchases easily. To encourage return visits, a *Success Stories* section has been added where registered users can share their blogposts.
+
+### Strategy
+
+The main goal of this 4th Milestone project was to build a website that has both Front-End and Back-End elements and can process data with Postgres database. Within that, the aim was to create an application that allows users to register to the website, search for products and make purchases, as well as being able to browse within products while displaying results in a visually appealing way. Registered users will have a bonus feature of *Success Stories* section to share their posts with the community.
+
+#### User Stories
 
 |  | AS A SITE USER |
 | :---: | ----------- |
 | USER STORY NO. | I WOULD LIKE... |
 | 1 | A friendly layout that allows me to navigate the site with ease |
-| 2 | To be able to register to the site |
+| 2 | To be able to register to the site to access extra features |
 | 3 | An easy log in and log out |
 | 4 | To receive an email confirmation after registering |
 | 5 | To reset my password in case I forget it |
-| 6 | To have a personalised user profile with an order history |
+| 6 | To be able to purchase products easily and make secure payments |
+| 6 | To have a dashboard where I can see my order history |
 
 |  | AS A SHOPPER |
 | :---: | ----------- |
@@ -28,7 +50,7 @@ This is an E-commerce Store for my 4th Milestone Project at the Code Insitute
 | 17 | To be able to modify the contents of the basket easily |
 | 18 | To see how many items I have in the basket with the total price and breakdown |
 | 19 | To be able to purchase the products and complete a secure payment |
-| 20 | Get a confirmation email of my purchase |
+| 20 | To be redirected to a confirmation page once the payment has completed |
 
 |  | AS A SITE OWNER |
 | :---: | ----------- |
@@ -36,47 +58,76 @@ This is an E-commerce Store for my 4th Milestone Project at the Code Insitute
 | 21 | To add and remove products from the site |
 | 22 | To edit product details and configure variants of the products |
 | 23 | To update the quantity of the products that are available in the store |
-| 24 | Have an overview of the performance of the store |
+| 24 | To be able to delete user reviews, in case inappropriate comments are added. |
 
+### Scope
 
-## Database
+The scope of an E-Commerce store can be quite complex, however, to align with the course content at The Code Institue, the website will feature the basics of an E-Commerce website.
+Users will be able to register to the website, browse among products, add to basket, able to modify the basket, then are able to check out and make secure payments.
 
-### Models and Apps
+### Structure
+
+#### - Models and Apps
 
 Below are listed all apps within this Django Project:
 
-#### FitGear
+**FitGear**
 
 This is the base app created with the projects.
 
-#### Accounts
+**Accounts**
 
-This contains 3 classes:
-* Account: user information
-* MyAccountManager: creating users and superusers
-* UserProfile: user address for delivery
+This contains 2 classes:
+* Account: user information with personal details and system access (active or not, staff, admin or superadmin)
+* MyAccountManager: to create users and superusers
 
-#### Bag
+**Bag**
 
 * Bag: the entire shopping bag, summary of the BagItems
 * BagItem: the individual items with the price, quantity and product variants
 
-#### Category
+**Blog**
 
-This containts the categories of the available products with a category name, slug, description and category image.
+* Post: Indivisual blog posts with *title, slug, author, content* and *created-on* date
+* Comment: comments for the individual blog posts
 
-#### Orders
+**Category**
 
-This app will handle the orders and payments.
+This containts the categories of the available products with a *category name, slug, description* and *category image.*
 
-#### Store
+**Checkout**
+
+This app containts 3 classes:
+* Order: contains completed orders, identified by an order number. Includes billing address and total amount too.
+* OrderProduct: the Line Items; a single product with their variations, belonging to an *Order.* One order can contain more line items / OrderProduct.
+* Payment: this contains the paid amount for a completed order by the user.
+
+**Store**
 
 * Product: details of individual products
 * Variation: variants of each product, such as different size or colour
-* ReviewRating: user review and ratings of a product
-* ProductGallery: images of a product
+* VariationManager: 
+* Review: user review and ratings of a product
 
-### Database Schema
+#### - Database Schema
 
 ![Click Here for Database Diagram](https://github.com/kerekmarci/fit-gear/blob/main/static/readme_files/db_schema_1.png)
+
+### Skeleton
+
+The skeleton of the website is designed with the wireframes below.
+
+### Surface 
+
+xxx
+
+#### Colours
+
+xxx
+
+#### Typography
+
+xxx
+
+
 
