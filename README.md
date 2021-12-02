@@ -119,15 +119,17 @@ The skeleton of the website is designed with the wireframes below.
 
 ### Surface 
 
-xxx
-
 #### Colours
 
-xxx
+A light theme is more common and suitable for websites with large content, such as e-commerce stores. For this website, White and light grey are the dominant colours, the text is (almost black) to add good contrast for readibility. A green is a good match with both colours and can add a nice stylish interest to the site.
+
+The colour palette is shown here with the colours used:
+
+![Click Here for Colour Palette](https://github.com/kerekmarci/fit-gear/blob/main/static/readme_files/color_palette.JPG)
 
 #### Typography
 
-xxx
+For the text content of the website, traditional-looking fonts were selected that are easy to read. The main font is called *Roboto.* This is a suitable font for both the content and a headlines, with various font-weights to add some interest to the titles.
 
 
 
