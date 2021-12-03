@@ -117,6 +117,67 @@ This app containts 3 classes:
 
 The skeleton of the website is designed with the wireframes below.
 
+<br>
+**Desktop wireframe:**
+
+<details>
+<summary>Index page</summary>
+<br>
+![Click Here for Database Diagram](https://github.com/kerekmarci/fit-gear/blob/main/static/readme_files/db_schema_1.png)
+</details>
+
+<details>
+<summary>Store page</summary>
+<br>
+</details>
+
+<details>
+<summary>Individual Product page</summary>
+<br>
+</details>
+
+<details>
+<summary>Success Stories page</summary>
+<br>
+</details>
+
+<details>
+<summary>Contact page</summary>
+<br>
+</details>
+
+<br>
+
+**Mobile wireframe:**
+
+<details>
+<summary>Index page</summary>
+<br>
+![Click Here for Database Diagram](https://github.com/kerekmarci/fit-gear/blob/main/static/readme_files/db_schema_1.png)
+</details>
+
+<details>
+<summary>Store page</summary>
+<br>
+</details>
+
+<details>
+<summary>Individual Product page</summary>
+<br>
+</details>
+
+<details>
+<summary>Success Stories page</summary>
+<br>
+</details>
+
+<details>
+<summary>Contact page</summary>
+<br>
+</details>
+
+<br>
+
 ### Surface 
 
 #### Colours
@@ -131,5 +192,55 @@ The colour palette is shown here with the colours used:
 
 For the text content of the website, traditional-looking fonts were selected that are easy to read. The main font is called *Roboto.* This is a suitable font for both the content and a headlines, with various font-weights to add some interest to the titles.
 
+---
 
+## Features
+
+Below are the existing features listed for the website.
+
+### Base template
+
+The base template contains the links to all external resources, such as Bootstrap, Jquery, Fontawesome, Custom Style Sheets and custom JavaScript. This also includes *Navbar* and *Footer* which is common across all site.
+
+### Shop / Products page
+
+The *Shop* link is available on the navigation bar - when hovering the mouse, the categories appear in a drop-down menu, and the bottom menu item is *All Products.* This will land on a page where products are listed in card view with an appealing picture, and by clicking on them, the user will land on the individual product page. The product list is paginated to avoid too many products on one page. \
+Once the user is on the Products page, the category selector will become available on the left hand side as well to facilitate switching among categories.\
+THe individual product cards show the basic features of the product: an image, a star-rating and a button to open the *Product Detail* page.
+
+### Product Detail page
+
+Once the user clicks on the product card on the *Product page,* they are directed to the pgae of the individual product. 
+
+### User Registration and Login
+
+### Registration Confirmation
+
+### Forgot Password / Password Reset
+
+### Product Search
+
+### Shopping Basket / Bag
+
+### Dashboard
+
+### Checkout
+
+### Order Confirmation
+
+### Product Review
+
+### Success Stories Blog
+
+### Comment Section
+
+### Contact Page
+
+---
+
+## Deployment
+
+---
+
+## Credit
 
