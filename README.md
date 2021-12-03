@@ -210,27 +210,62 @@ THe individual product cards show the basic features of the product: an image, a
 
 ### Product Detail page
 
-Once the user clicks on the product card on the *Product page,* they are directed to the pgae of the individual product. 
+Once the user clicks on the product card on the *Product page,* they are directed to the page of the individual product.\
+On this page, a large image of that product is shown, along with the start rating and the description, plus the option in a drop-down menu to select different variations, such as sizes and colours.\
+Registered users are also able to rate the product by giving 1-5 starts along with their comment.
 
 ### User Registration and Login
 
+Site owners would like to achieve more returning guests to the store, therefore the registration feature is essential. Also, there should be added value when user registers to unlock extra features of the website.\
+The registration feature is available on the top right corner of the navigation bar, and is also essential to complete a purchase.\
+Registered users are able to make purchases, review products, post and reflect on blogposts as well.
+
 ### Registration Confirmation
+
+Once a user registers, they receive a confirmation email to activate their account. This is a security feature to ensure only users with their genuine email addresses register.
 
 ### Forgot Password / Password Reset
 
+In case a registered user forgets their password, they have the option to reset their password on the login page. Users will receive an email with a link to reset their password. If the username does not exist, the system will not proceed.
+
 ### Product Search
+
+Beyond the category search available on the *Shop* drop-down menu and *Products* page, there is a magnifier button on the navigation bar that allows users to search for products by keywords. Search will run search in the products name and description.
 
 ### Shopping Basket / Bag
 
-### Dashboard
+From the *Product Detail* page, users can add items into their shoppig bag. The icon next to the bag will indicate the number of items currently in the bag.\
+* Variations: users have the option to select variations for the given product, such as size and colour.
+* Changing quantity: in the basket page, users can easily change the quantity of the given product with the plus and minus sign next to the quantity.
+* Identifying same variations: if user already has a particular variation in the shopping bag, and adds the same product with the same variation again from the *Product Detail* page, the system will identify this and will increase the quantity instead of adding as a new product.
+* Delete from Bag: There is a delete button available for each product to remove item from the shopping bag. When clicking on the button, a prompt will appear to reconfirm deletion. The product also gets deleted when user decreases the quantity by clicking on the minus sign and quantity reaches zero.
+* Empty bag: if the user clicks on the bag icon but there are no products in the bag, a message is shown *Your Shopping Bag is Empty* and a button is encouraging the user to *Continue Shopping.*
+* Product name: The product names act as a link, and by clicking on them, the user is directed to the individual *Product Detail* page.
 
 ### Checkout
 
+Once user has added all required products in the bag, they can complete purchase by clicking on the *Checkout* button.\
+This will land on an order summary page where user can review the items to be ordered, can enter shipping address and credit card details.
+
+### Stripe Payments
+
+Stripe is a reliable payment services provider that has been integrated into the store. Users can securely enter the card details and the payment will be processed via Stripe, then user will land on the *Order Confirmation* page.
+
 ### Order Confirmation
+
+After a successful payment, user is directed to the *Order Confirmation* page where they can review the products ordered, the itemised and total amounts, as well as the shipping address.
+
+### Dashboard
+
+Registered users can access their *Dashboard* after their log in. This will contain a summary of their orders in a chart format, and by clicking on the order number, they can see the itemised order history.
 
 ### Product Review
 
+Registered users are able to leave review on the products on the individual *Product Detail* page. Star rating is available from 1-5 as well as written commetns. The *Product Detail* page also shows a summary of the average ratings in a star format under the product name (for example for the average of 4.5, 4 stars are filled and one half star is shown).
+
 ### Success Stories Blog
+
+As the goal of the site owner is to encourage return visitors, creating a community is a great way of achieving that. Registered users can share their *Success Stories* in the form of a blog and also comment on other users' posts.
 
 ### Comment Section
 
