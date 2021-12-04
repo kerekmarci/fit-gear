@@ -66,7 +66,7 @@
                     {% else %}
                     {% endif %}
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="#">
+                <a class="nav-icon position-relative text-decoration-none" href="{% url 'dashboard' %}">
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                     <span
                         class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
@@ -75,16 +75,15 @@
                 <div class="widget-header">
                     <small class="title text-muted">Welcome Guest!</small>
                     <div>
-                        <a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
-                        <a href="{% url 'register' %}"> Register</a>
+                        <a href="{% url 'login' %}" class="green-link">Sign in</a> <span class=" dark-transp"> | </span>
+                        <a href="{% url 'register' %}" class="green-link"> Register</a>
                     </div>
                 </div>
                 {% else %}
-                <div class="widget-header">
+                <div class=" widget-header">
                     <small class="title text-muted">Welcome {{ user.first_name }}!</small>
                     <div>
-                        <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
-                        <a href="{% url 'logout' %}"> Logout</a>
+                        <a href="{% url 'logout' %}" class="green-link"> Logout</a>
                     </div>
                 </div>
                 {% endif %}
