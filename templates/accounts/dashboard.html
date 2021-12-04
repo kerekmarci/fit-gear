@@ -30,18 +30,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">654DFS54DFSDF</th>
-                            <td>&#163;99</td>
-                            <td>01/12/2021</td>
-                            <td>Notes here</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">654DFS54DFSDF</th>
-                            <td>&#163;129</td>
-                            <td>01/12/2021</td>
-                            <td>Notes here</td>
-                        </tr>
+                        {% if all_orders %}
+                        {% for ordr in all_orders %}
+                            <tr>
+                                <th scope="row"><a href="{% url 'success' ordr.id %}">{{ordr.order_number}}</a></th>
+                                <td>&#163;{{ordr.order_total}}</td>
+                                <td>{{ordr.created_at}}</td>
+                                <td>{% if ordr.order_note %}{{ordr.order_note}}{% else %}None{% endif %}</td>
+                            </tr>
+                        {% endfor %}
+                        {% else %}
+                            <tr>
+                                <th scope="row" colspan="4">You Have No Order To Show!</th>
+                            </tr>
+                        {% endif %}
                     </tbody>
                 </table>
             </main>
