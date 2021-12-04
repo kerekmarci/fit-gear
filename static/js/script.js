@@ -19,3 +19,8 @@ $(document).ready(function () {
     });
     // End accordion
 });
+
+/* Auto-close message alerts */
+setTimeout(function () {
+    $('#message').fadeOut('slow')
+}, 4000)
