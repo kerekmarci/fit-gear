@@ -277,7 +277,38 @@ A simple, yet informative page shows the location of the store on google maps, p
 
 ---
 
+## Features to implement
+
+---
+
 ## Deployment
+
+The project has been developed on Gitpod and the code is pushed to GitHub in its repository. The ready website has been deployed to Heroku, and static files are stored on Amazon AWS in an Amazon Web Services S3 Bucket.
+
+### Setting up GitHub
+
+1. As a starting point, I used the base templated provided by The Code Institute: https://github.com/Code-Institute-Org/gitpod-full-template
+2. I clicked on the button called *Use this template*
+3. Entered a name for my new repository, then clicked on the *Create repository from this template* button. Now the development environment has been created.
+
+### Setting up Environment Variables
+
+Sensitive data needs to be hidden, therefore these variables are securely stored under the *Heroku Config Vars.* To be accessible on Gitpod, they are also set up in the *Variables* section under Gitpod settings, applied to this workspace.
+
+The variables are as follows:
+
+| VARIABLE | VALUE | FUNCTIONALITY |
+| ----------- | ----------- | ----------- |
+| SECRET_KEY | *Django secret key* | Requirement from Django to secure signed data |
+| DATABASE_URL | *Link to Postgres database* | To store data in Postgres
+| STRIPE_PUBLIC_KEY | *Stripe Public Key* | Generated on Stripe to to tokenize payment information |
+| STRIPE_SECRET_KEY | *Stripe Secret Key* | Secure password to my payment accont |
+| AWS_ACCESS_KEY_ID | *AWS Access Key ID* | Required to make programmatic calls to AWS |
+| AWS_SECRET_ACCESS_KEY | *AWS Secret Access Key* | Unique password for AWS Access |
+| EMAIL_HOST_USER | *My Email address* | Emails from this account will be sent to communiate with user, such as registration confirmation and password reset.
+| EMAIL_HOST_PASS | *Email password for host user* | Password to authorise use of this email host |
+| USE_AWS | *True* | True value to enable static data storage on AWS |
+| DEVELOPMENT | True or False | Enable or Disable debug mode |
 
 ---
 
