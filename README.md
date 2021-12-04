@@ -379,5 +379,24 @@ To clone the GitHub repository, follow these steps:\
 
 ---
 
-## Credit
+## Credits
 
+In this section, I would like to give credit to all tools, sources and support that inspired and helped me towards the success of my project:
+* Code Institute project called *Boutique Ado * in the Full-Stack Frameworks with Django module that provided an excellent and complex example project to understand how to combine all these technologies together.
+* An E-Commerce Store tutorial on Udemy that gave me inspiration on how to set up my models, views and logic to create a functional store - in particular the logic for the *Product Variation* section to set up different variations for the same product - https://www.udemy.com/course/django-ecommerce-project-based-course-python-django-web-development/
+* Base template: although I aimed to create a custom website, the main focus of this Project was to utilise Django and Back-End. To facilitate this, I used a template called *Zay Shop* as a staring point for my base template and tailored it to my needs.
+* Product Variations: although mainly the above tutorial was used, this video was also an intersting learning - https://www.youtube.com/watch?v=cRbU7OH1RaQ
+* Success Stories blog feature: inspiration from this video - https://djangocentral.com/building-a-blog-application-with-django/
+* CSS star rating on the *Product Details* page: https://codepen.io/andreacrawford/pen/NvqJXW
+* Sample Success Stories posts:
+    * https://www.muscleandstrength.com/transformation/khang-nung
+    * https://www.mentalfloss.com/article/545150/11-ways-motivate-yourself-go-gym
+* Django email verification: https://www.youtube.com/watch?v=Rbkc-0rqSw8
+* Code Institute Tutor support who assisted with moving on when I felt I was stuck.
+* The below documentation to support the implementation of Pagination:
+    * https://docs.djangoproject.com/en/3.2/topics/pagination/* 
+* Images: the below websites were used to source the product images:
+    * https://www.pursuefitness.co.uk/
+    * https://uk.gymshark.com/
+    * https://www.gymwear.co.uk/
+* My mentor at Code Institute Nishant Kumar for his valuable advice throughout the consultations.
