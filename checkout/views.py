@@ -99,23 +99,38 @@ def checkout(request, total=0, quantity=0, bag_items=None):
                     amount=stripe_total,
                     currency=settings.STRIPE_CURRENCY,
                 )
-
-    context = {
-        'total': total,
-        'quantity': quantity,
-        'bag_items': bag_items,
-        'tax': tax,
-        'grand_total': grand_total,
-        'stripe_public_key': stripe_public_key,
-        'client_secret': intent.client_secret,
-    }
+    
+    if intent is None:
+        context = {
+            'total': total,
+            'quantity': quantity,
+            'bag_items': bag_items,
+            'tax': tax,
+            'grand_total': grand_total,
+            'stripe_public_key': stripe_public_key,
+        }
+    else:
+        context = {
+            'total': total,
+            'quantity': quantity,
+            'bag_items': bag_items,
+            'tax': tax,
+            'grand_total': grand_total,
+            'stripe_public_key': stripe_public_key,
+            'client_secret': intent.client_secret,
+        }
     return render(request, 'store/checkout.html', context)
 
 
 def success(request, order_id):
     # Clear Bag
     BagItem.objects.filter(user=request.user).delete()
+    ordrprod = OrderProduct.objects.filter(order_id=order_id)
+    main_ord = Order.objects.get(id=order_id)
+    total_price = main_ord.order_total - main_ord.tax
     context = {
-        "order" : OrderProduct.objects.filter(order_id=order_id),
+        "order": ordrprod,
+        "main_order": main_ord,
+        "total_price": total_price,
     }
     return render(request, 'checkout/checkout-success.html', context=context)
