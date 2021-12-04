@@ -269,7 +269,11 @@ As the goal of the site owner is to encourage return visitors, creating a commun
 
 ### Comment Section
 
+Registered users can reflect on the success stories blog post by leaving a short comment below. Comments are showing the username and the time how long ago the comment was posted.
+
 ### Contact Page
+
+A simple, yet informative page shows the location of the store on google maps, plus contact details such as address, email address and phone number.
 
 ---
 
