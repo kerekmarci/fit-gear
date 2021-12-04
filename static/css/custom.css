@@ -2,6 +2,15 @@
     padding-top: 100px !important;
 }
 
+.pt-medium {
+    padding-top: 50px !important;
+}
+
+.alert-box {
+    border-color: #d3d6d8;
+}
+
+
 /* ------- BUTTON FONT SIZE ------- */
 
 .btn-16 {
@@ -230,5 +239,9 @@
 
     .pt-large {
         padding-top: 40px !important;
+    }
+
+    .pt-medium {
+        padding-top: 20px !important;
     }
 }

@@ -18,10 +18,10 @@
 
                                 {% if request.GET.command == 'verification' %}
                                 <!-- Verification required -->
-                                <div class="container mx-auto alert alert-light text-center" role="alert"
-                                    style="max-width: 800px; margin-top:100px;">
+                                <div class="container mx-auto alert alert-box text-center" role="alert"
+                                    style="max-width: 800px; margin-top:50px;">
                                     Thank you for registering. We have sent you a verification email to
-                                    {{ request.GET.email }} to activate your
+                                    <strong>{{ request.GET.email }}</strong> to activate your
                                     account.
                                     <br><br>
                                     Already verified? <a href="{% url 'login' %}" class="green-link">Login</a>
