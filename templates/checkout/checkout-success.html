@@ -161,6 +161,37 @@
                     </table>
                     <hr>
                     <h3 class="text-center mt-2 mb-5">Shipping address:</h3>
+                    <table class="table table-sm table-borderless">
+                        <thead class="text-black">
+                            <tr>
+                                <th scope="col" class="text-center">Address line 1</th>
+                                <th scope="col" class="text-center">Address line 2</th>
+                                <th scope="col" class="text-center">Country</th>
+                                <th scope="col" class="text-center">City</th>
+                                <th scope="col" class="text-center">Status</th>
+                            </tr>
+                        </thead>
+
+                        <tr>
+                            <td class="py-3 text-center">
+                                <p class="my-0">{{main_order.address_line_1}} </p>
+                            </td>
+
+                            <td class="py-3 text-center">
+                                <p class="my-0">{{main_order.address_line_2}} </p>
+                            </td>
+                            <td class="py-3 text-center">
+                                <p class="my-0">{{main_order.country}}</p>
+                            </td>
+                            <td class="py-3 text-center">
+                                <p class="my-0">{{main_order.city}}</p>
+                            </td>
+                            <td class="py-3 text-center">
+                                <p class="my-0">{{main_order.status}}</p>
+                            </td>
+                        </tr>
+
+                    </table>
                 </div>
             </div>
         </div>
