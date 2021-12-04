@@ -100,10 +100,64 @@
                                 <p class="my-0">{{ bag_item.quantity }} </p>
                             </td>
                             <td class="py-3 text-center">
-                                <p class="my-0">&#163;</p>
+                                <p class="my-0">&#163;{{ bag_item.prd_subtotal }}</p>
                             </td>
                         </tr>
                         {% endfor %}
+                        <tr>
+                            <td class="p-3 w-25 text-center">
+
+                            </td>
+                            <td class="py-3">
+
+                            </td>
+                            <td class="py-3 text-center">
+
+                            </td>
+                            <td class="py-3 text-center">
+                                Total
+                            </td>
+                            <td class="py-3 text-center">
+                                &#163;{{ total_price }}
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="p-3 w-25 text-center">
+
+                            </td>
+                            <td class="py-3">
+
+                            </td>
+                            <td class="py-3 text-center">
+
+                            </td>
+                            <td class="py-3 text-center">
+                                tax
+                            </td>
+                            <td class="py-3 text-center">
+                                &#163;{{ main_order.tax }}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="p-3 w-25 text-center">
+
+                            </td>
+                            <td class="py-3">
+
+                            </td>
+                            <td class="py-3 text-center">
+
+                            </td>
+                            <td class="py-3 text-center">
+                                GrandTotal
+                            </td>
+                            <td class="py-3 text-center">
+                                &#163;{{ main_order.order_total }}
+                            </td>
+                        </tr>
                     </table>
                     <hr>
                     <h3 class="text-center mt-2 mb-5">Shipping address:</h3>
