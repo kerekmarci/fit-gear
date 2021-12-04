@@ -194,6 +194,49 @@ For the text content of the website, traditional-looking fonts were selected tha
 
 ---
 
+## Technologies Used
+
+### Languages
+
+* HTML5
+* CSS3
+* JavaScript
+* Python
+
+### Libraries
+
+* Bootstrap: HTML, CSS and JavaScript library to create modern websites and web apps
+* Balsamiq: an industry standard low-fidelity wireframing tool
+* Google Fonts: for providing stylish fonts across the website
+* JQuery: a fast, small, and feature-rich JavaScript library that helps web developers to add extra functionalities to their websites
+
+### Framework
+
+* Django: a high-level free and open source Python web framework that encourages rapid development and clean, pragmatic design
+
+### Database
+
+* Postgres: a powerful, open source object-relational database system
+
+### Version control
+
+* GitHub: is used to store all codes
+* Gitpod: is used as a IDE and to push code to GitHub
+
+### Hosting
+
+* Heroku: the web app is hosted on Heroku Cloud Application Platform
+
+### Storage
+
+* Amazon AWS S3 to store static files
+
+### Payments
+
+* Stripe: an APIs that web developers can use to integrate payment processing into their websites and mobile applications
+
+---
+
 ## Features
 
 Below are the existing features listed for the website.
