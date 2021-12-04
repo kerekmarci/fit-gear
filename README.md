@@ -277,7 +277,14 @@ A simple, yet informative page shows the location of the store on google maps, p
 
 ---
 
-## Features to implement
+## Features to Implement
+
+An E-Commerce website can boast endless functionalites; although the requirements for this Milestone Project are quite complex, there are still a variety of features that I am planning to implement as an extension of this website after its submission (on a separate branch or repository).
+
+* Profile Page and Profile Picture: users can upload a profile picture for their account. This photo would appear in a small circle next to the blogpost title and their comment so give a more personalised content to the blogposts and comments.
+* Change Password: although users can already request a reset for their password, a *Change Password* feature will allow users to replace their password on the user dashboard.
+* Product gallery with multiple images: on the *Product Details* page, there will be a mini carusel under the product image so that users can see more photos of the same product.
+* Stripe webhooks: to notify my application when an event happens in your account.
 
 ---
 
@@ -309,6 +316,23 @@ The variables are as follows:
 | EMAIL_HOST_PASS | *Email password for host user* | Password to authorise use of this email host |
 | USE_AWS | *True* | True value to enable static data storage on AWS |
 | DEVELOPMENT | True or False | Enable or Disable debug mode |
+
+### Requirements for Heroku
+
+Heroku needs the *Procfile* and the *Requirements* in order to run the app.
+To create the file for the requirements, the following needs to be created: `pip3 freeze --local > requirements.txt`.
+In the *Procfile*, the following line needs to be added so that Heroku will know which file to run: `web: python app.py`.
+
+### Cloning
+
+To clone the GitHub repository, follow these steps:\  
+
+1. Go to my GitHub repository - https://github.com/kerekmarci/fit-gear
+2. Click on the CODE button
+3. Copy the link with the HTTPS option selected
+4. Open your IDE
+5. Type git clone in the terminal, followed by pasting the link. For example: *git clone https://github.com/kerekmarci/fit-gear.git*
+6. Press Enter, and now a local clone has been created
 
 ---
 
