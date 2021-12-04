@@ -2,52 +2,78 @@
 
 {% block content %}
 
-<section class="section-conten padding-y" style="min-height:84vh">
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 pt-large">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
 
-    <!-- ============================ COMPONENT LOGIN   ================================= -->
+                                <div class="text-center mb-5">
+                                    <img src="https://fit-gear.s3.eu-west-2.amazonaws.com/static/images/logo.png"
+                                        style="width: 275px;" alt="logo">
+                                </div>
 
-    {% if request.GET.command == 'verification' %}
-    <!-- Verification required -->
-    <div class="container mx-auto alert alert-info text-center" role="alert"
-        style="max-width: 800px; margin-top:100px;">
-        Thank you for registering. We have sent you a verification email to {{ request.GET.email }} to activate your
-        account.
-        <br><br>
-        Already verified? <a href="{% url 'login' %}">Login</a>
+                                {% if request.GET.command == 'verification' %}
+                                <!-- Verification required -->
+                                <div class="container mx-auto alert alert-light text-center" role="alert"
+                                    style="max-width: 800px; margin-top:100px;">
+                                    Thank you for registering. We have sent you a verification email to
+                                    {{ request.GET.email }} to activate your
+                                    account.
+                                    <br><br>
+                                    Already verified? <a href="{% url 'login' %}" class="green-link">Login</a>
+                                </div>
+
+                                {% else %}
+
+                                {% include "includes/alerts.html" %}
+                                <form action="{% url 'login' %}" method="POST">
+                                    <p>Please login to your account</p>
+                                    {% csrf_token %}
+
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="login-username" class="form-control" name="email"
+                                            placeholder="Username">
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="login-password" class="form-control" name="password"
+                                            placeholder="********">
+                                    </div>
+
+                                    <div class="text-center pt-1 mb-3 pb-1">
+                                        <button class="btn btn-success mb-2" type="submit">Log
+                                            in</button>
+                                        <br>
+                                        <a class="green-link" href="{% url 'forgotPassword' %}">Forgot password?</a>
+                                    </div>
+
+                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                                        <p class="mb-0 me-2">Don't have an account?</p>
+                                        <a href="{% url 'register' %}" class="btn btn-success btn-16">Sign up</a>
+                                    </div>
+
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                <h4 class="mb-4">Quality Fitness Products</h4>
+                                <p class="small mb-0">Fit Gear in a fitness product store where you can find a wide
+                                    range of clothes and accessories for your workout. Whether you are just starting
+                                    out, or a professional, you will find what you need for the best workout!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    {% else %}
-
-    <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
-        <div class="card-body">
-            <h4 class="card-title mb-4">Sign in</h4>
-            {% include "includes/alerts.html" %}
-            <form action="{% url 'login' %}" method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email Address" name="email">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
-                </div>
-
-                <div class="form-group">
-                    <a href="{% url 'forgotPassword' %}" class="float-right">Forgot password?</a>
-
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> Login </button>
-                </div>
-            </form>
-        </div> <!-- card-body.// -->
-    </div> <!-- card .// -->
-
-    <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
-    <br><br>
-    {% endif %}
-    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
-
-
 </section>
 
 {% endblock %}

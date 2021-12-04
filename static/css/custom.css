@@ -1,3 +1,14 @@
+.pt-large {
+    padding-top: 100px !important;
+}
+
+/* ------- BUTTON FONT SIZE ------- */
+
+.btn-16 {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
 /* ------- TEXT LINK ------- */
 
 .green-link {
@@ -53,6 +64,19 @@
     color: #fff !important;
     font-size: 16px !important;
 
+}
+
+/* ------- LOGIN PAGE ------- */
+
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #59AB6E;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #59AB6E, #00A388, #0097A7);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #59AB6E, #00A388, #0097A7);
 }
 
 /* ------- BAG.HTML ------- */
@@ -179,6 +203,19 @@
     }
 }
 
+@media (min-width: 768px) {
+    .gradient-form {
+        height: 100vh !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .gradient-custom-2 {
+        border-top-right-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+    }
+}
+
 @media all and (max-width: 576px) {
     .img-sm-small {
         max-width: 300px;
@@ -189,5 +226,9 @@
 
     .blog-content {
         width: 95%;
+    }
+
+    .pt-large {
+        padding-top: 40px !important;
     }
 }
