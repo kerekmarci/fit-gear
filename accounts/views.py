@@ -15,6 +15,7 @@ from django.core.mail import EmailMessage
 from bag.views import _bag_id
 from bag.models import Bag, BagItem
 import requests
+from checkout.models import Order
 
 
 def register(request):
@@ -156,7 +157,9 @@ def activate(request, uidb64, token):
 
 @login_required(login_url = 'login')
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    all_orders = Order.objects.filter(user=request.user).order_by('-created_at')
+    context = {'all_orders': all_orders}
+    return render(request, 'accounts/dashboard.html', context)
 
 
 def forgotPassword(request):
