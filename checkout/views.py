@@ -90,7 +90,7 @@ def checkout(request, total=0, quantity=0, bag_items=None):
             order.is_ordered = True
             order.payment = new_Payment
             order.save()
-            return redirect(reverse('success',args=(order.id,)))
+            return redirect(reverse('success',args=(order_number,)))
     
     else:
         stripe.api_key = stripe_secret_key
@@ -125,12 +125,12 @@ def checkout(request, total=0, quantity=0, bag_items=None):
 def success(request, order_id):
     # Clear Bag
     BagItem.objects.filter(user=request.user).delete()
-    ordrprod = OrderProduct.objects.filter(order_id=order_id)
-    main_ord = Order.objects.get(id=order_id)
-    total_price = main_ord.order_total - main_ord.tax
+    main_order = Order.objects.get(order_number=order_id)
+    ordered_product = OrderProduct.objects.filter(order=main_order)
+    total_price = main_order.order_total - main_order.tax
     context = {
-        "order": ordrprod,
-        "main_order": main_ord,
+        "order": ordered_product,
+        "main_order": main_order,
         "total_price": total_price,
     }
     return render(request, 'checkout/checkout-success.html', context=context)
