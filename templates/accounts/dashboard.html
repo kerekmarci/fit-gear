@@ -2,6 +2,15 @@
 
 {% block content %}
 
+<!-- ========================= TITLE ========================= -->
+<section class="container-fluid bg-light py-5">
+    <div class="col-md-6 m-auto text-center">
+        <h1 class="h1 mb-4">My Account</h1>
+        <p>Here you can see your <strong>order history</strong> and transaction details.</p>
+    </div>
+</section>
+<!-- ========================= END TITLE ========================= -->
+
 <section class="section-conten padding-y bg">
 
     {% include "includes/alerts.html" %}
@@ -9,33 +18,37 @@
     <div class="container">
         <div class="row">
             <aside class="col-md-3">
-                <ul class="list-group">
-                    <a class="list-group-item active" href="#"> My order history </a>
-                </ul>
+                <div class="mt-5">
+                    <h1 class="h2 pb-4 text-success mt-4 mt-lg-0">My Order History</h1>
+                </div>
             </aside>
             <main class="col-md-9">
                 {% if all_orders %}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Order Number</th>
-                            <th scope="col">Order Total</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for order in all_orders %}
-                        <tr>
-                            <th scope="row"><a href="{% url 'success' order.order_number %}">{{order.order_number}}</a>
-                            </th>
-                            <td>&#163;{{order.order_total}}</td>
-                            <td>{{order.created_at}}</td>
-                            <td>{% if order.order_note %}{{order.order_note}}{% else %}None{% endif %}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div class="table-responsive-md mt-5 mb-5">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Order Number</th>
+                                <th scope="col">Order Total</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in all_orders %}
+                            <tr>
+                                <th scope="row"><a href="{% url 'success' order.order_number %}"
+                                        class="green-link">{{order.order_number}}</a>
+                                </th>
+                                <td data-label="Order Total">&#163;{{order.order_total}}</td>
+                                <td data-label="Date">{{order.created_at}}</td>
+                                <td data-label="Notes">
+                                    {% if order.order_note %}{{order.order_note}}{% else %}None{% endif %}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
                 {% else %}
                 <div class="text-center mt-5 mb-5">
                     <h4>You have not ordered anything yet.</h4>
