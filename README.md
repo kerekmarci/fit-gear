@@ -391,7 +391,7 @@ In the *Procfile*, the following line needs to be added so that Heroku will know
 
 This is a list of strings representing the host/domain names that this Django site can serve. This is a security measure to prevent HTTP Host header attacks.
 
-As the site has been deployed to Heroku, on the main app > settings.py, the below had to be set up:
+As the site has been deployed to Heroku, on the main app > settings.py, the below had to be set up:\
 `ALLOWED_HOSTS = ['fit-gear.herokuapp.com', 'localhost']`
 <br>
 
@@ -409,7 +409,7 @@ In the Heroku *Config Variables*, a variable name *DATABASE URL* is set up with 
             `'ENGINE': 'django.db.backends.sqlite3',`\
             `'NAME': BASE_DIR / 'db.sqlite3',`\
         `}`\
-    `}`\
+    `}`
 
 ### Cloning
 
