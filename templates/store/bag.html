@@ -154,13 +154,36 @@
                             <td class="py-3 text-center">
                                 <p class="my-0">&#163;{{ bag_item.sub_total }}</p>
                             </td>
-                            <td class="text-center">
-                                <a href="{% url 'remove_bag_item' bag_item.product.id bag_item.id %}"
-                                    class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you would like to empty your Bag?')">
-                                    Remove</a>
+                            <td class="py-3 text-center">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#emptyShoppingBagConfirm">
+                                    Remove
+                                </button>
                             </td>
                         </tr>
+                        <!-- Modal -->
+                        <div class="modal fade" id="emptyShoppingBagConfirm" tabindex="-1"
+                            aria-labelledby="emptyShoppingBagConfirmLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="emptyShoppingBagConfirmLabel">Please confirm</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you would like to remove this item from the Shopping Bag?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <form action="{% url 'remove_bag_item' bag_item.product.id bag_item.id %}">
+                                            <button type="submit" class="btn btn-danger">Confirm</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {% endfor %}
                     </table>
                 </div>
