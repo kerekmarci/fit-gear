@@ -130,21 +130,29 @@ The skeleton of the website is designed with the wireframes below.
 <details>
 <summary>Store page</summary>
 <br>
+
+![Store Page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/02_store_desktop.png)
 </details>
 
 <details>
-<summary>Individual Product page</summary>
+<summary>Product Detail Page</summary>
 <br>
+
+![Product Detail Page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/03_product_desktop.png)
 </details>
 
 <details>
 <summary>Success Stories page</summary>
 <br>
+
+![Success Stories page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/04_success_stories_desktop.png)
 </details>
 
 <details>
 <summary>Contact page</summary>
 <br>
+
+![Contact page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/05_contact_desktop.png)
 </details>
 
 <br>
@@ -154,27 +162,36 @@ The skeleton of the website is designed with the wireframes below.
 <details>
 <summary>Index page</summary>
 <br>
-![Click Here for Database Diagram](https://github.com/kerekmarci/fit-gear/blob/main/static/readme_files/db_schema_1.png)
+
+![Desktop Home Page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/01_home_mobile.png)
 </details>
 
 <details>
 <summary>Store page</summary>
 <br>
+
+![Store Page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/02_store_mobile.png)
 </details>
 
 <details>
-<summary>Individual Product page</summary>
+<summary>Product Detail Page</summary>
 <br>
+
+![Product Detail Page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/03_product_mobile.png)
 </details>
 
 <details>
 <summary>Success Stories page</summary>
 <br>
+
+![Success Stories page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/04_success_stories_mobile.png)
 </details>
 
 <details>
 <summary>Contact page</summary>
 <br>
+
+![Contact page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/05_contact_mobile.png)
 </details>
 
 <br>
