@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="{{ MEDIA_URL }}/media/photos/carousel/carousel-2.jpg">
+                        <img class="img-fluid" src="{{ MEDIA_URL }}photos/carousel/carousel-2.jpg">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
@@ -59,7 +59,7 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="/media/photos/carousel/carousel-3.jpg">
+                        <img class="img-fluid" src="{{ MEDIA_URL }}photos/carousel/carousel-3.jpg">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
@@ -99,8 +99,8 @@
     <div class="row">
         {% for category in links %}
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="{{ category.get_url }}"><img src="/media/{{ category.cat_image }}" alt="{{ category.description }}"
-                    class="rounded-circle img-fluid border"></a>
+            <a href="{{ category.get_url }}"><img src="{{ MEDIA_URL }}{{ category.cat_image }}"
+                    alt="{{ category.description }}" class="rounded-circle img-fluid border"></a>
             <h2 class="h5 text-center mt-3 mb-3">{{ category.category_name }}</h2>
             <p class="text-center"><a href="{{ category.get_url }}" class="btn btn-success">Go Shop</a></p>
         </div>
