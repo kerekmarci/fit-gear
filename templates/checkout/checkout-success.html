@@ -7,6 +7,14 @@
 
 {% block content %}
 
+<!-- ========================= TITLE ========================= -->
+<section class="container-fluid bg-light py-4 d-none d-lg-block">
+    <div class="col-md-6 m-auto text-center">
+        <h1 class="h1 mb-4">Order Confirmation</h1>
+    </div>
+</section>
+<!-- ========================= END TITLE ========================= -->
+
 <section class="section-content padding-y bg">
     <div class="container">
 
@@ -16,7 +24,6 @@
                 <div class="d-block d-lg-none text-center">
                     <div class="row">
                         <div class="col">
-
                         </div>
                     </div>
                     <div class="row">
@@ -57,13 +64,58 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <h3 class="text-center mt-2 mb-5">Shipping address:</h3>
+                    <h3 class="text-center mt-2 mb-5">Delivery Details:</h3>
+                    <table class="table table-sm table-borderless">
+                        <thead class="text-black">
+                            <tr>
+                                <th scope="col" class="text-center">Address line 1</th>
+                                {% if main_order.address_line_2 %}
+                                <th scope="col" class="text-center">Address line 2</th>
+                                {% else %}
+                                <th scope="col" class="text-center"></th>
+                                {% endif %}
+                                <th scope="col" class="text-center">City</th>
+                                <th scope="col" class="text-center">Country</th>
+                                <th scope="col" class="text-center">Phone</th>
+                                {% if main_order.order_note %}
+                                <th scope="col" class="text-center">Order Notes</th>
+                                {% endif %}
+                            </tr>
+                        </thead>
+
+                        <tr>
+                            <td class="py-3 text-center" data-label="Address Line 1">
+                                <p class="my-0">{{ main_order.address_line_1 }} </p>
+                            </td>
+
+                            {% if main_order.address_line_2 %}
+                            <td class="py-3 text-center" data-label="Address Line 2">
+                                <p class="my-0">{{ main_order.address_line_2 }}</p>
+                            </td>
+                            {% endif %}
+                            <td class="py-3 text-center" data-label="City">
+                                <p class="my-0">{{ main_order.city }}</p>
+                            </td>
+                            <td class="py-3 text-center" data-label="Country">
+                                <p class="my-0">{{ main_order.country }}</p>
+                            </td>
+                            <td class="py-3 text-center" data-label="Phone Number">
+                                <p class="my-0">{{ main_order.phone }}</p>
+                            </td>
+                            {% if main_order.order_note %}
+                            <td class="py-3 text-center" data-label="Order Notes">
+                                <p class="my-0">{{ main_order.order_note }}</p>
+                            </td>
+                            {% endif %}
+                        </tr>
+                    </table>
                 </div>
 
                 <!-- ========================= LARGE SCREEN VIEW ========================= -->
                 <div class="table-responsive rounded d-none d-lg-block border-bag-items mt-5 mb-lg-5 pt-3">
                     <table class="table table-sm table-borderless">
-                        <h3 class="text-center mt-2 mb-5">Thank you for your order. Please see your confirmation:</h3>
+                        <h3 class="text-center mt-2 mb-5">Thank you for your order. Please see the order details
+                            below:</h3>
                         <thead class="text-black">
                             <tr>
                                 <th scope="col" class="text-center">Product Info</th>
@@ -71,7 +123,6 @@
                                 <th scope="col" class="text-center">Price</th>
                                 <th scope="col" class="text-center">Qty</th>
                                 <th scope="col" class="text-center">Subtotal</th>
-                                <th scope="col" class="text-center"></th>
                             </tr>
                         </thead>
 
@@ -106,13 +157,10 @@
                         {% endfor %}
                         <tr>
                             <td>
-
                             </td>
                             <td>
-
                             </td>
                             <td>
-
                             </td>
                             <td class="text-center">
                                 <strong>Net Total:</strong>
@@ -121,8 +169,6 @@
                                 <strong>&#163;{{ total_price }}</strong>
                             </td>
                         </tr>
-
-
                         <tr>
                             <td>
                             </td>
@@ -137,16 +183,12 @@
                                 &#163;{{ main_order.tax }}
                             </td>
                         </tr>
-
                         <tr>
                             <td>
-
                             </td>
                             <td>
-
                             </td>
                             <td>
-
                             </td>
                             <td class="text-center">
                                 <strong class="text-success fw-bold">Grand Total:</strong>
@@ -157,7 +199,7 @@
                         </tr>
                     </table>
                     <hr>
-                    <h3 class="text-center mt-2 mb-5">Shipping address:</h3>
+                    <h3 class="text-center mt-2 mb-5">Delivery Details:</h3>
                     <table class="table table-sm table-borderless">
                         <thead class="text-black">
                             <tr>
@@ -170,6 +212,9 @@
                                 <th scope="col" class="text-center">City</th>
                                 <th scope="col" class="text-center">Country</th>
                                 <th scope="col" class="text-center">Phone</th>
+                                {% if main_order.order_note %}
+                                <th scope="col" class="text-center">Order Notes</th>
+                                {% endif %}
                             </tr>
                         </thead>
 
@@ -194,15 +239,16 @@
                             <td class="py-3 text-center">
                                 <p class="my-0">{{ main_order.phone }}</p>
                             </td>
+                            {% if main_order.order_note %}
+                            <td class="py-3 text-center">
+                                <p class="my-0">{{ main_order.order_note }}</p>
+                            </td>
+                            {% endif %}
                         </tr>
-
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 </section>
-
-
 {% endblock %}
