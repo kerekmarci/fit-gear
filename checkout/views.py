@@ -99,26 +99,16 @@ def checkout(request, total=0, quantity=0, bag_items=None):
                     amount=stripe_total,
                     currency=settings.STRIPE_CURRENCY,
                 )
-    
-    if intent is None:
-        context = {
-            'total': total,
-            'quantity': quantity,
-            'bag_items': bag_items,
-            'tax': tax,
-            'grand_total': grand_total,
-            'stripe_public_key': stripe_public_key,
-        }
-    else:
-        context = {
-            'total': total,
-            'quantity': quantity,
-            'bag_items': bag_items,
-            'tax': tax,
-            'grand_total': grand_total,
-            'stripe_public_key': stripe_public_key,
-            'client_secret': intent.client_secret,
-        }
+
+    context = {
+        'total': total,
+        'quantity': quantity,
+        'bag_items': bag_items,
+        'tax': tax,
+        'grand_total': grand_total,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': intent.client_secret,
+    }
     return render(request, 'store/checkout.html', context)
 
 
