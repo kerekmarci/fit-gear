@@ -385,7 +385,6 @@ To create the file for the requirements, the following needs to be created: `pip
 In the *Procfile*, the following line needs to be added so that Heroku will know which file to run: `web: python app.py`.
 
 ### Django configuration
-<br>
 
 **Allowed hosts**
 
