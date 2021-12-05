@@ -384,6 +384,33 @@ Heroku needs the *Procfile* and the *Requirements* in order to run the app.
 To create the file for the requirements, the following needs to be created: `pip3 freeze --local > requirements.txt`.
 In the *Procfile*, the following line needs to be added so that Heroku will know which file to run: `web: python app.py`.
 
+### Django configuration
+<br>
+
+**Allowed hosts**
+
+This is a list of strings representing the host/domain names that this Django site can serve. This is a security measure to prevent HTTP Host header attacks.
+
+As the site has been deployed to Heroku, on the main app > settings.py, the below had to be set up:
+`ALLOWED_HOSTS = ['fit-gear.herokuapp.com', 'localhost']`
+<br>
+
+**Database**
+
+As Postgres is used to store database tables for the deployed site, it needs to be set up in the settings. The way it is set up in this project is to distinguish whether the app runs locally or on Heroku. If runs locally, the local *Sqlite* database is used, otherwise Postgres.\
+In the Heroku *Config Variables*, a variable name *DATABASE URL* is set up with a link to Postgres database (see above). In the main app > settings.py, the below if-else statement has been added: (with indentation)\
+`if 'DATABASE_URL' in os.environ:`\
+    `DATABASES = {`\
+        `'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))`\
+    `}`\
+`else:`\
+    `DATABASES = {`\
+        `'default': {`\
+            `'ENGINE': 'django.db.backends.sqlite3',`\
+            `'NAME': BASE_DIR / 'db.sqlite3',`\
+        `}`\
+    `}`\
+
 ### Cloning
 
 To clone the GitHub repository, follow these steps:\  
