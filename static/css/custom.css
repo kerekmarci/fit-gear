@@ -186,9 +186,11 @@
     color: #59ab6e;
 }
 
-/* ------- NAVBAR DROPDOWN ON HOVER ------- */
+/* ------- MEDIA QUERIES  ------- */
 
 @media all and (min-width: 992px) {
+
+    /* ------- NAVBAR DROPDOWN ON HOVER ------- */
     .navbar .nav-item .dropdown-menu {
         display: none;
     }

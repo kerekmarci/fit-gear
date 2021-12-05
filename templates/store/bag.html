@@ -25,7 +25,7 @@
         <div class="row">
             <aside class="col-lg-9">
                 <!-- ========================= MOBILE VIEW ========================= -->
-                <div class="d-block d-md-none">
+                <div class="d-block d-lg-none">
                     <div class="row">
                         <div class="col">
 
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     {% for bag_item in bag_items %}
-                    <div class="row">
+                    <div class="row px-3">
                         <div class="col-12 col-sm-6 mb-2">
                             <img src="{{ bag_item.product.images.url }}" class="img-thumbnail img-sm-small">
                         </div>
@@ -54,7 +54,7 @@
                                 {% endif %}
                             </p>
                         </div>
-                        <div class="col-12 col-sm-6 order-sm-last">
+                        <div class="col-12 col-sm-6 order-last mt-3">
                             <p class="my-0">Price Each: &#163;{{ bag_item.product.price }}</p>
                             <p><strong>Subtotal: </strong>&#163;{{ bag_item.sub_total }}</p>
                         </div>
@@ -80,6 +80,12 @@
                                     </form>
                                 </div>
                             </div>
+                            <div class="mt-3">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#emptyShoppingBagConfirm_mobile">
+                                    Remove
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -87,11 +93,33 @@
                             <hr>
                         </div>
                     </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="emptyShoppingBagConfirm_mobile" tabindex="-1"
+                        aria-labelledby="emptyShoppingBagConfirmLabel_mobile" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="emptyShoppingBagConfirmLabel_mobile">Please confirm</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you would like to remove this item from the Shopping Bag?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                                    <form action="{% url 'remove_bag_item' bag_item.product.id bag_item.id %}">
+                                        <button type="submit" class="btn btn-danger">Confirm</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {% endfor %}
                 </div>
 
                 <!-- ========================= LARGE SCREEN VIEW ========================= -->
-                <div class="table-responsive rounded d-none d-md-block border-bag-items mt-5 mb-lg-5 pt-3">
+                <div class="table-responsive rounded d-none d-lg-block border-bag-items mt-5 mb-lg-5 pt-3">
                     <table class="table table-sm table-borderless">
                         <thead class="text-black">
                             <tr>
