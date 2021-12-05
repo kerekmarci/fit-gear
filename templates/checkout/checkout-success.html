@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col">
                 <!-- ========================= MOBILE VIEW ========================= -->
-                <div class="d-block d-md-none text-center">
+                <div class="d-block d-lg-none text-center">
                     <div class="row">
                         <div class="col">
 
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-12 col-sm-6 order-sm-last">
                             <p class="my-0">Price Each: &#163;{{ bag_item.product.price }}</p>
-                            <p><strong>Subtotal: </strong>&#163;</p>
+                            <p><strong>Subtotal: </strong>&#163;{{ bag_item.prd_subtotal }}</p>
                         </div>
 
                     </div>
@@ -61,7 +61,7 @@
                 </div>
 
                 <!-- ========================= LARGE SCREEN VIEW ========================= -->
-                <div class="table-responsive rounded d-none d-md-block border-bag-items mt-5 mb-lg-5 pt-3">
+                <div class="table-responsive rounded d-none d-lg-block border-bag-items mt-5 mb-lg-5 pt-3">
                     <table class="table table-sm table-borderless">
                         <h3 class="text-center mt-2 mb-5">Thank you for your order. Please see your confirmation:</h3>
                         <thead class="text-black">
@@ -105,57 +105,54 @@
                         </tr>
                         {% endfor %}
                         <tr>
-                            <td class="p-3 w-25 text-center">
+                            <td>
 
                             </td>
-                            <td class="py-3">
+                            <td>
 
                             </td>
-                            <td class="py-3 text-center">
+                            <td>
 
                             </td>
-                            <td class="py-3 text-center">
-                                Total
+                            <td class="text-center">
+                                <strong>Net Total:</strong>
                             </td>
-                            <td class="py-3 text-center">
-                                &#163;{{ total_price }}
+                            <td class="text-center">
+                                <strong>&#163;{{ total_price }}</strong>
                             </td>
                         </tr>
 
 
                         <tr>
-                            <td class="p-3 w-25 text-center">
-
+                            <td>
                             </td>
-                            <td class="py-3">
-
+                            <td>
                             </td>
-                            <td class="py-3 text-center">
-
+                            <td>
                             </td>
-                            <td class="py-3 text-center">
-                                tax
+                            <td class="text-center">
+                                <strong>Tax: </strong>
                             </td>
-                            <td class="py-3 text-center">
+                            <td class="text-center">
                                 &#163;{{ main_order.tax }}
                             </td>
                         </tr>
 
                         <tr>
-                            <td class="p-3 w-25 text-center">
+                            <td>
 
                             </td>
-                            <td class="py-3">
+                            <td>
 
                             </td>
-                            <td class="py-3 text-center">
+                            <td>
 
                             </td>
-                            <td class="py-3 text-center">
-                                GrandTotal
+                            <td class="text-center">
+                                <strong class="text-success fw-bold">Grand Total:</strong>
                             </td>
-                            <td class="py-3 text-center">
-                                &#163;{{ main_order.order_total }}
+                            <td class="text-center">
+                                <strong class="text-success fw-bold">&#163;{{ main_order.order_total }}</strong>
                             </td>
                         </tr>
                     </table>
@@ -165,29 +162,37 @@
                         <thead class="text-black">
                             <tr>
                                 <th scope="col" class="text-center">Address line 1</th>
+                                {% if main_order.address_line_2 %}
                                 <th scope="col" class="text-center">Address line 2</th>
-                                <th scope="col" class="text-center">Country</th>
+                                {% else %}
+                                <th scope="col" class="text-center"></th>
+                                {% endif %}
                                 <th scope="col" class="text-center">City</th>
-                                <th scope="col" class="text-center">Status</th>
+                                <th scope="col" class="text-center">Country</th>
+                                <th scope="col" class="text-center">Phone</th>
                             </tr>
                         </thead>
 
                         <tr>
                             <td class="py-3 text-center">
-                                <p class="my-0">{{main_order.address_line_1}} </p>
+                                <p class="my-0">{{ main_order.address_line_1 }} </p>
                             </td>
 
                             <td class="py-3 text-center">
-                                <p class="my-0">{{main_order.address_line_2}} </p>
+                                {% if main_order.address_line_2 %}
+                                <p class="my-0">{{ main_order.address_line_2 }}</p>
+                                {% else %}
+                                <p class="my-0"></p>
+                                {% endif %}
                             </td>
                             <td class="py-3 text-center">
-                                <p class="my-0">{{main_order.country}}</p>
+                                <p class="my-0">{{ main_order.city }}</p>
                             </td>
                             <td class="py-3 text-center">
-                                <p class="my-0">{{main_order.city}}</p>
+                                <p class="my-0">{{ main_order.country }}</p>
                             </td>
                             <td class="py-3 text-center">
-                                <p class="my-0">{{main_order.status}}</p>
+                                <p class="my-0">{{ main_order.phone }}</p>
                             </td>
                         </tr>
 
