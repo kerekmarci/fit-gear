@@ -9,17 +9,12 @@
     <div class="container">
         <div class="row">
             <aside class="col-md-3">
-                <!--   SIDEBAR   -->
                 <ul class="list-group">
                     <a class="list-group-item active" href="#"> My order history </a>
                 </ul>
-                <br>
-                <a class="btn btn-light btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span
-                        class="text">Log
-                        out</span> </a>
-                <!--   SIDEBAR .//END   -->
             </aside>
             <main class="col-md-9">
+                {% if all_orders %}
                 <table class="table">
                     <thead>
                         <tr>
@@ -30,27 +25,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% if all_orders %}
-                        {% for ordr in all_orders %}
-                            <tr>
-                                <th scope="row"><a href="{% url 'success' ordr.id %}">{{ordr.order_number}}</a></th>
-                                <td>&#163;{{ordr.order_total}}</td>
-                                <td>{{ordr.created_at}}</td>
-                                <td>{% if ordr.order_note %}{{ordr.order_note}}{% else %}None{% endif %}</td>
-                            </tr>
+                        {% for order in all_orders %}
+                        <tr>
+                            <th scope="row"><a href="{% url 'success' order.order_number %}">{{order.order_number}}</a>
+                            </th>
+                            <td>&#163;{{order.order_total}}</td>
+                            <td>{{order.created_at}}</td>
+                            <td>{% if order.order_note %}{{order.order_note}}{% else %}None{% endif %}</td>
+                        </tr>
                         {% endfor %}
-                        {% else %}
-                            <tr>
-                                <th scope="row" colspan="4">You Have No Order To Show!</th>
-                            </tr>
-                        {% endif %}
                     </tbody>
                 </table>
+                {% else %}
+                <div class="text-center mt-5 mb-5">
+                    <h4>You have not ordered anything yet.</h4>
+                    <a href="{% url 'store' %}" class="btn btn-success mt-4">Go Shopping</a>
+                </div>
+                {% endif %}
             </main>
-        </div> <!-- row.// -->
+        </div>
     </div>
-
-
 </section>
 
 {% endblock %}
