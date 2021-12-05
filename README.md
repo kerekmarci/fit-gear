@@ -111,19 +111,20 @@ This app containts 3 classes:
 
 #### - Database Schema
 
-![Click Here for Database Diagram](https://github.com/kerekmarci/fit-gear/blob/main/static/readme_files/db_schema_1.png)
+![Click Here for Database Diagram](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/db_schema_1.png)
 
 ### Skeleton
 
 The skeleton of the website is designed with the wireframes below.
-
 <br>
+
 **Desktop wireframe:**
 
 <details>
 <summary>Index page</summary>
 <br>
-![Click Here for Database Diagram](https://github.com/kerekmarci/fit-gear/blob/main/static/readme_files/db_schema_1.png)
+
+![Desktop Home Page](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/wireframes/01_home_desktop.png)
 </details>
 
 <details>
@@ -186,7 +187,7 @@ A light theme is more common and suitable for websites with large content, such 
 
 The colour palette is shown here with the colours used:
 
-![Click Here for Colour Palette](https://github.com/kerekmarci/fit-gear/blob/main/static/readme_files/color_palette.JPG)
+![Click Here for Colour Palette](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/color_palette.JPG)
 
 #### Typography
 
