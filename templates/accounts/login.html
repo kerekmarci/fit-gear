@@ -29,7 +29,6 @@
 
                                 {% else %}
 
-                                {% include "includes/alerts.html" %}
                                 <form action="{% url 'login' %}" method="POST">
                                     <p>Please login to your account</p>
                                     {% csrf_token %}
