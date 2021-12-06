@@ -1,3 +1,10 @@
+/* ----- CARDS ON STORE PAGE ----- */
+
+.img-card-store {
+    height: 350px !important;
+    object-fit: cover !important;
+}
+
 /* ----- REVIEWS ----- */
 
 .write-review {
