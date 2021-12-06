@@ -6,6 +6,9 @@ from django.db.models import Avg, Count
 
 
 class Product(models.Model):
+    """
+    Individual products in the store
+    """
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -40,6 +43,7 @@ class Product(models.Model):
 
 # Product Variation Class created to be able to select various colours and sizes for the same product.
 # Logic taken from this video: https://www.youtube.com/watch?v=cRbU7OH1RaQ
+# and this: https://www.udemy.com/course/django-ecommerce-project-based-course-python-django-web-development/
 
 class VariationManager(models.Manager):
     def colors(self):
@@ -71,6 +75,9 @@ class Variation(models.Model):
 
 
 class Review(models.Model):
+    """
+    Product review for each product.
+    """
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     subject = models.CharField(max_length=80, blank=True)

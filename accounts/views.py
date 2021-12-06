@@ -17,8 +17,17 @@ from bag.models import Bag, BagItem
 import requests
 from checkout.models import Order
 
+# Core logic from this video for the overall functionality:
+# https://www.udemy.com/course/django-ecommerce-project-based-course-python-django-web-developme
 
 def register(request):
+    # Inspiration from this video:
+    # https://www.youtube.com/watch?v=dBctY3-Z5hY
+    """
+    This view handles user registration.
+    Once user registers, an activation link is sent to the email
+    to activate the account.
+    """
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -38,7 +47,8 @@ def register(request):
             user.phone_number = phone_number
             user.save()
 
-            # User activation
+            # User activation - help from this video
+            # https://www.youtube.com/watch?v=Rbkc-0rqSw8&t=1302s
             current_site = get_current_site(request)
             mail_subject = 'Please activate your account'
             message = render_to_string('accounts/account_verification_email.html', {

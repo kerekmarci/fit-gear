@@ -16,7 +16,11 @@ import json
 
 @login_required(login_url='login')
 def checkout(request, total=0, quantity=0, bag_items=None):
-    """ A view to process checkout functionality """
+    """ 
+    This view will process the checkout functionality.
+    User can order and pay for the products in the basket.
+    Stripe payment system integrated.
+     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     intent = None
@@ -113,6 +117,10 @@ def checkout(request, total=0, quantity=0, bag_items=None):
 
 
 def success(request, order_id):
+    """"
+    Once payment has been completed, user is directed
+    to an order confirmation page
+    """
     # Clear Bag
     BagItem.objects.filter(user=request.user).delete()
     main_order = Order.objects.get(order_number=order_id)

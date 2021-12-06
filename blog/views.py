@@ -11,6 +11,9 @@ https://djangocentral.com/building-a-blog-application-with-django/
 
 
 def blog(request):
+    """
+    This view will retrivew all Success Story blog posts
+    """
     blogposts = Post.objects.all()
     context = {
         'blogposts': blogposts,
@@ -19,6 +22,9 @@ def blog(request):
 
 
 def blog_detail(request, slug):
+    """
+    This view will open the full blog post on a separate page
+    """
     allposts = Post.objects.all()
     blogposts = Post.objects.get(slug=slug)
     
@@ -44,7 +50,9 @@ def blog_detail(request, slug):
 
 
 def add_blogpost(request):
-
+    """
+    This view will allow user to add a new Success Story blog post
+    """
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
