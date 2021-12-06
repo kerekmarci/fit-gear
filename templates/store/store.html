@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'store/css/store.css' %}">
+{% endblock %}
+
+
 {% block content %}
 
 <!-- ========================= TITLE ========================= -->
@@ -56,7 +61,8 @@
                 <div class="col-md-4">
                     <div class="card mb-4 product-wap rounded-0">
                         <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ product.images.url }}">
+                            <img class="card-img rounded-0 img-fluid" src="{{ product.images.url }}"
+                                style="height: 350px; object-fit: cover;">
                             <div
                                 class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
