@@ -19,7 +19,9 @@
     <div class="container text-center">
         {% for blog in blogposts %}
         <article class="blog-article">
-            <h2 class="text-success">{{ blog.title }}</h2>
+            <a href="{% url 'blog_detail' blog.slug %}" class="green-link">
+                <h2 class="text-success">{{ blog.title }}</h2>
+            </a>
             <h4> By {{ blog.author.first_name }}</h4>
             <span class="small">Posted on: <cite title>{{ blog.created_on|date:"D d, M Y" }}</cite></span>
             <div class="blog-content">
