@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<!-- Product Detail Section -->
+<!-- ========================= PRODUCT DETAIL SECTION ========================= -->
 <section class="bg-light">
     <div class="container pb-5">
         <div class="row">
@@ -17,7 +17,6 @@
                         id="product-detail">
                 </div>
             </div>
-            <!-- col end -->
             <div class="col-lg-7 mt-5">
                 <div class="card">
                     <div class="card-body">
@@ -89,9 +88,9 @@
         </div>
     </div>
 </section>
-<!-- End Product Detail Section -->
+<!-- ========================= END PRODUCT DETAIL SECTION ========================= -->
 
-<!-- Review Section -->
+<!-- ========================= REVIEW SECTION ========================= -->
 
 <section class="section-content padding-y bg">
     <div class="container">
@@ -121,18 +120,7 @@
                         Review:
                         <textarea name="review" rows="4" class="form-control" required></textarea>
                         <br>
-                        <!--
-                        {% if user.is_authenticated %}
-                        {% if orderproduct %}
-                        <input type="submit" value="Submit Review" class="btn btn-primary">
-                        {% else %}
-                        <p>You must purchase this product to post a review. </p>
-                        {% endif %}
-                        {% else %}
-                        <p>You must be logged in to post a review. <span><a href="{% url 'login' %}">Login
-                                    Now</a></span></p>
-                        {% endif %} 
-                        -->
+
                         {% if user.is_authenticated %}
                         <input type="submit" value="Submit Review" class="btn btn-success">
                         {% else %}
@@ -209,8 +197,6 @@
         </div>
     </div>
 </section>
-
-
-<!-- End Review Section -->
+<!-- ========================= END REVIEW SECTION ========================= -->
 
 {% endblock %}
