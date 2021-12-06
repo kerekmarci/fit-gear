@@ -432,6 +432,10 @@ In this section, I would like to give credit to all tools, sources and support t
 * Product Variations: although mainly the above tutorial was used, this video was also an intersting learning - https://www.youtube.com/watch?v=cRbU7OH1RaQ
 * Success Stories blog feature: inspiration from this video - https://djangocentral.com/building-a-blog-application-with-django/
 * CSS star rating on the *Product Details* page: https://codepen.io/andreacrawford/pen/NvqJXW
+* Product images and descriptions:
+    * https://uk.gymshark.com/
+    * https://www.pursuefitness.co.uk/
+    * https://www.allbirds.co.uk/
 * Sample Success Stories posts:
     * https://www.muscleandstrength.com/transformation/khang-nung
     * https://www.mentalfloss.com/article/545150/11-ways-motivate-yourself-go-gym
