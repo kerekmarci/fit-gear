@@ -78,7 +78,7 @@
                             <h5 class="text-danger">Out of Stock</h5>
                             {% else %}
                             <button type="submit" class="btn btn-success">
-                                <span class="text">Add to Cart</span>
+                                <span class="text">Add to Bag</span>
                                 <i class="fas fa-shopping-cart"></i>
                             </button>
                             {% endif %}
@@ -136,7 +136,8 @@
                         {% if user.is_authenticated %}
                         <input type="submit" value="Submit Review" class="btn btn-success">
                         {% else %}
-                        <p>You must be logged in to post a review. <span><a href="{% url 'login' %}">Login
+                        <p>You must be logged in to post a review. <span><a href="{% url 'login' %}"
+                                    class="green-link">Login
                                     now</a></span></p>
                         {% endif %}
                     </div>
