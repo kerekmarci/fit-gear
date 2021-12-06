@@ -55,7 +55,6 @@ def add_to_bag(request, product_id):
     """
     current_user = request.user
     product = Product.objects.get(id=product_id)
-    bag,created = Bag.objects.get_or_create(bag_id=_bag_id(request))
     
     # If-Else whether user is authenticated or not
     if current_user.is_authenticated:
@@ -68,8 +67,8 @@ def add_to_bag(request, product_id):
                 value = request.POST[key]
                 
                 try:
-                    variation = Variation.objects.get(variation_category__iexact=key,
-                        variation_value__iexact=value, product=product)
+                    variation = Variation.objects.get(product=product,
+                        variation_category__iexact=key, variation_value__iexact=value)
                     product_variation.append(variation)
                 except:
                     pass
@@ -96,7 +95,7 @@ def add_to_bag(request, product_id):
                 item.quantity += 1
                 item.save()
             else:
-                item = BagItem.objects.create(product=product, quantity=1, user=current_user, bag=bag)
+                item = BagItem.objects.create(product=product, quantity=1, user=current_user)
                 if len(product_variation) > 0:
                     item.variations.clear()
                     item.variations.add(*product_variation)
@@ -106,7 +105,6 @@ def add_to_bag(request, product_id):
                 product = product,
                 quantity = 1,
                 user = current_user,
-                bag = bag,
             )
             if len(product_variation) > 0:
                 bag_item.variations.clear()
@@ -124,11 +122,19 @@ def add_to_bag(request, product_id):
                 value = request.POST[key]
                 
                 try:
-                    variation = Variation.objects.get(variation_category__iexact=key,
-                        variation_value__iexact=value, product=product)
+                    variation = Variation.objects.get(product=product,
+                        variation_category__iexact=key, variation_value__iexact=value)
                     product_variation.append(variation)
                 except:
                     pass
+
+        try:
+            # get the bag using the bag_id present in the session
+            bag = Bag.objects.get(bag_id=_bag_id(request)) 
+        except Bag.DoesNotExist:
+            bag = Bag.objects.create(
+                bag_id = _bag_id(request)
+            )
         bag.save()
 
         # This section will group Bag Item variations, for example if the same
