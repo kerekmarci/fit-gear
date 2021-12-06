@@ -114,6 +114,15 @@ div {
 /* Nav */
 #templatemo_nav_top {
     min-height: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.navbar {
+    background-color: #ffffff;
 }
 
 #templatemo_nav_top i:hover {
