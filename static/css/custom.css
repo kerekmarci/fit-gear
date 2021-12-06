@@ -11,6 +11,10 @@ body {
     padding-top: 50px !important;
 }
 
+.pb-80 {
+    padding-bottom: 80px;
+}
+
 .alert-box {
     border-color: #d3d6d8;
 }
