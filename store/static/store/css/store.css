@@ -64,14 +64,6 @@
     cursor: pointer;
 }
 
-/* Half star 
-.rating .half:before {
-    content: "\f089";
-    content: "\f5c0";
-    position: absolute;
-    padding-right: 0;
-} */
-
 label:hover {
     color: #ffb503;
 }
