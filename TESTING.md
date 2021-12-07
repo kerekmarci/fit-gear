@@ -91,11 +91,10 @@ A website called https://www.browserstack.com/responsive provides a quick and ea
 | 9 | To search for product name and description by entering a keyword. | Keyword search is available by clickin on the magnifier icon on the navigation bar. |
 | 10 | To see how many results my search found. | Number of results are shown on the top of the results page. 
 | 11 | To easily access the product details page to have additional details. | This is available by clickin on the product card. |
-| 12 | To see product rating. | Product rating is available on the *product cards* so that users can see the star ratings before opening the *product details* page. Stars and exact average can be seen under the product title on the *Product Details* page, as well as how many reviews had been given.
-<br>![User Story 12](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-12.JPG) |
+| 12 | To see product rating. | Product rating is available on the *product cards* so that users can see the star ratings before opening the *product details* page. Stars and exact average can be seen under the product title on the *Product Details* page, as well as how many reviews had been given. <br>![User Story 12](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-12.jpg) |
 | 13 | To read product reviews. | Reviews are available on the *Product Details* page. |
 | 14 | To be able to rate and write a review on a product. | This feature is available on the *Product Details* page for registered users. |
-| 15 | To be able to add and remove products in a basket. | This can be done by pressing the + or - button on the *Shopping Bag* page next to the amount. There is an additional *Remove* button available with a confirmation modal. |
+| 15 | To be able to add and remove products in a basket. | This can be done by pressing the + or - button on the *Shopping Bag* page next to the amount. There is an additional *Remove* button available with a confirmation modal.<br>![User Story 15](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-15.JPG) |
 | 16 | To be able to choose from variations of a product, such as different size or colour. | This has been implemented in the form of drop-down menus on the *Product Details* page. |
 | 17 | To be able to modify the contents of the basket easily. | New items can be easily added to the bag by simply clicking on the *Add to Bag* button on the *Product Details* page. Amounts can be changed by clicking on the + or - button on the *Shopping Bag* page. |
 | 18 | To see how many items I have in the basket with the total price and breakdown | Current number of items can always be seen on the navibation bar by the shopping cart icon. By clickin on the shopping cart, itemised details are shown.<br>![User Story 18](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-18.JPG) |
@@ -107,7 +106,7 @@ A website called https://www.browserstack.com/responsive provides a quick and ea
 |  | AS A SITE OWNER | |
 | :---: | ----------- | ----------- |
 | USER STORY NO. | DESIRED FEATURE | RESULT |
-| 21 | To add and remove products from the site. | Site owners are given *admin / superadmin* access and are able to add, remove products and variations on the site. |
+| 21 | To add and remove products from the site. | Site owners are given *admin / superadmin* access and are able to add, remove products and variations on the site.<br>![User Story 21](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-21.JPG) |
 | 22 | To edit product details and configure variants of the products. | This is available from the admin panel. |
 | 23 | To update the quantity of the products that are available in the store. | Site owners can manually owerride the quantity of each product from the admin page. |
 | 24 | To be able to delete user reviews, in case inappropriate comments are added. | All data is available from the admin menu. |
