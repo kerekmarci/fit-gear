@@ -21,7 +21,9 @@ def view_bag(request, total=0, quantity=0, bag_items=None):
             ).order_by('product')
         else:
             bag = Bag.objects.get(bag_id=_bag_id(request))
-            bag_items = BagItem.objects.filter(bag=bag, is_active=True)
+            bag_items = BagItem.objects.filter(
+                bag=bag, is_active=True
+            ).order_by('product')
         for bag_item in bag_items:
             total += (bag_item.product.price * bag_item.quantity)
             quantity += bag_item.quantity
