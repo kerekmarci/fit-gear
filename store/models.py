@@ -28,42 +28,52 @@ class Product(models.Model):
 
     # This will calculate the average of the ratings for a product
     def averageRating(self):
-        ratings = Review.objects.filter(product=self, status=True).aggregate(average=Avg('rating'))
+        ratings = Review.objects.filter(
+            product=self, status=True).aggregate(average=Avg('rating'))
         avg = 0
         if ratings['average'] is not None:
             avg = float(ratings['average'])
         return avg
 
     def countReview(self):
-        ratings = Review.objects.filter(product=self, status=True).aggregate(count=Count('id'))
+        ratings = Review.objects.filter(
+            product=self, status=True).aggregate(count=Count('id'))
         count = 0
         if ratings['count'] is not None:
             count = int(ratings['count'])
         return count
 
-# Product Variation Class created to be able to select various colours and sizes for the same product.
-# Logic taken from this video: https://www.youtube.com/watch?v=cRbU7OH1RaQ
-# and this: https://www.udemy.com/course/django-ecommerce-project-based-course-python-django-web-development/
+# Product Variation Class created to be able to
+# select various colours and sizes for the same product.
+# Logic taken from this video:
+# https://www.youtube.com/watch?v=cRbU7OH1RaQ
+# and this:
+# https://www.udemy.com/course/django-ecommerce-project-based-course-python-django-web-development/
+
 
 class VariationManager(models.Manager):
     def colors(self):
-        return super(VariationManager, self).filter(variation_category='color', is_active=True)
+        return super(VariationManager, self).filter(
+            variation_category='color', is_active=True)
 
     def sizes(self):
-        return super(VariationManager, self).filter(variation_category='size', is_active=True)
+        return super(VariationManager, self).filter(
+            variation_category='size', is_active=True)
 
 variation_category_choice = (
     ('color', 'color'),
     ('size', 'size'),
 )
 
+
 class Variation(models.Model):
     """
-    This class adds a variation for the product, based on what color 
+    This class adds a variation for the product, based on what color
     and size were selected.
     """
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    variation_category = models.CharField(max_length=100, choices=variation_category_choice)
+    variation_category = models.CharField(
+        max_length=100, choices=variation_category_choice)
     variation_value = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     created_date = models.DateTimeField(auto_now=True)
@@ -90,6 +100,6 @@ class Review(models.Model):
 
     class Meta:
         ordering = ['-updated_at']
-    
+
     def __str__(self):
         return self.subject

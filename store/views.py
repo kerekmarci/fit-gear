@@ -18,19 +18,22 @@ def store(request, category_slug=None):
     categories = None
     products = None
 
-    # Paginator created based on https://docs.djangoproject.com/en/3.2/topics/pagination/
+    # Paginator created based on
+    # https://docs.djangoproject.com/en/3.2/topics/pagination/
 
-    if category_slug != None:
+    if category_slug is not None:
         # This section is for All Products page
         categories = get_object_or_404(Category, slug=category_slug)
-        products = Product.objects.filter(category=categories, is_available=True)
+        products = Product.objects.filter(
+            category=categories, is_available=True)
         product_count = products.count()
         paginator = Paginator(products, 6)
         page_number = request.GET.get('page')
         paged_products = paginator.get_page(page_number)
     else:
-        # When a Category filter has been selected 
-        products = Product.objects.all().filter(is_available=True).order_by('id')
+        # When a Category filter has been selected
+        products = Product.objects.all().filter(
+            is_available=True).order_by('id')
         paginator = Paginator(products, 6)
         page_number = request.GET.get('page')
         paged_products = paginator.get_page(page_number)
@@ -50,9 +53,12 @@ def product_detail(request, category_slug, product_slug):
     product detail page.
     """
     try:
-        single_product = Product.objects.get(category__slug=category_slug, slug=product_slug)
-        # in_bag is to establish whether the item has already been added to the bag
-        in_bag = BagItem.objects.filter(bag__bag_id=_bag_id(request), product=single_product).exists()
+        single_product = Product.objects.get(
+            category__slug=category_slug, slug=product_slug)
+        # in_bag is to establish whether the item
+        # has already been added to the bag
+        in_bag = BagItem.objects.filter(
+            bag__bag_id=_bag_id(request), product=single_product).exists()
     except Exception as e:
         raise e
 
@@ -70,13 +76,17 @@ def product_detail(request, category_slug, product_slug):
 
 def search(request):
     """
-    Search functionality for the given keyword in the product name and description
+    Search functionality for the given keyword
+    in the product name and description
     """
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
-            products = Product.objects.order_by('-created_date').filter(
-                Q(product_description__icontains=keyword) | Q(product_name__icontains=keyword))
+            products = Product.objects.order_by(
+                '-created_date').filter(
+                    Q(product_description__icontains=keyword) |
+                    Q(product_name__icontains=keyword)
+                )
             product_count = products.count()
     context = {
         'products': products,
@@ -95,10 +105,12 @@ def submit_review(request, product_id):
     if request.method == 'POST':
         try:
             # Update review, if review exists
-            reviews = Review.objects.get(user__id=request.user.id, product__id=product_id)
+            reviews = Review.objects.get(
+                user__id=request.user.id, product__id=product_id)
             form = ReviewForm(request.POST, instance=reviews)
             form.save()
-            messages.success(request, 'Thank you, your review has been updated!')
+            messages.success(request, 'Thank you, \ +
+                             'your review has been updated!')
             return redirect(url)
         except Review.DoesNotExist:
             # Creates a new review
@@ -112,5 +124,6 @@ def submit_review(request, product_id):
                 data.product_id = product_id
                 data.user_id = request.user.id
                 data.save()
-                messages.success(request, 'Thank you for reviewing the product!')
+                messages.success(request,
+                                 'Thank you for reviewing the product!')
                 return redirect(url)

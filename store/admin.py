@@ -15,6 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
         'slug': ('product_name',)
     }
 
+
 class VariationAdmin(admin.ModelAdmin):
     list_display = (
         'product',
