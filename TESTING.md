@@ -97,6 +97,16 @@ A website called https://www.browserstack.com/responsive provides a quick and ea
 | 15 | To be able to add and remove products in a basket. | This can be done by pressing the + or - button on the *Shopping Bag* page next to the amount. There is an additional *Remove* button available with a confirmation modal. |
 | 16 | To be able to choose from variations of a product, such as different size or colour. | This has been implemented in the form of drop-down menus on the *Product Details* page. |
 | 17 | To be able to modify the contents of the basket easily. | New items can be easily added to the bag by simply clicking on the *Add to Bag* button on the *Product Details* page. Amounts can be changed by clicking on the + or - button on the *Shopping Bag* page. |
-| 18 | To see how many items I have in the basket with the total price and breakdown | Current number of items can always be seen on the navibation bar by the shopping cart icon. By clickin on the shopping cart, itemised details are shown. |
+| 18 | To see how many items I have in the basket with the total price and breakdown | Current number of items can always be seen on the navibation bar by the shopping cart icon. By clickin on the shopping cart, itemised details are shown. ![User Story 18](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-18.JPG) |
 | 19 | To be able to purchase the products and complete a secure payment. | User is navigated to the *Payment page* by clicking on the *Checkout* button on the *Shopping Bag* page. |
 | 20 | To be redirected to a confirmation page once the payment has completed. | Orders are given a unique order number and redirected to a *Checkout Success* page. |
+
+<br>
+
+|  | AS A SITE OWNER | |
+| :---: | ----------- | ----------- |
+| USER STORY NO. | DESIRED FEATURE | RESULT |
+| 21 | To add and remove products from the site. | Site owners are given *admin / superadmin* access and are able to add, remove products and variations on the site. |
+| 22 | To edit product details and configure variants of the products. | This is available from the admin panel. |
+| 23 | To update the quantity of the products that are available in the store. | Site owners can manually owerride the quantity of each product from the admin page. |
+| 24 | To be able to delete user reviews, in case inappropriate comments are added. | All data is available from the admin menu. |
