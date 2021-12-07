@@ -350,6 +350,12 @@ An E-Commerce website can boast endless functionalites; although the requirement
 
 ---
 
+### Testing
+
+Testing of this E-Commerce Store can be found in a separate [Testing Documentation](https://github.com/kerekmarci/fit-gear/blob/main/TESTING.md).
+
+---
+
 ## Deployment
 
 The project has been developed on Gitpod and the code is pushed to GitHub in its repository. The ready website has been deployed to Heroku, and static files are stored on Amazon AWS in an Amazon Web Services S3 Bucket.
