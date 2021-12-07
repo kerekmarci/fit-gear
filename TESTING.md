@@ -107,6 +107,6 @@ A website called https://www.browserstack.com/responsive provides a quick and ea
 | :---: | ----------- | ----------- |
 | USER STORY NO. | DESIRED FEATURE | RESULT |
 | 21 | To add and remove products from the site. | Site owners are given *admin / superadmin* access and are able to add, remove products and variations on the site. |
-| 22 | To edit product details and configure variants of the products. | This is available from the admin panel.<br>![User Story 21](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-21.JPG) |
+| 22 | To edit product details and configure variants of the products. | This is available from the admin panel.<br>![User Story 22](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-22.JPG) |
 | 23 | To update the quantity of the products that are available in the store. | Site owners can manually owerride the quantity of each product from the admin page. |
 | 24 | To be able to delete user reviews, in case inappropriate comments are added. | All data is available from the admin menu. |
