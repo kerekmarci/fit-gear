@@ -42,7 +42,7 @@ def _bag_id(request):
     """
     Bag ID will be the session ID for the Add to bag view,
     this is why this view will request the session ID.
-    If there is none, this will create a session ID
+    If there is none, this will create a session ID.
     """
     bag = request.session.session_key
     if not bag:
