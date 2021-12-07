@@ -9,7 +9,9 @@ import stripe
 
 
 def view_bag(request, total=0, quantity=0, bag_items=None):
-    """ A view to see the contents of the shopping bag """
+    """
+    A view to see the contents of the shopping bag
+    """
     try:
         tax = 0
         grand_total = 0
