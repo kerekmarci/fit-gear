@@ -110,3 +110,19 @@ A website called https://www.browserstack.com/responsive provides a quick and ea
 | 22 | To edit product details and configure variants of the products. | This is available from the admin panel.<br>![User Story 22](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-22.JPG) |
 | 23 | To update the quantity of the products that are available in the store. | Site owners can manually owerride the quantity of each product from the admin page. |
 | 24 | To be able to delete user reviews, in case inappropriate comments are added. | All data is available from the admin menu. |
+
+## Bugs Discovered
+
+In the below section, I will outline some of the bugs, or functionalities that initally worked differently than expected and are woth to note.
+
+### Changing Quantity in the Shopping Bag
+
+[User Story 22](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-22.JPG)
+
+**Error:** If more than 1 products have been added to the bag, when the quantity was changed, the item changed position in the table. This was a very user-unfriendly feature that the product jumped position after modifying the quantity.\
+**Fix:** I discovered that it always moved to the last position of the table. This issue was fixed by adding an ordering `.order_by('product')` for the *view_bag* view in *bag/views.py.* `bag_items = BagItem.objects.filter(user=request.user, is_active=True).order_by('product')`
+
+### Adding Product Variations
+
+**Error:** When a product was already in the shopping bag, and the user added the same product with the same variation again from the store page, a new line item was created in the bag.\
+**Fix:** A functionality had to be implemented that checks if that product with varion is already in the bag - if it is, then increase the quantity, if not, then create a new line item with the quantity of 1. This is noted in the  *add_to_bag* view in *bag/views.py.*
