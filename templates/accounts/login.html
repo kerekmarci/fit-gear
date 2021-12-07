@@ -10,12 +10,12 @@
                     <div class="row g-0">
                         <div class="col-lg-6">
                             <div class="card-body p-md-5 mx-md-4">
-
                                 <div class="text-center mb-5">
                                     <img src="https://fit-gear.s3.eu-west-2.amazonaws.com/static/images/logo.png"
                                         style="width: 275px;" alt="logo">
                                 </div>
 
+                                {% include "includes/alerts.html" %}
                                 {% if request.GET.command == 'verification' %}
                                 <!-- Verification required -->
                                 <div class="container mx-auto alert alert-box text-center" role="alert"
@@ -35,12 +35,12 @@
 
                                     <div class="form-outline mb-4">
                                         <input type="email" id="login-username" class="form-control" name="email"
-                                            placeholder="example@email.com">
+                                            placeholder="example@email.com" required>
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <input type="password" id="login-password" class="form-control" name="password"
-                                            placeholder="********">
+                                            placeholder="********" required>
                                     </div>
 
                                     <div class="text-center pt-1 mb-3 pb-1">
