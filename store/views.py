@@ -109,7 +109,7 @@ def submit_review(request, product_id):
                 user__id=request.user.id, product__id=product_id)
             form = ReviewForm(request.POST, instance=reviews)
             form.save()
-            messages.success(request, 'Thank you, \ +
+            messages.success(request, 'Thank you, ' +
                              'your review has been updated!')
             return redirect(url)
         except Review.DoesNotExist:
