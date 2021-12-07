@@ -86,7 +86,7 @@ A website called https://www.browserstack.com/responsive provides a quick and ea
 |  | SHOPPER USER STORIES | |
 | :---: | ----------- | ----------- |
 | USER STORY NO. | DESIRED FEATURE | RESULT |
-| 7 | To view a selection of products in a clear layout. | Products are shown in card format on the *Store* page which is responsive to all screen sizes. |
+| 7 | To view a selection of products in a clear layout. | Products are shown in card format on the *Store* page which is responsive to all screen sizes. ![User Story 7](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-7.JPG) |
 | 8 | To filter products easily by category. | On the navigation bar, category selector drops down when hovering over the mouse. Once category has been selected and products are listed, the category titles are showing on the left. |
 | 9 | To search for product name and description by entering a keyword. | Keyword search is available by clickin on the magnifier icon on the navigation bar. |
 | 10 | To see how many results my search found. | Number of results are shown on the top of the results page. 
