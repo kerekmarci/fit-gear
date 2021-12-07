@@ -104,7 +104,7 @@ def submit_review(request, product_id):
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':
         try:
-            # Update review, if review exists
+            # Update the review, if review exists
             reviews = Review.objects.get(
                 user__id=request.user.id, product__id=product_id)
             form = ReviewForm(request.POST, instance=reviews)
