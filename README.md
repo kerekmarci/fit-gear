@@ -348,6 +348,7 @@ An E-Commerce website can boast endless functionalites; although the requirement
 * Stripe webhooks: to notify my application when an event happens in your account.
 * Order confirmation email: user to receive a confirmation email of their successful order.
 * User management: site owner can nominate staff members, admins and superadmins with various user rights (superusers have all there rights defined already).
+* Product review: to only allow users to leave review once product has been purchased.
 
 ---
 
