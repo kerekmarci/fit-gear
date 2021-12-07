@@ -444,6 +444,7 @@ In this section, I would like to give credit to all tools, sources and support t
     * https://uk.gymshark.com/
     * https://www.pursuefitness.co.uk/
     * https://www.allbirds.co.uk/
+    * https://www.polar.com/
 * Sample Success Stories posts:
     * https://www.muscleandstrength.com/transformation/khang-nung
     * https://www.mentalfloss.com/article/545150/11-ways-motivate-yourself-go-gym
