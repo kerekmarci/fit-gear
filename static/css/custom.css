@@ -21,6 +21,12 @@ body {
     border-color: #d3d6d8;
 }
 
+/* ------- ALERT MESSAGE  ------- */
+
+.alert {
+    padding: 5px 5px !important;
+}
+
 
 /* ------- BUTTON FONT SIZE ------- */
 
