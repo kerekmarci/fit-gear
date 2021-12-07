@@ -8,6 +8,7 @@ class BagAdmin(admin.ModelAdmin):
         'date_added',
     )
 
+
 class BagItemAdmin(admin.ModelAdmin):
     list_display = (
         'product',

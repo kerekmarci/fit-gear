@@ -14,7 +14,9 @@ def view_bag(request, total=0, quantity=0, bag_items=None):
         tax = 0
         grand_total = 0
         if request.user.is_authenticated:
-            bag_items = BagItem.objects.filter(user=request.user, is_active=True)    
+            bag_items = BagItem.objects.filter(
+                user=request.user, is_active=True
+            )
         else:
             bag = Bag.objects.get(bag_id=_bag_id(request))
             bag_items = BagItem.objects.filter(bag=bag, is_active=True)
@@ -49,13 +51,13 @@ def _bag_id(request):
 
 
 def add_to_bag(request, product_id):
-    """ 
+    """
     This view will add the product into the
     shopping bag in the given quantity, in the selected variation.
     """
     current_user = request.user
     product = Product.objects.get(id=product_id)
-    bag,created = Bag.objects.get_or_create(bag_id=_bag_id(request))
+    bag, created = Bag.objects.get_or_create(bag_id=_bag_id(request))
     # If-Else whether user is authenticated or not
     if current_user.is_authenticated:
         product_variation = []
@@ -65,10 +67,12 @@ def add_to_bag(request, product_id):
             for item in request.POST:
                 key = item
                 value = request.POST[key]
-                
                 try:
-                    variation = Variation.objects.get(variation_category__iexact=key,
-                        variation_value__iexact=value, product=product)
+                    variation = Variation.objects.get(
+                        variation_category__iexact=key,
+                        variation_value__iexact=value,
+                        product=product
+                    )
                     product_variation.append(variation)
                 except:
                     pass
@@ -77,9 +81,11 @@ def add_to_bag(request, product_id):
         # size and colours are added again, it will not be a new line but will
         # increase the quantity of the existing bag item
 
-        is_bag_item_exists = BagItem.objects.filter(product=product, user=current_user).exists()
+        is_bag_item_exists = BagItem.objects.filter(
+            product=product, user=current_user).exists()
         if is_bag_item_exists:
-            bag_item = BagItem.objects.filter(product=product, user=current_user)
+            bag_item = BagItem.objects.filter(
+                product=product, user=current_user)
             existing_variation_list = []
             bag_item_id = []
             for item in bag_item:
@@ -88,24 +94,25 @@ def add_to_bag(request, product_id):
                 bag_item_id.append(item.id)
 
             if product_variation in existing_variation_list:
-                # Increase the bag item quantity 
+                # Increase the bag item quantity
                 index = existing_variation_list.index(product_variation)
                 item_id = bag_item_id[index]
                 item = BagItem.objects.get(product=product, id=item_id)
                 item.quantity += 1
                 item.save()
             else:
-                item = BagItem.objects.create(product=product, quantity=1, user=current_user,bag=bag)
+                item = BagItem.objects.create(
+                    product=product, quantity=1, user=current_user, bag=bag)
                 if len(product_variation) > 0:
                     item.variations.clear()
                     item.variations.add(*product_variation)
                 item.save()
         else:
             bag_item = BagItem.objects.create(
-                product = product,
-                quantity = 1,
-                user = current_user,
-                bag = bag
+                product=product,
+                quantity=1,
+                user=current_user,
+                bag=bag
             )
             if len(product_variation) > 0:
                 bag_item.variations.clear()
@@ -121,10 +128,12 @@ def add_to_bag(request, product_id):
             for item in request.POST:
                 key = item
                 value = request.POST[key]
-                
                 try:
-                    variation = Variation.objects.get(variation_category__iexact=key,
-                        variation_value__iexact=value, product=product)
+                    variation = Variation.objects.get(
+                        variation_category__iexact=key,
+                        variation_value__iexact=value,
+                        product=product
+                    )
                     product_variation.append(variation)
                 except:
                     pass
@@ -134,7 +143,8 @@ def add_to_bag(request, product_id):
         # size and colours are added again, it will not be a new line but will
         # increase the quantity of the existing bag item
 
-        is_bag_item_exists = BagItem.objects.filter(product=product, bag=bag).exists()
+        is_bag_item_exists = BagItem.objects.filter(
+            product=product, bag=bag).exists()
         if is_bag_item_exists:
             bag_item = BagItem.objects.filter(product=product, bag=bag)
             existing_variation_list = []
@@ -145,23 +155,24 @@ def add_to_bag(request, product_id):
                 bag_item_id.append(item.id)
 
             if product_variation in existing_variation_list:
-                # Increase the bag item quantity 
+                # Increase the bag item quantity
                 index = existing_variation_list.index(product_variation)
                 item_id = bag_item_id[index]
                 item = BagItem.objects.get(product=product, id=item_id)
                 item.quantity += 1
                 item.save()
             else:
-                item = BagItem.objects.create(product=product, quantity=1, bag=bag)
+                item = BagItem.objects.create(
+                    product=product, quantity=1, bag=bag)
                 if len(product_variation) > 0:
                     item.variations.clear()
                     item.variations.add(*product_variation)
                 item.save()
         else:
             bag_item = BagItem.objects.create(
-                product = product,
-                quantity = 1,
-                bag = bag,
+                product=product,
+                quantity=1,
+                bag=bag,
             )
             if len(product_variation) > 0:
                 bag_item.variations.clear()
@@ -171,17 +182,20 @@ def add_to_bag(request, product_id):
 
 
 def remove_from_bag(request, product_id, bag_item_id):
-    """ 
-    This view will decrease the product from the 
+    """
+    This view will decrease the product from the
     shopping bag, or remove if the amount reaches 0
-    """    
+    """
     product = get_object_or_404(Product, id=product_id)
     try:
         if request.user.is_authenticated:
-            bag_item = BagItem.objects.get(product=product, user=request.user, id=bag_item_id)
+            bag_item = BagItem.objects.get(
+                product=product, user=request.user, id=bag_item_id)
         else:
-            bag = Bag.objects.get(bag_id=_bag_id(request))
-            bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
+            bag = Bag.objects.get(
+                bag_id=_bag_id(request))
+            bag_item = BagItem.objects.get(
+                product=product, bag=bag, id=bag_item_id)
         if bag_item.quantity > 1:
             bag_item.quantity -= 1
             bag_item.save()
@@ -193,15 +207,17 @@ def remove_from_bag(request, product_id, bag_item_id):
 
 
 def remove_bag_item(request, product_id, bag_item_id):
-    """ 
+    """
     This view will act as a Delete Button to delete the product
     from the shopping bag, regardless of the quantity.
-    """    
+    """
     product = get_object_or_404(Product, id=product_id)
     if request.user.is_authenticated:
-        bag_item = BagItem.objects.get(product=product, user=request.user, id=bag_item_id)
+        bag_item = BagItem.objects.get(
+            product=product, user=request.user, id=bag_item_id)
     else:
         bag = Bag.objects.get(bag_id=_bag_id(request))
-        bag_item = BagItem.objects.get(product=product, bag=bag, id=bag_item_id)
+        bag_item = BagItem.objects.get(
+            product=product, bag=bag, id=bag_item_id)
     bag_item.delete()
     return redirect('bag')
