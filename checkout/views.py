@@ -8,6 +8,7 @@ from bag.models import Bag, BagItem
 from .models import Order, OrderProduct, Payment
 from bag.views import _bag_id
 from .forms import OrderForm
+from store.models import Product
 import uuid
 import datetime
 import stripe
@@ -81,6 +82,11 @@ def checkout(request, total=0, quantity=0, bag_items=None):
                 )
                 order_product.variations.set(bag_item.variations.all())
                 order_product.save()
+
+                # Reducing the quantity of the sold products
+                product = Product.objects.get(id=bag_item.product_id)
+                product.stock -= bag_item.quantity
+                product.save()
 
             # Updating Payment Table
             new_Payment = Payment(
