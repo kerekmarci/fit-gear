@@ -27,7 +27,7 @@ def blog_detail(request, slug):
     """
     allposts = Post.objects.all()
     blogposts = Post.objects.get(slug=slug)
-    
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():

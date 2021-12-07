@@ -1,6 +1,7 @@
 from django import forms
 from .models import Post, Comment
 
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -8,15 +9,16 @@ class PostForm(forms.ModelForm):
 
         widgets = {
             'content': forms.Textarea(attrs={
-            'placeholder': 'Share your success story here...',
-            'class': 'form-control',
-            'rows': '4',
+                'placeholder': 'Share your success story here...',
+                'class': 'form-control',
+                'rows': '4',
             }),
             'title': forms.TextInput(attrs={
-            'placeholder': 'Title',
-            'class': 'form-control',
+                'placeholder': 'Title',
+                'class': 'form-control',
             }),
         }
+
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -25,8 +27,8 @@ class CommentForm(forms.ModelForm):
 
         widgets = {
             'body': forms.Textarea(attrs={
-            'class': 'form-control',
-            'placeholder': 'Share your thoughts here...',
-            'rows': '3',
+                'class': 'form-control',
+                'placeholder': 'Share your thoughts here...',
+                'rows': '3',
             })
         }
