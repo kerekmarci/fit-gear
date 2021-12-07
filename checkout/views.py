@@ -16,7 +16,7 @@ import json
 
 @login_required(login_url='login')
 def checkout(request, total=0, quantity=0, bag_items=None):
-    """ 
+    """
     This view will process the checkout functionality.
     User can order and pay for the products in the basket.
     Stripe payment system integrated.
@@ -26,24 +26,25 @@ def checkout(request, total=0, quantity=0, bag_items=None):
     intent = None
 
     if request.user.is_authenticated:
-        bag_items = BagItem.objects.filter(user=request.user, is_active=True)    
+        bag_items = BagItem.objects.filter(user=request.user, is_active=True)
     else:
         bag = Bag.objects.get(bag_id=_bag_id(request))
         bag_items = BagItem.objects.filter(bag=bag, is_active=True)
     for bag_item in bag_items:
         total += (bag_item.product.price * bag_item.quantity)
         quantity += bag_item.quantity
-    
+
     tax = (5 * total) / 100
     grand_total = total + tax
     if request.method == 'POST':
         if request.user.is_authenticated:
-            bag,created = Bag.objects.get_or_create(bag_id=_bag_id(request))
-            bag_items = BagItem.objects.filter(user=request.user, is_active=True)
+            bag, created = Bag.objects.get_or_create(bag_id=_bag_id(request))
+            bag_items = BagItem.objects.filter(
+                user=request.user, is_active=True)
         else:
-            bag,created = Bag.objects.get_or_create(bag_id=_bag_id(request))
+            bag, created = Bag.objects.get_or_create(bag_id=_bag_id(request))
             bag_items = BagItem.objects.filter(bag=bag, is_active=True)
-        
+
         form_data = {
             'first_name': request.POST['first_name'],
             'last_name': request.POST['last_name'],
@@ -71,17 +72,17 @@ def checkout(request, total=0, quantity=0, bag_items=None):
 
             for bag_item in bag_items:
                 order_product = OrderProduct.objects.create(
-                    user = request.user,
-                    order = order,
-                    product = bag_item.product,
-                    quantity = bag_item.quantity,
-                    product_price = bag_item.product.price,
+                    user=request.user,
+                    order=order,
+                    product=bag_item.product,
+                    quantity=bag_item.quantity,
+                    product_price=bag_item.product.price,
                     ordered=True,
                 )
                 order_product.variations.set(bag_item.variations.all())
-                order_product.save()            
+                order_product.save()
 
-            #Updating Payment Table
+            # Updating Payment Table
             new_Payment = Payment(
                 user=request.user,
                 payment_id=order.order_number,
@@ -94,8 +95,8 @@ def checkout(request, total=0, quantity=0, bag_items=None):
             order.is_ordered = True
             order.payment = new_Payment
             order.save()
-            return redirect(reverse('success',args=(order_number,)))
-    
+            return redirect(reverse('success', args=(order_number,)))
+
     else:
         stripe.api_key = stripe_secret_key
         stripe_total = round(grand_total * 100)
