@@ -86,18 +86,19 @@ A website called https://www.browserstack.com/responsive provides a quick and ea
 |  | SHOPPER USER STORIES | |
 | :---: | ----------- | ----------- |
 | USER STORY NO. | DESIRED FEATURE | RESULT |
-| 7 | To view a selection of products in a clear layout. | Products are shown in card format on the *Store* page which is responsive to all screen sizes. ![User Story 7](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-7.JPG) |
+| 7 | To view a selection of products in a clear layout. | Products are shown in card format on the *Store* page which is responsive to all screen sizes.<br>![User Story 7](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-7.JPG) |
 | 8 | To filter products easily by category. | On the navigation bar, category selector drops down when hovering over the mouse. Once category has been selected and products are listed, the category titles are showing on the left. |
 | 9 | To search for product name and description by entering a keyword. | Keyword search is available by clickin on the magnifier icon on the navigation bar. |
 | 10 | To see how many results my search found. | Number of results are shown on the top of the results page. 
 | 11 | To easily access the product details page to have additional details. | This is available by clickin on the product card. |
-| 12 | To see product rating. | Product rating is available on the *product cards* so that users can see the star ratings before opening the *product details* page, as well as how many reviews had been given. Stars and exact average can be seen under the product title on the *Product Details* page. |
+| 12 | To see product rating. | Product rating is available on the *product cards* so that users can see the star ratings before opening the *product details* page. Stars and exact average can be seen under the product title on the *Product Details* page, as well as how many reviews had been given.
+<br>![User Story 12](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-12.JPG) |
 | 13 | To read product reviews. | Reviews are available on the *Product Details* page. |
 | 14 | To be able to rate and write a review on a product. | This feature is available on the *Product Details* page for registered users. |
 | 15 | To be able to add and remove products in a basket. | This can be done by pressing the + or - button on the *Shopping Bag* page next to the amount. There is an additional *Remove* button available with a confirmation modal. |
 | 16 | To be able to choose from variations of a product, such as different size or colour. | This has been implemented in the form of drop-down menus on the *Product Details* page. |
 | 17 | To be able to modify the contents of the basket easily. | New items can be easily added to the bag by simply clicking on the *Add to Bag* button on the *Product Details* page. Amounts can be changed by clicking on the + or - button on the *Shopping Bag* page. |
-| 18 | To see how many items I have in the basket with the total price and breakdown | Current number of items can always be seen on the navibation bar by the shopping cart icon. By clickin on the shopping cart, itemised details are shown. ![User Story 18](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-18.JPG) |
+| 18 | To see how many items I have in the basket with the total price and breakdown | Current number of items can always be seen on the navibation bar by the shopping cart icon. By clickin on the shopping cart, itemised details are shown.<br>![User Story 18](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-18.JPG) |
 | 19 | To be able to purchase the products and complete a secure payment. | User is navigated to the *Payment page* by clicking on the *Checkout* button on the *Shopping Bag* page. |
 | 20 | To be redirected to a confirmation page once the payment has completed. | Orders are given a unique order number and redirected to a *Checkout Success* page. |
 
