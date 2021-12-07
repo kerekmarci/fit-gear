@@ -26,8 +26,10 @@ class RegistrationForm(forms.ModelForm):
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs['placeholder'] = 'John'
         self.fields['last_name'].widget.attrs['placeholder'] = 'Smith'
-        self.fields['phone_number'].widget.attrs['placeholder'] = '077421 65890'
-        self.fields['email'].widget.attrs['placeholder'] = 'john.smith@example.com'
+        self.fields['phone_number'].widget.attrs['placeholder'] = \
+            '077421 65890'
+        self.fields['email'].widget.attrs['placeholder'] = \
+            'john.smith@example.com'
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control'
 

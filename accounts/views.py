@@ -20,6 +20,7 @@ from checkout.models import Order
 # Core logic from this video for the overall functionality:
 # https://www.udemy.com/course/django-ecommerce-project-based-course-python-django-web-developme
 
+
 def register(request):
     # Inspiration from this video:
     # https://www.youtube.com/watch?v=dBctY3-Z5hY
@@ -51,18 +52,22 @@ def register(request):
             # https://www.youtube.com/watch?v=Rbkc-0rqSw8&t=1302s
             current_site = get_current_site(request)
             mail_subject = 'Please activate your account'
-            message = render_to_string('accounts/account_verification_email.html', {
-                'user': user,
-                'domain': current_site,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': default_token_generator.make_token(user),
-            })
+            message = render_to_string(
+                'accounts/account_verification_email.html', {
+                    'user': user,
+                    'domain': current_site,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': default_token_generator.make_token(user),
+                })
             to_email = email
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
 
-            messages.success(request, 'Thank you for registering. We have sent you a verification email.')
-            return redirect('/accounts/login/?command=verification&email='+email)
+            messages.success(request, 'Thank you for registering. ' +
+                             'We have sent you a verification email.')
+            return redirect(
+                '/accounts/login/?command=verification&email='+email
+            )
     else:
         form = RegistrationForm()
     context = {
@@ -74,7 +79,8 @@ def register(request):
 def login(request):
     """
     This will allow the user to log in.
-    Also, it will check if the user added any items in the bag before logging in.
+    Also, it will check if the user added any items in the bag
+    before logging in.
     If so, it will preserve the contents of the bag.
     """
     if request.method == 'POST':
@@ -85,7 +91,8 @@ def login(request):
 
         if user is not None:
             try:
-                # Check if there is already any items in the bag before logging in
+                # Check if there is already any items in
+                # the bag before logging in
                 bag = Bag.objects.get(bag_id=_bag_id(request))
                 is_bag_item_exists = BagItem.objects.filter(bag=bag).exists()
 
@@ -97,17 +104,20 @@ def login(request):
                     for item in bag_item:
                         variation = item.variations.all()
                         product_variation.append(list(variation))
-                    
+
                     # To access to product variations of the user
                     bag_item = BagItem.objects.filter(user=user)
                     existing_variation_list = []
                     bag_item_id = []
                     for item in bag_item:
                         existing_variation = item.variations.all()
-                        existing_variation_list.append(list(existing_variation))
+                        existing_variation_list.append(
+                            list(existing_variation)
+                        )
                         bag_item_id.append(item.id)
 
-                    # Loop throuh product variations to see if we find any common variations
+                    # Loop throuh product variations to see
+                    # if we find any common variations
                     # inside the two lists
                     for i in product_variation:
                         if i in existing_variation_list:
@@ -132,7 +142,7 @@ def login(request):
                 params = dict(x.split('=') for x in query.split('&'))
                 if 'next' in params:
                     nextPage = params['next']
-                    return redirect(nextPage)                
+                    return redirect(nextPage)
             except:
                 return redirect('dashboard')
         else:
@@ -141,7 +151,7 @@ def login(request):
     return render(request, 'accounts/login.html')
 
 
-@login_required(login_url = 'login')
+@login_required(login_url='login')
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You are logged out.')
@@ -158,16 +168,18 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        messages.success(request, 'Congratulations! Your account is activated!')
+        messages.success(request, 'Congratulations! ' +
+                         'Your account is activated!')
         return redirect('login')
     else:
         messages.error(request, 'Invalid activation link')
         return redirect('register')
 
 
-@login_required(login_url = 'login')
+@login_required(login_url='login')
 def dashboard(request):
-    all_orders = Order.objects.filter(user=request.user).order_by('-created_at')
+    all_orders = Order.objects.filter(
+        user=request.user).order_by('-created_at')
     context = {'all_orders': all_orders}
     return render(request, 'accounts/dashboard.html', context)
 
@@ -191,7 +203,8 @@ def forgotPassword(request):
             send_email = EmailMessage(mail_subject, message, to=[to_email])
             send_email.send()
 
-            messages.success(request, 'Password reset email has been sent to your email address.')
+            messages.success(request, 'Password reset email ' +
+                             'has been sent to your email address.')
             return redirect('login')
 
         else:
@@ -231,5 +244,5 @@ def resetPassword(request):
         else:
             messages.error(request, 'Passwords do not match.')
             return redirect('resetPassword')
-    else:      
+    else:
         return render(request, 'accounts/resetPassword.html')
