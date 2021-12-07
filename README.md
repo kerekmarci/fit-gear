@@ -346,6 +346,7 @@ An E-Commerce website can boast endless functionalites; although the requirement
 * Change Password: although users can already request a reset for their password, a *Change Password* feature will allow users to replace their password on the user dashboard.
 * Product gallery with multiple images: on the *Product Details* page, there will be a mini carusel under the product image so that users can see more photos of the same product.
 * Stripe webhooks: to notify my application when an event happens in your account.
+* Order confirmation email: user to receive a confirmation email of their successful order
 
 ---
 
