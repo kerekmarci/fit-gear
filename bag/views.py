@@ -57,7 +57,7 @@ def add_to_bag(request, product_id):
     """
     current_user = request.user
     product = Product.objects.get(id=product_id)
-    bag, created = Bag.objects.get_or_create(bag_id=_bag_id(request))
+    bag,created = Bag.objects.get_or_create(bag_id=_bag_id(request))
     # If-Else whether user is authenticated or not
     if current_user.is_authenticated:
         product_variation = []
