@@ -267,9 +267,9 @@ The base template contains the links to all external resources, such as Bootstra
 
 ### Shop / Products page
 
-The *Shop* link is available on the navigation bar - when hovering the mouse, the categories appear in a drop-down menu, and the bottom menu item is *All Products.* This will land on a page where products are listed in card view with an appealing picture, and by clicking on them, the user will land on the individual product page. The product list is paginated to avoid too many products on one page. \
+The *Shop* link is available on the navigation bar - when hovering the mouse, the categories appear in a drop-down menu, and the bottom menu item is *All Products.* This will land on a page where products are listed in card view with an appealing picture, and by clicking on them, the user will land on the individual product page. The product list is paginated to avoid too many products on one page.\
 Once the user is on the Products page, the category selector will become available on the left hand side as well to facilitate switching among categories.\
-THe individual product cards show the basic features of the product: an image, a star-rating and a button to open the *Product Detail* page.
+The individual product cards show the basic features of the product: an image, a star-rating and a button to open the *Product Detail* page.
 
 ### Product Detail page
 
@@ -297,7 +297,7 @@ Beyond the category search available on the *Shop* drop-down menu and *Products*
 
 ### Shopping Basket / Bag
 
-From the *Product Detail* page, users can add items into their shoppig bag. The icon next to the bag will indicate the number of items currently in the bag.\
+From the *Product Detail* page, users can add items into their shoppig bag. The icon next to the bag will indicate the number of items currently in the bag.
 * Variations: users have the option to select variations for the given product, such as size and colour.
 * Changing quantity: in the basket page, users can easily change the quantity of the given product with the plus and minus sign next to the quantity.
 * Identifying same variations: if user already has a particular variation in the shopping bag, and adds the same product with the same variation again from the *Product Detail* page, the system will identify this and will increase the quantity instead of adding as a new product.
@@ -437,7 +437,7 @@ To clone the GitHub repository, follow these steps:\
 ## Credits
 
 In this section, I would like to give credit to all tools, sources and support that inspired and helped me towards the success of my project:
-* Code Institute project called *Boutique Ado * in the Full-Stack Frameworks with Django module that provided an excellent and complex example project to understand how to combine all these technologies together.
+* Code Institute project called *Boutique Ado* in the Full-Stack Frameworks with Django module that provided an excellent and complex example project to understand how to combine all these technologies together.
 * An E-Commerce Store tutorial on Udemy that gave me inspiration on how to set up my models, views and logic to create a functional store - in particular the logic for the *Product Variation* section to set up different variations for the same product - https://www.udemy.com/course/django-ecommerce-project-based-course-python-django-web-development/
 * Base template: although I aimed to create a custom website, the main focus of this Project was to utilise Django and Back-End. To facilitate this, I used a template called *Zay Shop* as a staring point for my base template and tailored it to my needs.
 * Product Variations: although mainly the above tutorial was used, this video was also an intersting learning - https://www.youtube.com/watch?v=cRbU7OH1RaQ
