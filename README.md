@@ -457,4 +457,4 @@ In this section, I would like to give credit to all tools, sources and support t
     * https://www.pursuefitness.co.uk/
     * https://uk.gymshark.com/
     * https://www.gymwear.co.uk/
-* My mentor at Code Institute Nishant Kumar for his valuable advice throughout the consultations.
+* My mentor at Code Institute Nishant Kumar for his advice throughout the consultations.
