@@ -1,8 +1,10 @@
 # Fit Gear E-Commerce Store - Milestone Project 4
 
+## View live project here: [Fit Gear E-Commerce Store](https://fit-gear.herokuapp.com/)
+
 This e-commerce website was created for my 4th Milestone Project at The Code Institute. The website will utilise the languages and tools I learned so far in Front-End and Back-End, namely HTML5, CSS3, JavaScript, Python and Django.
 
->>> Photo of the finished website
+![Photo of the finished website](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/responsive.jpg)
 
 ---
 
