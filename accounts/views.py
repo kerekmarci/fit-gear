@@ -18,7 +18,7 @@ import requests
 from checkout.models import Order
 
 # Core logic from this video for the overall functionality:
-# https://www.udemy.com/course/django-ecommerce-project-based-course-python-django-web-developme
+# https://www.udemy.com/course/django-ecommerce-project-based-course-python-django-web-development/
 
 
 def register(request):
@@ -235,7 +235,7 @@ def resetPassword(request):
         confirm_password = request.POST['confirm_password']
 
         if password == confirm_password:
-            uid = request.session.GET('uid')
+            uid = request.session.get('uid')
             user = Account.objects.get(pk=uid)
             user.set_password(password)
             user.save()
