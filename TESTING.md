@@ -66,6 +66,9 @@ The result shown was: *Page is mobile friendly This page is easy to use on a mob
 ## Testing responsiveness
 
 A website called https://www.browserstack.com/responsive provides a quick and easy way to display a website in mobile, desktop and tablet views in the most common resolutions, including landscape and portrait views. Due to the media queries added and the Boostrap grid system used, the website was able to successfully resize to various screen sizes.
+The website looked appealing on all screen sizes:
+
+![Photo of the finished website](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/responsive.jpg)
 
 ## Testing User Stories
 <br>
@@ -91,7 +94,7 @@ A website called https://www.browserstack.com/responsive provides a quick and ea
 | 9 | To search for product name and description by entering a keyword. | Keyword search is available by clickin on the magnifier icon on the navigation bar. |
 | 10 | To see how many results my search found. | Number of results are shown on the top of the results page. 
 | 11 | To easily access the product details page to have additional details. | This is available by clickin on the product card. |
-| 12 | To see product rating. | Product rating is available on the *product cards* so that users can see the star ratings before opening the *product details* page. Stars and exact average can be seen under the product title on the *Product Details* page, as well as how many reviews had been given. <br>![User Story 12](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-12.jpg) |
+| 12 | To see product rating. | Product rating is available on the *product cards* so that users can see the star ratings before opening the *Product Details* page. Stars and exact average can be seen under the product title on the *Product Details* page, as well as how many reviews had been given. <br>![User Story 12](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-12.jpg) |
 | 13 | To read product reviews. | Reviews are available on the *Product Details* page. |
 | 14 | To be able to rate and write a review on a product. | This feature is available on the *Product Details* page for registered users. |
 | 15 | To be able to add and remove products in a basket. | This can be done by pressing the + or - button on the *Shopping Bag* page next to the amount. There is an additional *Remove* button available with a confirmation modal.<br>![User Story 15](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-15.JPG) |
@@ -111,13 +114,15 @@ A website called https://www.browserstack.com/responsive provides a quick and ea
 | 23 | To update the quantity of the products that are available in the store. | Site owners can manually owerride the quantity of each product from the admin page. |
 | 24 | To be able to delete user reviews, in case inappropriate comments are added. | All data is available from the admin menu. |
 
+## Testing Purchases
+
+Test purchases can be made with the following card number: *4242 4242 4242 4242*, with a future expiry date and a random CVV number.
+
 ## Bugs Discovered
 
 In the below section, I will outline some of the bugs, or functionalities that initally worked differently than expected and are woth to note.
 
 ### Changing Quantity in the Shopping Bag
-
-[User Story 22](https://github.com/kerekmarci/fit-gear/blob/main/media/readme_files/user-story-22.JPG)
 
 **Error:** If more than 1 products have been added to the bag, when the quantity was changed, the item changed position in the table. This was a very user-unfriendly feature that the product jumped position after modifying the quantity.\
 **Fix:** I discovered that it always moved to the last position of the table. This issue was fixed by adding an ordering `.order_by('product')` for the *view_bag* view in *bag/views.py.* `bag_items = BagItem.objects.filter(user=request.user, is_active=True).order_by('product')`
