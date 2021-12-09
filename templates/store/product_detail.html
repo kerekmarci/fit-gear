@@ -96,6 +96,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9 m-auto">
+                {% include 'includes/alerts.html' %}
                 <form action="{% url 'submit_review' single_product.id %}" method="POST" class="write-review">
                     {% csrf_token %}
                     <h4 class="mb-3">Write Your Review</h4>
@@ -129,7 +130,6 @@
                                     now</a></span></p>
                         {% endif %}
                     </div>
-                    {% include 'includes/alerts.html' %}
                 </form>
             </div>
         </div>
