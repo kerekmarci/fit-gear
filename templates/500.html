@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- ========================= TITLE ========================= -->
+<section class="container-fluid bg-light py-5">
+    <div class="col-md-6 m-auto text-center">
+        <h1 class="h1 mb-4">Apologies...</h1>
+    </div>
+</section>
+
+<!-- ========================= MESSAGE ========================= -->
+
+<section class="m-5">
+    <div class="text-center error-msg-box">
+        <h2 class="mb-4">We're sorry but we couldn't find this page.</h2>
+        <p class="mb-4">In the meantime, why don't you browse our amazing products?</p>
+        <a href="{% url 'store' %}" class="btn btn-success">Go to Store</a>
+    </div>
+</section>
+
+{% endblock %}
