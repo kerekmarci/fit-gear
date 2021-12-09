@@ -31,5 +31,6 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
+handler404 = "fitgear.views.handler403"
 handler404 = "fitgear.views.handler404"
 handler500 = "fitgear.views.handler500"

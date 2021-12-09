@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- ========================= TITLE ========================= -->
+<section class="container-fluid bg-light py-5">
+    <div class="col-md-6 m-auto text-center">
+        <h1 class="h1 mb-4">Access denied</h1>
+    </div>
+</section>
+
+<!-- ========================= MESSAGE ========================= -->
+
+<section class="m-5">
+    <div class="text-center error-msg-box">
+        <h2 class="mb-4">We're sorry but we couldn't get you access on this occasion.</h2>
+        <p class="mb-4">Would you like to try to log in again?</p>
+        <a href="{% url 'login' %}" class="btn btn-success">Go to Login</a>
+    </div>
+</section>
+
+{% endblock %}
